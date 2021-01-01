@@ -1,0 +1,16 @@
+#! /usr/bin/env sh
+
+cd "$(dirname "$0")"
+
+CONFIG_HOST="$(hostname)"
+
+if [ ! "$1" == "" ]; then
+    CONFIG_HOST="$1"
+fi
+
+if [ ! -f "${CONFIG_HOST}/configuration.nix" ]; then
+    echo "No configuration found for ${CONFIG_HOST}"
+    exit 1
+fi
+
+ln -vis "${CONFIG_HOST}/configuration.nix" configuration.nix
