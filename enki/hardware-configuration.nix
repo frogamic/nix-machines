@@ -6,23 +6,23 @@
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  boot.loader = {
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-      useOSProber = true;
-      gfxmodeEfi = "1920x1200";
-      splashImage = null;
+  boot = {
+    loader = {
+      grub = {
+        efiSupport = true;
+        device = "nodev";
+        useOSProber = true;
+        gfxmodeEfi = "1920x1200";
+        splashImage = null;
+      };
+
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/efi";
+      };
     };
 
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/efi";
-    };
-
-    initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
-    };
+    initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
   };
 
   fileSystems."/" = {

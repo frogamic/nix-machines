@@ -11,7 +11,7 @@
   ];
 
   networking = {
-    hostName = "Enki";
+    hostName = "enki";
     useDHCP = false;
     interfaces.enp4s0.useDHCP = true;
   };

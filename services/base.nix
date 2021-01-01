@@ -8,15 +8,19 @@
   time.timeZone = "Australia/Melbourne";
 
   environment.systemPackages = with pkgs; [
-    bind
     curl
     vim
+    git
+    git-crypt
+    stow
+    bind
+    parted
+    ripgrep
+    tree
     killall
+    pstree
     pciutils
     usbutils
-    parted
-    tree
-    pstree
     rxvt_unicode.terminfo
   ];
 
