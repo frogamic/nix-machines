@@ -1,8 +1,17 @@
 { config, pkgs, ... } : {
-  environment.systemPackages = with pkgs; [
-    dmenu
-    feh
-  ];
+  environment = {
+    etc = {
+      "bspwmrc".source = ./bspwm/bspwmrc;
+      "sxhkdrc".source = ./bspwm/sxhkdrc;
+    };
+
+    systemPackages = with pkgs; [
+      feh
+      dmenu
+      rxvt_unicode
+    ];
+  };
+
 
   # services.redshift.enable = true;
   services.xserver = {
@@ -19,8 +28,10 @@
       EndSection
     '';
 
-    libinput.enable = true;
-    libinput.naturalScrolling = true;
+    libinput = {
+      enable = true;
+      naturalScrolling = true;
+    };
 
     displayManager.lightdm.greeters.mini = {
       enable = true;
@@ -31,29 +42,21 @@
         invalid-password-text = Access Denied
         show-input-cursor = true
         password-alignment = left
-        password-input-width = 20
         [greeter-theme]
         font-size = 1em
-        error-color = "#d40001"
-        password-color = "#1f5dae"
-        border-width = 3px
-        border-color = "#c0863f"
-        window-color = "#b7b6be"
-        password-background-color = "#b7b6be"
-        password-border-color = "#b7b6be"
-        password-border-width = 1px
+        background-image = ""
       '';
     };
 
     windowManager.bspwm = {
       enable = true;
-      configFile = "/etc/nixos/bspwmrc";
-      sxhkd.configFile = "/etc/nixos/sxhkdrc";
+      configFile = "/etc/bspwmrc";
+      sxhkd.configFile = "/etc/sxhkdrc";
     };
   };
+
   programs.xss-lock = {
     enable = true;
     lockerCommand = "${pkgs.lightdm}/bin/dm-tool switch-to-greeter";
   };
-
 }
