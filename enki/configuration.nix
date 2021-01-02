@@ -9,6 +9,8 @@
     ../services/sound.nix
     ../services/ssh.nix
     ../services/bspwm.nix
+    ../services/steam.nix
+    ../services/desktop-apps.nix
   ];
 
   networking = {
