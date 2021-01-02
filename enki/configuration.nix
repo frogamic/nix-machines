@@ -5,6 +5,7 @@
     ../users/dominic.nix
 
     ../services/base.nix
+    ../services/grub-savedefault.nix
     ../services/sound.nix
     ../services/ssh.nix
     ../services/bspwm.nix
