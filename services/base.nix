@@ -16,6 +16,7 @@
     bind
     parted
     ripgrep
+    bat
     tree
     killall
     pstree
