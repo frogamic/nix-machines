@@ -25,8 +25,17 @@
       naturalScrolling = true;
     };
 
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        enableXfwm = false;
+        noDesktop = true;
+      };
+    };
+
     displayManager = {
-      defaultSession = "none+bspwm";
+      defaultSession = "xfce+bspwm";
       lightdm.greeters.gtk.enable = true;
     };
 
