@@ -12,23 +12,31 @@
     useXkbConfig = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    curl
-    vim
-    git
-    git-crypt
-    stow
-    bind
-    parted
-    ripgrep
-    bat
-    tree
-    killall
-    pstree
-    pciutils
-    usbutils
-    rxvt_unicode.terminfo
-  ];
+  environment = {
+    variables = {
+      EDITOR = "vim";
+    };
+
+    systemPackages = with pkgs; [
+      curl
+      vim
+      git
+      git-crypt
+      stow
+      bind
+      parted
+      ripgrep
+      jq
+      bat
+      tree
+      killall
+      pstree
+      pciutils
+      usbutils
+      nix-index
+      rxvt_unicode.terminfo
+    ];
+  };
 
   services.fwupd = {
     enable = true;

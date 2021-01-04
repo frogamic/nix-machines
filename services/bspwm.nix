@@ -1,8 +1,27 @@
-{ config, pkgs, ... } : {
+{ config, pkgs, ... } :
+let
+  bspwm-config = pkgs.stdenvNoCC.mkDerivation {
+    name = "bspwm-config";
+    #phases = "installPhase";
+    dependencies = [
+      pkgs.python3
+    ];
+    src = [
+      ./bspwm/config
+    ];
+    dontBuild = true;
+    installPhase = ''
+      mkdir -p $out
+      cp * $out
+    '';
+  };
+in
+{
   environment.systemPackages = with pkgs; [
     feh
     dmenu
     rxvt_unicode
+    xsel
   ];
 
   # services.redshift.enable = true;
@@ -41,8 +60,8 @@
 
     windowManager.bspwm = {
       enable = true;
-      configFile = "${./bspwm/bspwmrc}";
-      sxhkd.configFile = "${./bspwm/sxhkdrc}";
+      configFile = "${bspwm-config}/bspwmrc";
+      sxhkd.configFile = "${bspwm-config}/sxhkdrc";
     };
   };
 

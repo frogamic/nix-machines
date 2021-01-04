@@ -86,9 +86,6 @@ super + shift + l
 super + shift + Escape
     feh --bg-fill --no-xinerama ~/Pictures/SolarShutdown.png && systemctl poweroff
 
-super + shift + R
-    feh --bg-fill --no-xinerama ~/Pictures/SolarShutdown.png && systemctl reboot
-
 super + Return
 	urxvt
 
