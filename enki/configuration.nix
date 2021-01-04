@@ -13,11 +13,7 @@
     ../services/desktop-apps.nix
   ];
 
-  networking = {
-    hostName = "enki";
-    useDHCP = false;
-    interfaces.enp4s0.useDHCP = true;
-  };
+  networking.hostName = "enki";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,11 +1,16 @@
 { config, pkgs, ... } : {
+  time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
+
+  services.xserver = {
+    layout = "dvorak";
+    xkbOptions = "caps:swapescape";
+  };
+
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true;
   };
-
-  time.timeZone = "Australia/Melbourne";
 
   environment.systemPackages = with pkgs; [
     curl
@@ -25,8 +30,8 @@
     rxvt_unicode.terminfo
   ];
 
-  services.xserver = {
-    layout = "dvorak";
-    xkbOptions = "caps:swapescape";
+  services.fwupd = {
+    enable = true;
+    enableTestRemote = true;
   };
 }

@@ -12,23 +12,7 @@
     ../services/desktop-apps.nix
   ];
 
-  networking = {
-    hostName = "ninhursag";
-    wireless.enable = true;
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-    useDHCP = false;
-    interfaces = {
-      wlp3s0.useDHCP = true;
-      enp2s0f0.useDHCP = true;
-    };
-    supplicant.wlp3s0 = {
-      userControlled.enable = true;
-      configFile = {
-        path = "/etc/wpa_supplicant.conf";
-        writable = true;
-      };
-    };
-  };
+  networking.hostName = "ninhursag";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

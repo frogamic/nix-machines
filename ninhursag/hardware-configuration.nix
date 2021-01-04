@@ -21,6 +21,22 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  networking = {
+    wireless.enable = true;
+    useDHCP = false;
+    interfaces = {
+      wlp3s0.useDHCP = true;
+      enp2s0f0.useDHCP = true;
+    };
+    supplicant.wlp3s0 = {
+      userControlled.enable = true;
+      configFile = {
+        path = "/etc/wpa_supplicant.conf";
+        writable = true;
+      };
+    };
+  };
+
   hardware.trackpoint = {
     enable = lib.mkDefault true;
     emulateWheel = lib.mkDefault config.hardware.trackpoint.enable;
@@ -30,10 +46,6 @@
     DisplaySize 310 175
   '';
 
-  services.fwupd = {
-    enable = true;
-    enableTestRemote = true;
-  };
   #services.fprintd.enable = true;
   services.tlp.enable = lib.mkDefault true;
 
