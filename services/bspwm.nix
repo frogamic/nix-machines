@@ -1,5 +1,4 @@
-{ config, pkgs, ... } :
-let
+{ config, pkgs, ... } : let
   bspwm-config = pkgs.stdenvNoCC.mkDerivation {
     name = "bspwm-config";
     #phases = "installPhase";
@@ -15,53 +14,47 @@ let
       cp * $out
     '';
   };
-in
-{
+in {
   environment.systemPackages = with pkgs; [
+    scrot
     feh
     dmenu
     rxvt_unicode
     xsel
   ];
 
-  # services.redshift.enable = true;
-  services.xserver = {
-    enable = true;
+  services = {
+    #redshift.enable = true;
 
-    # Disable mouse acceleration
-    config = ''
-      Section "InputClass"
-        Identifier "mouse accel"
-        Driver "libinput"
-        MatchIsPointer "on"
-        Option "AccelProfile" "flat"
-        Option "AccelSpeed" "0"
-      EndSection
-    '';
-
-    libinput = {
+    xserver = {
       enable = true;
-      naturalScrolling = true;
-    };
 
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
+      # Disable mouse acceleration
+      config = ''
+        Section "InputClass"
+          Identifier "mouse accel"
+          Driver "libinput"
+          MatchIsPointer "on"
+          Option "AccelProfile" "flat"
+          Option "AccelSpeed" "0"
+        EndSection
+      '';
+
+      libinput = {
         enable = true;
-        enableXfwm = false;
-        noDesktop = true;
+        naturalScrolling = true;
       };
-    };
 
-    displayManager = {
-      defaultSession = "xfce+bspwm";
-      lightdm.greeters.gtk.enable = true;
-    };
+      displayManager = {
+        defaultSession = "none+bspwm";
+        lightdm.greeters.gtk.enable = true;
+      };
 
-    windowManager.bspwm = {
-      enable = true;
-      configFile = "${bspwm-config}/bspwmrc";
-      sxhkd.configFile = "${bspwm-config}/sxhkdrc";
+      windowManager.bspwm = {
+        enable = true;
+        configFile = "${bspwm-config}/bspwmrc";
+        sxhkd.configFile = "${bspwm-config}/sxhkdrc";
+      };
     };
   };
 

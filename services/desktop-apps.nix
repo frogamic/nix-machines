@@ -1,5 +1,7 @@
 
-{ config, pkgs, ... } : {
+{ config, pkgs, ... } : let
+  pkgs-stable = import ./pkgs-stable.nix;
+in {
   environment = {
     variables = {
       BROWSER = "firefox-devedition";
@@ -11,7 +13,7 @@
       inkscape
       krita
       yed
-      mpv
+      pkgs-stable.mpv
       spotify
       discord
     ];
