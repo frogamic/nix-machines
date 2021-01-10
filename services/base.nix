@@ -20,6 +20,9 @@
     systemPackages = with pkgs; [
       curl
       vim
+      nodejs
+      python3
+      perl
       git
       git-crypt
       stow
