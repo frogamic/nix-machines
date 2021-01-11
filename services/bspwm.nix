@@ -47,6 +47,10 @@ in {
 
       displayManager = {
         defaultSession = "none+bspwm";
+        lightdm.enable = true;
+        lightdm.extraSeatDefaults = ''
+          user-session = ${config.services.xserver.displayManager.defaultSession}
+        '';
         lightdm.greeters.gtk.enable = true;
       };
 
