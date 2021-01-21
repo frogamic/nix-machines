@@ -3,7 +3,7 @@
   i18n.defaultLocale = "en_AU.UTF-8";
 
   services.xserver = {
-    layout = "dvorak";
+    layout = "dvorak,us";
     xkbOptions = "caps:swapescape";
   };
 
@@ -29,6 +29,7 @@
       bind
       parted
       ripgrep
+      file
       jq
       bat
       tree
