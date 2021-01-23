@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#! /usr/bin/env -S deno run
 const workspaces = [...new Array(12)].map((_, i) => (i + 1).toString());
 
 console.log('\n### Begin monitors script');

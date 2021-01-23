@@ -1,4 +1,4 @@
-#! /usr/bin/env -S node --experimental-modules
+#! /usr/bin/env -S deno run
 
 console.log('\n### Begin workspaces script');
 
