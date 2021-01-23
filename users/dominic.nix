@@ -4,6 +4,6 @@
   users.users.dominic = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = import ./privileged.nix config;
   };
 }

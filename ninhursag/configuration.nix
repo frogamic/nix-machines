@@ -12,6 +12,7 @@
     ../services/sway.nix
     ../services/steam.nix
     ../services/desktop-apps.nix
+    ../services/android.nix
   ];
 
   system.stateVersion = "20.09"; # Did you read the comment?
