@@ -3,9 +3,9 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, ... } : {
   imports = [
-    ../hardware/amdcpu.nix
-    ../hardware/amdgpu.nix
-    ../hardware/ssd.nix
+    ../../services/hardware/amdcpu.nix
+    ../../services/hardware/amdgpu.nix
+    ../../services/hardware/ssd.nix
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
