@@ -8,6 +8,7 @@
   XKB_DEFAULT_VARIANT = if config.services.xserver ? xkbVariant
     then "export XKB_DEFAULT_VARIANT=\"${config.services.xserver.xkbVariant}\""
     else "";
+  sway-conf = import ../lib/mkConfig.nix pkgs config ./sway.conf {};
 in {
   services.xserver.displayManager.gdm = {
     #enable = true;
@@ -16,7 +17,7 @@ in {
 
   programs.sway = {
     enable = true;
-    extraOptions = [ "--config" "${./sway.conf}" ];
+    extraOptions = [ "--config" "${sway-conf}" ];
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       ${XKB_DEFAULT_LAYOUT}
