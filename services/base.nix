@@ -46,4 +46,6 @@
     enable = true;
     enableTestRemote = true;
   };
+
+  nix.autoOptimiseStore = true;
 }

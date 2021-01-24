@@ -7,6 +7,7 @@
     ../../users/dominic.nix
 
     ../../services/base.nix
+    ../../services/updates.nix
     ../../services/sound.nix
     ../../services/ssh.nix
     ../../services/sway.nix
