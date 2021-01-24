@@ -26,13 +26,16 @@ in {
     '';
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
+      playerctl
+      pamixer
+      wob
       swaylock
       swayidle
       xwayland
       mako
       wl-clipboard
-      alacritty
       wofi
+      alacritty
     ];
   };
 
