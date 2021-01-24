@@ -52,6 +52,8 @@ input "type:pointer" {
   accel_profile flat
 }
 
+bindsym $mod+Alt+Space input "*" xkb_switch_layout next
+
 default_border pixel 1
 smart_borders on
 focus_follows_mouse no
