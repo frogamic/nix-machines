@@ -10,15 +10,22 @@
   ];
 
   boot = {
+    initrd.availableKernelModules = [
+      "nvme"
+      "ehci_pci"
+      "xhci_pci"
+      "usb_storage"
+      "sd_mod"
+      "rtsx_pci_sdmmc"
+    ];
+    kernelParams = ["acpi_backlight=native" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+
     loader = {
       timeout = 2;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "acpi_call" ];
-    kernelModules = [ "acpi_call" ];
-    kernelParams = ["acpi_backlight=native" ];
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   networking = {

@@ -7,6 +7,13 @@
   ];
 
   boot = {
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usbhid"
+    ];
+
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -22,7 +29,6 @@
       };
     };
 
-    initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
   };
 
   networking = {
