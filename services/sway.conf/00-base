@@ -109,6 +109,10 @@ mouse_warping none
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    # Rotate screen
+    bindsym $mod+Alt+Right output "--" transform 90 clockwise
+    bindsym $mod+Alt+Left output "--" transform 90 anticlockwise
 #
 # Layout stuff:
 #
