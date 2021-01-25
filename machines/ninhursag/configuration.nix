@@ -7,13 +7,6 @@
     ../../users/dominic.nix
 
     ../../services/base.nix
-    ../../services/updates.nix
-    ../../services/sound.nix
-    ../../services/ssh.nix
-    ../../services/sway.nix
-    ../../services/steam.nix
-    ../../services/desktop-apps.nix
-    ../../services/android.nix
   ];
 
   system.stateVersion = "20.09"; # Did you read the comment?

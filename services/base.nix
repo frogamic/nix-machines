@@ -1,4 +1,16 @@
 { config, pkgs, ... } : {
+
+  imports = [
+    ./updates.nix
+    ./emulatedSystems.nix
+    ./sound.nix
+    ./ssh.nix
+    ./sway.nix
+    ./steam.nix
+    ./desktop-apps.nix
+    ./android.nix
+  ];
+
   time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
 
@@ -38,6 +50,7 @@
       pciutils
       usbutils
       nix-index
+      nixops
       rxvt_unicode.terminfo
     ];
   };
