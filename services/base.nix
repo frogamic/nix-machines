@@ -25,6 +25,10 @@
   };
 
   environment = {
+    shellAliases = {
+      ll = "ls -alh";
+      ns = "function _ns() { nix-shell -p \"$1\" --run \"$*\"; }; _ns";
+    };
     variables = {
       EDITOR = "vim";
     };
