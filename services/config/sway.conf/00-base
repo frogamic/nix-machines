@@ -125,7 +125,7 @@ mouse_warping none
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+t layout tabbed
+    bindsym $mod+t layout toggle tabbed split
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
