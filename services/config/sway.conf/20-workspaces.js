@@ -8,5 +8,5 @@ const workspaces = [
 
 workspaces.forEach(({key, name}) => {
   console.log(`bindsym $mod+${key} workspace ${name}`);
-  console.log(`bindsym $mod+Shift+${key} move container to workspace ${name}`);
+  console.log(`bindsym $mod+Shift+${key} move container to workspace ${name}; workspace ${name}`);
 });
