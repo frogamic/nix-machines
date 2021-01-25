@@ -1,6 +1,6 @@
 pkgs: config: file: attrs:
   let
-    name = builtins.baseNameOf file;
+    fileName = builtins.baseNameOf file;
   in with pkgs; let
     defaultAttrs = {
       builder = "${bash}/bin/bash";
@@ -8,12 +8,12 @@ pkgs: config: file: attrs:
       baseInputs = [ coreutils gawk gnused gnugrep ];
       buildInputs = [ python3 perl deno nodejs ];
       system = builtins.currentSystem;
-      name = name;
+      name = fileName;
       src = [
         file
       ] ++ (
         let
-          hostpath = ../. + "/machines/${config.networking.hostName}/${name}";
+          hostpath = ../. + "/machines/${config.system.name}/${fileName}";
         in
         if builtins.pathExists hostpath
           then [ hostpath ]
