@@ -17,7 +17,6 @@ in {
 
   programs.sway = {
     enable = true;
-    extraOptions = [ "--config" "${sway-conf}" ];
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
       ${XKB_DEFAULT_LAYOUT}
@@ -39,5 +38,5 @@ in {
     ];
   };
 
-  environment.etc."sway/config".enable = false;
+  environment.etc."sway/config".source = sway-conf;
 }

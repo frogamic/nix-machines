@@ -3,7 +3,18 @@
 set $wobsock /tmp/wob-sway-sock
 
 exec playerctld
-exec mkfifo $wobsock || true && tail -f $wobsock | wob --anchor bottom --width 768 --height 20 --margin 20 --offset 0 --border 0 --padding 2
+exec mkfifo $wobsock || true \
+     && tail -f $wobsock \
+       | wob --anchor bottom \
+             --width 768 \
+             --height 20 \
+             --margin 20 \
+             --offset 0 \
+             --border 1 \
+             --padding 2 \
+             --border-color '#AAEEEEEE' \
+             --bar-color '#AAFFFFFF' \
+             --background-color '#AA000000'
 
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
