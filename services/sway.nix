@@ -8,7 +8,8 @@
   XKB_DEFAULT_VARIANT = if config.services.xserver ? xkbVariant
     then "export XKB_DEFAULT_VARIANT=\"${config.services.xserver.xkbVariant}\""
     else "";
-  sway-conf = import ../lib/mkConfig.nix pkgs config ./sway.conf {};
+  sway-conf = import ../lib/mkConfig.nix pkgs config ./config/sway.conf {};
+  pacycle = pkgs.writeScriptBin "pacycle" (builtins.readFile ./bin/pacycle);
 in {
   services.xserver.displayManager.gdm = {
     #enable = true;
@@ -27,11 +28,13 @@ in {
     extraPackages = with pkgs; [
       playerctl
       pamixer
+      pacycle
       wob
       swaylock
       swayidle
       xwayland
       mako
+      libnotify
       wl-clipboard
       wofi
       alacritty

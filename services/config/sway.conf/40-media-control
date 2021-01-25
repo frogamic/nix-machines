@@ -19,15 +19,23 @@ exec mkfifo $wobsock || true \
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Mute
 bindsym --locked XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $wobsock ) || pamixer --get-volume > $wobsock
 
-# Ctrl for small change
+# Overload mute key for device switching
+bindsym --locked Shift+XF86AudioMute exec notify-send -u low -t 1500 -i audio-card "Next Audio Device" "$(pacycle next sink)"
+bindsym --locked Ctrl+XF86AudioMute exec notify-send -u low -t 1500 -i audio-card "Previous Audio Device" "$(pacycle next sink)"
+bindsym --locked $mod+XF86AudioMute exec notify-send -u low -t 1500 -i audio-input-microphone "Previous Audio Input" "$(pacycle prev source)"
+bindsym --locked Alt+XF86AudioMute exec notify-send -u low -t 1500 -i audio-input-microphone "Next Audio Input" "$(pacycle next source)"
+
+# Ctrl for small volume change
 bindsym --locked Ctrl+XF86AudioRaiseVolume exec pamixer -ui 1 && pamixer --get-volume > $wobsock
 bindsym --locked Ctrl+XF86AudioLowerVolume exec pamixer -ud 1 && pamixer --get-volume > $wobsock
-# no mod for medium change
+# no mod for volume change
 bindsym --locked XF86AudioRaiseVolume exec pamixer -ui 5 && pamixer --get-volume > $wobsock
 bindsym --locked XF86AudioLowerVolume exec pamixer -ud 5 && pamixer --get-volume > $wobsock
-# Shift for big change
+# Shift for big volume change
 bindsym --locked Shift+XF86AudioRaiseVolume exec pamixer -ui 10 && pamixer --get-volume > $wobsock
 bindsym --locked Shift+XF86AudioLowerVolume exec pamixer -ud 10 && pamixer --get-volume > $wobsock
 
