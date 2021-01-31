@@ -5,7 +5,9 @@
                      -c android.intent.category.LAUNCHER 1 \
     && scrcpy -Sw \
               --window-title 'Fate/Grand Order' \
-              --crop 1080:1920:0:278
+              --render-driver opengles2 \
+              --crop 1080:1920:0:278 \
+              --bit-rate 20M
   '';
 in {
   programs.adb.enable = true;
