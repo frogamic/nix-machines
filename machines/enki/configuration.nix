@@ -8,6 +8,7 @@
 
     ../../services/base.nix
     ../../services/grub-savedefault.nix
+    ../../services/texlive.nix
   ];
 
   system.stateVersion = "20.09";
