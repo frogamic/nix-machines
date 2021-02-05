@@ -4,6 +4,6 @@
   users.users.dominic = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = import ./privileged.nix config;
+    extraGroups = import ./privileged-groups.nix config;
   };
 }

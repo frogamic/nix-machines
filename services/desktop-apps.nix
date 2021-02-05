@@ -11,6 +11,7 @@
       mpv
     ]) ++
     (with pkgs; [
+      xdg-utils
       firefox-devedition-bin
       gimp
       gimpPlugins.gap
