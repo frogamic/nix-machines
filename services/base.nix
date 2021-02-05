@@ -37,6 +37,7 @@
       curl
       vim
       nodejs
+      yarn
       python3
       perl
       git
