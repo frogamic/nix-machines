@@ -1,4 +1,4 @@
-pkgs: config: file: attrs:
+{ pkgs, config }: file: attrs:
   let
     fileName = builtins.baseNameOf file;
   in with pkgs; let

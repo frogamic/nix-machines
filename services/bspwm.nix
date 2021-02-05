@@ -6,7 +6,7 @@
       pkgs.python3
     ];
     src = [
-      ./bspwm/config
+      ./config/bspwm/config
     ];
     dontBuild = true;
     installPhase = ''

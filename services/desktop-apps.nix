@@ -7,7 +7,7 @@
       BROWSER = "firefox-devedition";
     };
     systemPackages =
-    (with import ./pkgs-stable.nix; [
+    (with import ../lib/pkgs-stable.nix; [
       mpv
     ]) ++
     (with pkgs; [
