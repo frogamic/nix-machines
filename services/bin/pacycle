@@ -12,7 +12,8 @@ fi
 IFS=$'\n' devices=(
   $(pacmd "list-${2}s" \
     | grep -E '(index|monitor_of):' \
-    | sed -E '$!N;s/(.*index:.*)\n(.*monitor_of)/\1 \2/g' \
+    | tr '\n' '\f' \
+    | sed -E 's/([^\f]*index:[[:space:]]*[[:digit:]]*)[[:space:]]*\f([[:space:]]*(monitor_of[^\f]*)\f)?/\1\3\n/g' \
     | grep -v "monitor_of"
   )
 )
