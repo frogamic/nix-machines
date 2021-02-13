@@ -36,18 +36,23 @@
     interfaces.enp4s0.useDHCP = true;
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/389c0259-8dbe-4efd-9693-ddeedf66defe";
-    fsType = "ext4";
-  };
-
-  fileSystems."/efi" = {
-    device = "/dev/disk/by-uuid/0D39-C351";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/389c0259-8dbe-4efd-9693-ddeedf66defe";
+      fsType = "ext4";
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/421aae2b-d64b-4e8f-a5bd-8e4c79f3b4ae";
+      fsType = "ext4";
+    };
+    "/efi" = {
+      device = "/dev/disk/by-uuid/0D39-C351";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/471df190-e3a1-4c0a-88bc-d9ab774b1b46"; }
+    { device = "/dev/disk/by-uuid/a02708dd-61b9-4405-b49b-863494d06c37"; }
   ];
 
   nix.maxJobs = lib.mkDefault 16;
