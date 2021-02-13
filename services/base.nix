@@ -9,6 +9,7 @@
     ./steam.nix
     ./desktop-apps.nix
     ./android.nix
+    ./aws.nix
   ];
 
   time.timeZone = "Australia/Melbourne";
