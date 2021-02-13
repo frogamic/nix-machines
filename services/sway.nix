@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...} : let
+{ config, pkgs, ...} : let
   XKB_DEFAULT_LAYOUT = if config.services.xserver ? layout
     then "export XKB_DEFAULT_LAYOUT=\"${config.services.xserver.layout}\""
     else "";

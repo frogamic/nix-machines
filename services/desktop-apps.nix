@@ -1,4 +1,4 @@
-{ config, pkgs, ... } :  {
+{ pkgs, ... } :  {
   # Required for Discord
   nixpkgs.config.allowUnfree = true;
 

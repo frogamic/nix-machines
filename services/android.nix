@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... } : let
+{ pkgs, ... } : let
   fate-go = pkgs.writeScriptBin "fgo" ''
     #! /bin/sh
     adb shell monkey -p com.aniplex.fategrandorder.en \

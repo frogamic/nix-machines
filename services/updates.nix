@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... } : {
+{ lib, config, ... } : {
   system.autoUpgrade = {
     enable = true;
     dates = "23:00";

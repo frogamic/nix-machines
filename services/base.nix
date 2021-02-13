@@ -1,4 +1,4 @@
-{ config, pkgs, ... } : {
+{ pkgs, ... } : {
 
   imports = [
     ./updates.nix
@@ -9,7 +9,7 @@
     ./steam.nix
     ./desktop-apps.nix
     ./android.nix
-    ./aws.nix
+    ./develop.nix
   ];
 
   time.timeZone = "Australia/Melbourne";
@@ -37,10 +37,6 @@
     systemPackages = with pkgs; [
       curl
       vim
-      nodejs
-      yarn
-      python3
-      perl
       git
       git-crypt
       stow
@@ -56,7 +52,6 @@
       pciutils
       usbutils
       nix-index
-      nixops
       rxvt_unicode.terminfo
     ];
   };
