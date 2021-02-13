@@ -20,6 +20,17 @@
       yed
       spotify
       discord
+      breeze-gtk
+      breeze-qt5
+      breeze-icons
+    ]) ++
+    (with pkgs.xfce; [
+      xfconf
+      exo
+      thunar
+      thunar-volman
+      thunar-archive-plugin
+      tumbler
     ]);
   };
 }
