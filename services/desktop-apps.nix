@@ -1,4 +1,4 @@
-{ pkgs, ... } :  {
+{ pkgs, ... } : {
   # Required for Discord
   nixpkgs.config.allowUnfree = true;
 
@@ -7,9 +7,6 @@
       BROWSER = "firefox-devedition";
     };
     systemPackages =
-    (with import ../lib/pkgs-stable.nix; [
-      mpv
-    ]) ++
     (with pkgs; [
       xdg-utils
       firefox-devedition-bin
@@ -17,9 +14,10 @@
       gimpPlugins.gap
       inkscape
       krita
-      yed
+      # yed
       spotify
       discord
+      mpv
       breeze-gtk
       breeze-qt5
       breeze-icons
