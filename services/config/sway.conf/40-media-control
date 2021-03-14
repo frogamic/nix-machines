@@ -3,7 +3,7 @@
 set $wobsock /tmp/wob-sway-sock
 
 exec playerctld
-exec mkfifo $wobsock || true \
+exec rm -f $wobsock && mkfifo $wobsock \
      && tail -f $wobsock \
        | wob --anchor bottom \
              --width 768 \
@@ -32,10 +32,9 @@ bindsym --locked Alt+XF86AudioMute exec notify-send -u low -t 1500 -i audio-inpu
 # Ctrl for small volume change
 bindsym --locked Ctrl+XF86AudioRaiseVolume exec pamixer -ui 1 && pamixer --get-volume > $wobsock
 bindsym --locked Ctrl+XF86AudioLowerVolume exec pamixer -ud 1 && pamixer --get-volume > $wobsock
-# no mod for volume change
+# no mod for regular volume change
 bindsym --locked XF86AudioRaiseVolume exec pamixer -ui 5 && pamixer --get-volume > $wobsock
 bindsym --locked XF86AudioLowerVolume exec pamixer -ud 5 && pamixer --get-volume > $wobsock
 # Shift for big volume change
 bindsym --locked Shift+XF86AudioRaiseVolume exec pamixer -ui 10 && pamixer --get-volume > $wobsock
 bindsym --locked Shift+XF86AudioLowerVolume exec pamixer -ud 10 && pamixer --get-volume > $wobsock
-
