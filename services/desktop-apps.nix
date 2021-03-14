@@ -18,9 +18,6 @@
       spotify
       discord
       mpv
-      breeze-gtk
-      breeze-qt5
-      breeze-icons
     ]) ++
     (with pkgs.xfce; [
       xfconf

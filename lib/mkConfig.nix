@@ -20,4 +20,4 @@
           else [ ]
       );
     };
-  in derivation (defaultAttrs // attrs)
+  in derivation (config.environment.variables // defaultAttrs // attrs)

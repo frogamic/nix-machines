@@ -10,3 +10,5 @@ workspaces.forEach(({key, name}) => {
   console.log(`bindsym $mod+${key} workspace ${name}`);
   console.log(`bindsym $mod+Shift+${key} move container to workspace ${name}; workspace ${name}`);
 });
+
+console.log('\n### End workspaces script');
