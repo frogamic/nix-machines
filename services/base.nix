@@ -51,6 +51,7 @@
       pstree
       pciutils
       usbutils
+      ffmpeg
       nix-index
       rxvt_unicode.terminfo
     ];
