@@ -18,6 +18,7 @@
       spotify
       discord
       mpv
+      mupdf
     ]) ++
     (with pkgs.xfce; [
       xfconf
@@ -26,6 +27,7 @@
       thunar-volman
       thunar-archive-plugin
       tumbler
+      ristretto
     ]);
   };
 }
