@@ -10,8 +10,6 @@
     yarn
     python3
     perl
-  ]) ++
-  (with import ../lib/pkgs-stable.nix; [
     nixops
   ]);
 }

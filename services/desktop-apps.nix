@@ -1,4 +1,4 @@
-{ pkgs, ... } : {
+{ config, pkgs, ... } : {
   # Required for Discord
   nixpkgs.config.allowUnfree = true;
 
@@ -19,6 +19,9 @@
       discord
       mpv
       mupdf
+    ]) ++
+    (with import ../lib/pkgs-stable.nix config; [
+      chromium
     ]) ++
     (with pkgs.xfce; [
       xfconf
