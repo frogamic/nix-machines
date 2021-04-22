@@ -37,6 +37,8 @@
     systemPackages = with pkgs; [
       curl
       vim
+      zip
+      unzip
       git
       git-crypt
       stow
