@@ -1,4 +1,4 @@
-{ pkgs, ... } : {
+{ config, pkgs, ... } : {
 
   imports = [
     ./aws.nix
@@ -10,6 +10,8 @@
     yarn
     python3
     perl
+  ]) ++
+  (with import ../lib/pkgs-stable.nix config; [
     nixops
   ]);
 }
