@@ -4,18 +4,18 @@
 
 ## Overview
 
-1. Create config file(s) somewhere such as `services/config/example.conf` or `services/config/example.conf/00-something.js` and also more machine specific configs under `machines/example.conf` or `machines/example.conf/50-specific-thing.py`:
+1. Create config file(s) somewhere such as `config/example.conf` or `config/example.conf/00-something.js` and also more machine specific configs under `machines/{machine}/example.conf` or `machines/{machine}/example.conf/50-specific-thing.py`:
 ```shell
 tree
 .
 ├── ...
 ├── services
 │   ├── example.nix
-│   ├── ...
-│   └── config
-│       └── example.conf
-│           ├── 00-basic
-│           └── 50-something.js
+│   └── ...
+├── config
+│   └── example.conf
+│       ├── 00-basic
+│       └── 50-something.js
 └── machines
     ├── ...
     └── my-pc
@@ -28,7 +28,7 @@ tree
 ```nix
 # example.nix
 { config, pkgs, ... } : let
-  example-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ./config/example.conf {};
+  example-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ../config/example.conf {};
 in {
   environment.etc."example-configuration".source = example-conf;
 }
@@ -36,7 +36,7 @@ in {
 3. Rebuild your system as normal: `nixos-rebuild switch`
 
 #### Explanation
-What you have just done is compile a single file comprised of the content of `services/config/example.conf/00-basic` and the outputs of executing `services/config/example.conf/50-something.js` and `machines/my-pc/example.conf/10-my-pc-specific.py`
+What you have just done is compile a single file comprised of the content of `config/example.conf/00-basic` and the outputs of executing `config/example.conf/50-something.js` and `machines/my-pc/example.conf/10-my-pc-specific.py`
 
 ## Usage
 

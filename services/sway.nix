@@ -8,7 +8,7 @@
   XKB_DEFAULT_VARIANT = if config.services.xserver ? xkbVariant
     then "export XKB_DEFAULT_VARIANT=\"${config.services.xserver.xkbVariant}\""
     else "";
-  sway-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ./config/sway.conf {
+  sway-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ../config/sway.conf {
     XCURSOR_THEME = config.environment.variables.XCURSOR_THEME;
   };
   pacycle = pkgs.writeScriptBin "pacycle" (builtins.readFile ./bin/pacycle);
@@ -40,6 +40,11 @@ in {
     wayland = true;
   };
 
+  # Needed for waybar
+  fonts.fonts = with pkgs; [
+    font-awesome
+  ];
+
   programs.sway = {
     enable = true;
     extraSessionCommands = ''
@@ -53,6 +58,7 @@ in {
       playerctl
       pamixer
       wob
+      waybar
       swaylock
       swayidle
       xwayland
