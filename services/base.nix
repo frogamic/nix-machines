@@ -1,4 +1,4 @@
-{ pkgs, ... } : {
+{ lib, pkgs, ... } : {
 
   imports = [
     ./updates.nix
@@ -25,6 +25,15 @@
     font = "Lat2-Terminus16";
     useXkbConfig = true;
   };
+
+  programs.zsh.enable = true;
+
+  environment.etc.inputrc.text = lib.mkForce (
+    ''
+      set editing-mode vi
+    ''
+    + builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
+  );
 
   environment = {
     shellAliases = {
