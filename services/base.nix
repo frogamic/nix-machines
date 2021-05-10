@@ -5,11 +5,12 @@
     ./emulatedSystems.nix
     ./sound.nix
     ./ssh.nix
+    ./fonts.nix
     ./sway.nix
-    ./steam.nix
     ./desktop-apps.nix
-    ./android.nix
     ./develop.nix
+    ./android.nix
+    ./steam.nix
   ];
 
   boot.supportedFilesystems = [ "ntfs" ];
