@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+set -o pipefail
+set -o nounset
+set -o errexit
+
+if [[ "$#" != "2" ]] || ! [[ "$1" =~ (inc|dec) ]]; then
+  echo "Usage: $(basename "$0") [inc|dec] [percentage]"
+  exit 1
+fi
+
+if [[ "$1" == "inc" ]]; then
+  CHANGE="+${2}%"
+else
+  CHANGE="${2}%-"
+fi
+
+PCT=$(brightnessctl -m -c "backlight" set "$CHANGE" | cut -d "," -f 4)
+brightnessctl -d "tpacpi::kbd_backlight" set "$PCT" > /dev/null
+PCT="${PCT%%%}"
+echo "$PCT"

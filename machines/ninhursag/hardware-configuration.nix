@@ -6,6 +6,7 @@
     ../../services/hardware/amdcpu.nix
     ../../services/hardware/amdgpu.nix
     ../../services/hardware/ssd.nix
+    ../../services/hardware/backlight.nix
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
@@ -18,7 +19,7 @@
       "sd_mod"
       "rtsx_pci_sdmmc"
     ];
-    kernelParams = ["acpi_backlight=native" ];
+    kernelParams = [ "acpi_backlight=native" ];
     kernelPackages = pkgs.linuxPackages_latest;
 
     loader = {
@@ -29,7 +30,7 @@
   };
 
   networking = {
-    wireless.enable = true;
+    wireless.enable = false;
     useDHCP = false;
     interfaces = {
       wlp3s0.useDHCP = true;
@@ -53,7 +54,6 @@
     DisplaySize 310 175
   '';
 
-  #services.fprintd.enable = true;
   services.tlp.enable = lib.mkDefault true;
 
   fileSystems."/" = {

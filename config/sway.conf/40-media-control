@@ -38,3 +38,13 @@ bindsym --locked XF86AudioLowerVolume exec pamixer -ud 5 && pamixer --get-volume
 # Shift for big volume change
 bindsym --locked Shift+XF86AudioRaiseVolume exec pamixer -ui 10 && pamixer --get-volume > $wobsock
 bindsym --locked Shift+XF86AudioLowerVolume exec pamixer -ud 10 && pamixer --get-volume > $wobsock
+
+### backlight control
+bindsym --locked Ctrl+XF86MonBrightnessUp exec backlightctl inc 2 > $wobsock
+bindsym --locked Ctrl+XF86MonBrightnessDown exec backlightctl dec 2 > $wobsock
+
+bindsym --locked XF86MonBrightnessUp exec backlightctl inc 5 > $wobsock
+bindsym --locked XF86MonBrightnessDown exec backlightctl dec 5 > $wobsock
+
+bindsym --locked Shift+XF86MonBrightnessUp exec backlightctl inc 10 > $wobsock
+bindsym --locked Shift+XF86MonBrightnessDown exec backlightctl dec 10 > $wobsock

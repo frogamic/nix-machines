@@ -11,7 +11,7 @@
   sway-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ../config/sway.conf {
     XCURSOR_THEME = config.environment.variables.XCURSOR_THEME;
   };
-  pacycle = pkgs.writeScriptBin "pacycle" (builtins.readFile ./bin/pacycle);
+  pacycle = pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle);
   quintom-cursor-theme = with pkgs; stdenv.mkDerivation rec {
     name = "${package-name}-${version}";
     package-name = "quintom-cursor-theme";
