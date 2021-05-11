@@ -35,15 +35,13 @@
     };
   };
 in {
+  imports = [
+    ./waybar.nix
+  ];
   services.xserver.displayManager.gdm = {
     #enable = true;
     wayland = true;
   };
-
-  # Needed for waybar
-  fonts.fonts = with pkgs; [
-    font-awesome
-  ];
 
   programs.sway = {
     enable = true;
@@ -58,7 +56,6 @@ in {
       playerctl
       pamixer
       wob
-      waybar
       swaylock
       swayidle
       xwayland
