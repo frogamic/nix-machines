@@ -1,30 +1,32 @@
 { pkgs, ... } : let
   adbscreen = pkgs.writeScriptBin "adbscreen" ''
-    #! /bin/sh
+    #! ${pkgs.stdenv.shell}
     args=(
-      "--render-driver" "opengles2" \
-      "--bit-rate" "20M" \
+      "--render-driver" "opengl" \
+      "--bit-rate" "12M" \
       "$''\@" \
     )
-    scrcpy "''${args[''\@]}"
+    exec ${pkgs.scrcpy}/bin/scrcpy "''${args[''\@]}"
   '';
-  fate-go = pkgs.writeScriptBin "fgo" ''
-    #! /bin/sh
-    adb shell monkey -p com.aniplex.fategrandorder.en \
-                     -c android.intent.category.LAUNCHER 1 \
-                     > /dev/null \
-    && adbscreen -Sw \
-      --window-title 'Fate/Grand Order' \
-      --crop 1080:1920:0:278
-  '';
+  mkAdbApp = import ../lib/mkAdbApp.nix pkgs;
 in {
   programs.adb.enable = true;
 
   environment.systemPackages = with pkgs; [
-    fate-go
+    (mkAdbApp {
+      bin = "fgo";
+      name = "com.aniplex.fategrandorder.en";
+      crop = "1080:1920:0:278";
+      title = "Fate/Grand Order";
+    })
+    (mkAdbApp {
+      bin = "touhoulw";
+      name = "jp.goodsmile.touhoulostwordglobal_android";
+      crop = "1080:2204:0:136";
+      title = "Touhou LostWord";
+    })
     adbscreen
     adbfs-rootless
-    scrcpy
     android-file-transfer
     android-udev-rules
   ];
