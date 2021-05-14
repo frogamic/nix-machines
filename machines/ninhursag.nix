@@ -2,6 +2,7 @@
   networking.hostName = "ninhursag";
 
   imports = [
+    ../services/hardware/efi.nix
     ../services/hardware/amdcpu.nix
     ../services/hardware/amdgpu.nix
     ../services/hardware/ssd.nix
@@ -28,7 +29,6 @@
     loader = {
       timeout = 2;
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
     };
   };
 
@@ -52,18 +52,12 @@
     emulateWheel = true;
   };
 
-  services.xserver.monitorSection = ''
-    DisplaySize 310 175
-  '';
-
-  services.tlp.enable = true;
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/3605938b-fc96-44f8-94c7-424426b76314";
     fsType = "ext4";
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/efi" = {
     device = "/dev/disk/by-uuid/6333-886D";
     fsType = "vfat";
   };

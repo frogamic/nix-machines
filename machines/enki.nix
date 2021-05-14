@@ -2,6 +2,7 @@
   networking.hostName = "enki";
 
   imports = [
+    ../services/hardware/efi.nix
     ../services/hardware/amdcpu.nix
     ../services/hardware/amdgpu.nix
     ../services/hardware/ssd.nix
@@ -21,19 +22,12 @@
       "usbhid"
     ];
 
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/efi";
-      };
-
-      grub = {
-        efiSupport = true;
-        device = "nodev";
-        useOSProber = true;
-        gfxmodeEfi = "1920x1200";
-        splashImage = null;
-      };
+    loader.grub = {
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+      gfxmodeEfi = "1920x1200";
+      splashImage = null;
     };
 
   };
