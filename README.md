@@ -30,7 +30,7 @@ Each folder will contain at minimum a `configuration.nix`, and probably a `hardw
 
 ### services
 
-This is where the bulk of the config sits. Each file here should be a nix module that fully encapsulates a "service" or bundle of packages and config to achieve some purpose. Alongside these services are their related configs and supporting binaries/scripts.
+This is where the bulk of the config sits. Each file here should be a nix module that fully encapsulates a "service" or bundle of packages and config to achieve some purpose.
 
 #### services/base.nix
 
@@ -39,6 +39,14 @@ This is a sort of meta-service that applies some personalisation and baseline co
 #### services/hardware
 
 This is a subset of 'services' relating to specific hardware such as GPU/CPU supporting config and packages.
+
+### config
+
+This is for config files that are consumed by services and built into the nix-store.
+
+### bin
+
+This is where executable files that will be included in the build are stored.
 
 ### users
 
