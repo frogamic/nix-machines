@@ -1,6 +1,7 @@
 { pkgs, config }: file: attrs:
   let
     fileName = builtins.baseNameOf file;
+    dirName = builtins.dirOf file;
   in with pkgs; let
     defaultAttrs = {
       builder = "${bash}/bin/bash";
@@ -13,7 +14,7 @@
         file
       ] ++ (
         let
-          hostpath = ../. + "/machines/${config.system.name}/${fileName}";
+          hostpath = "${dirName}/${config.system.name}/${fileName}";
         in
         if builtins.pathExists hostpath
           then [ hostpath ]

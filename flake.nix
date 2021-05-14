@@ -3,11 +3,11 @@
      nixosConfigurations = {
        enki = nixpkgs.lib.nixosSystem {
          system = "x86_64-linux";
-         modules = [ ./machines/enki/configuration.nix ];
+         modules = [ ./machines/enki.nix ];
        };
        ninhursag = nixpkgs.lib.nixosSystem {
          system = "x86_64-linux";
-         modules = [ ./machines/ninhursag/configuration.nix ];
+         modules = [ ./machines/ninhursag.nix ];
        };
      };
   };

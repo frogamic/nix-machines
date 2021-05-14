@@ -1,9 +1,16 @@
-{ config, lib, pkgs, ... } : {
+{ config, pkgs, ... } : {
+  networking.hostName = "enki";
+
   imports = [
-    ../../services/hardware/amdcpu.nix
-    ../../services/hardware/amdgpu.nix
-    ../../services/hardware/ssd.nix
-    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    ../services/hardware/amdcpu.nix
+    ../services/hardware/amdgpu.nix
+    ../services/hardware/ssd.nix
+
+    ../users/dominic.nix
+
+    ../services/base.nix
+    ../services/grub-savedefault.nix
+    ../services/texlive.nix
   ];
 
   boot = {
@@ -32,7 +39,6 @@
   };
 
   networking = {
-    useDHCP = false;
     interfaces.enp4s0.useDHCP = true;
   };
 
@@ -55,5 +61,7 @@
     { device = "/dev/disk/by-uuid/a02708dd-61b9-4405-b49b-863494d06c37"; }
   ];
 
-  nix.maxJobs = lib.mkDefault 16;
+  nix.maxJobs = 16;
+
+  system.stateVersion = "20.09";
 }

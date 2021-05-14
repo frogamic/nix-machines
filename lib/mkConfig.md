@@ -4,7 +4,7 @@
 
 ## Overview
 
-1. Create config file(s) somewhere such as `config/example.conf` or `config/example.conf/00-something.js` and also more machine specific configs under `machines/{machine}/example.conf` or `machines/{machine}/example.conf/50-specific-thing.py`:
+1. Create config file(s) somewhere such as `config/example.conf` or `config/example.conf/00-something.js` and also more machine specific configs under `config/{hostname}/example.conf` or `config/{hostname}/example.conf/50-specific-thing.py`:
 ```shell
 tree
 .
@@ -12,14 +12,11 @@ tree
 ├── services
 │   ├── example.nix
 │   └── ...
-├── config
-│   └── example.conf
-│       ├── 00-basic
-│       └── 50-something.js
-└── machines
-    ├── ...
+└── config
+    ├── example.conf
+    │   ├── 00-basic
+    │   └── 50-something.js
     └── my-pc
-        ├── configuration.nix
         └── example.conf
             └── 10-my-pc-specific.py
 ```
@@ -36,7 +33,7 @@ in {
 3. Rebuild your system as normal: `nixos-rebuild switch`
 
 #### Explanation
-What you have just done is compile a single file comprised of the content of `config/example.conf/00-basic` and the outputs of executing `config/example.conf/50-something.js` and `machines/my-pc/example.conf/10-my-pc-specific.py`
+What you have just done is compile a single file comprised of the content of `config/example.conf/00-basic` and the outputs of executing `config/example.conf/50-something.js` and `config/my-pc/example.conf/10-my-pc-specific.py`
 
 ## Usage
 
@@ -49,12 +46,11 @@ The module `mkConfig.nix` contains a single function with the following signatur
 * `{ pkgs, config }` are the packages and configuration of your NixOS system.
   * `pkgs` provides the build prerequisites and environment.
   * `config` is used to determine the hostname of the target system.
-* `path` is the path to the base configuration, this can be a file or a folder. The name of this file/folder is also used when looking for matching config in the `machines` folder.
-* `derivationAttrs` is an optional set of attributes to be passed to the `derivation` function. For example you could pass `{ buildInputs = [ pkgs.lua ] }` if you wanted only lua to be available in for executing the compiled configs.
+* `path` is the path to the base configuration, this can be a file or a folder. The machine specific config (if it exists) should be in a folder alongside the configuration.
+* `derivationAttrs` is an optional set of attributes to be passed to the `derivation` function. For example you could pass `{ buildInputs = [ pkgs.lua ] }` if you wanted only lua to be available for executing the compiled configs.
 * The returned derivation builds a single file in the nix store containing the combination of the input files.
 
 ## Todo
 
 * Ensure file ordering works as expected between machines and base config.
 * Make files from the machine config overwrite files of the same name in the base config folder.
-* Make the `machines/${hostname}` config location not hard coded.
