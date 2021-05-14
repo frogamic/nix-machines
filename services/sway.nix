@@ -1,17 +1,4 @@
-{ config, pkgs, lib, ...} : let
-  XKB_DEFAULT_LAYOUT = if config.services.xserver ? layout
-    then "export XKB_DEFAULT_LAYOUT=\"${config.services.xserver.layout}\""
-    else "";
-  XKB_DEFAULT_OPTIONS = if config.services.xserver ? xkbOptions
-    then "export XKB_DEFAULT_OPTIONS=\"${config.services.xserver.xkbOptions}\""
-    else "";
-  XKB_DEFAULT_VARIANT = if config.services.xserver ? xkbVariant
-    then "export XKB_DEFAULT_VARIANT=\"${config.services.xserver.xkbVariant}\""
-    else "";
-  sway-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ../config/sway.conf {
-    XCURSOR_THEME = config.environment.variables.XCURSOR_THEME;
-  };
-  pacycle = pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle);
+args@{ config, pkgs, lib, ...} : let
   quintom-cursor-theme = with pkgs; stdenv.mkDerivation rec {
     name = "${package-name}-${version}";
     package-name = "quintom-cursor-theme";
@@ -47,9 +34,15 @@ in {
     enable = true;
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
-      ${XKB_DEFAULT_LAYOUT}
-      ${XKB_DEFAULT_OPTIONS}
-      ${XKB_DEFAULT_VARIANT}
+      ${if config.services.xserver ? layout then
+        "export XKB_DEFAULT_LAYOUT=\"${config.services.xserver.layout}\""
+      else ""}
+      ${if config.services.xserver ? xkbOptions then
+        "export XKB_DEFAULT_OPTIONS=\"${config.services.xserver.xkbOptions}\""
+      else ""}
+      ${if config.services.xserver ? xkbVariant then
+        "export XKB_DEFAULT_VARIANT=\"${config.services.xserver.xkbVariant}\""
+      else ""}
     '';
     wrapperFeatures.gtk = true;
     extraPackages = (with pkgs; [
@@ -69,15 +62,19 @@ in {
       breeze-qt5
       breeze-icons
     ]) ++ [
-      pacycle
+      (pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
       quintom-cursor-theme
     ];
   };
 
-  environment = {
-    etc."sway/config".source = sway-conf;
+  environment = let
+    XCURSOR_THEME = "Quintom_Ink";
+  in {
+    etc."sway/config".source = (import ../lib/mkConfig.nix args ../config/sway.conf {
+      XCURSOR_THEME = XCURSOR_THEME;
+    });
     variables = {
-      XCURSOR_THEME = "Quintom_Ink";
+      inherit XCURSOR_THEME;
     };
   };
 }
