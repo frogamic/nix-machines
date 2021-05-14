@@ -1,6 +1,7 @@
 { lib, pkgs, ... } : {
 
   imports = [
+    ./nixFlakes.nix
     ./updates.nix
     ./emulatedSystems.nix
     ./sound.nix
