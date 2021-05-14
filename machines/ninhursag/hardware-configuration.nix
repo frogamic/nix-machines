@@ -6,7 +6,7 @@
     ../../services/hardware/amdcpu.nix
     ../../services/hardware/amdgpu.nix
     ../../services/hardware/ssd.nix
-    ../../services/hardware/backlight.nix
+    ../../services/hardware/laptop.nix
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
