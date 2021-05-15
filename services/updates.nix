@@ -4,7 +4,6 @@
 		dates = "23:00";
 		flake = "github:frogamic/nix-machines";
 		flags = [
-			"--impure"
 			"--no-write-lock-file"
 		];
 	};

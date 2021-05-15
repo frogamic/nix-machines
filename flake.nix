@@ -8,6 +8,9 @@
 			nixpkgs.overlays = [
 				(final : prev : {
 					stable = nixpkgs-stable.legacyPackages."${system}";
+					GodFuckingDamnitInputrcIsPartOfLibreadlineNotBash = {
+						inputrc = builtins.readFile "${nixpkgs}/nixos/modules/programs/bash/inputrc";
+					};
 				})
 			];
 		};
