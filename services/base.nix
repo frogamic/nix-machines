@@ -48,12 +48,10 @@
     };
 
     systemPackages = with pkgs; [
+      openssl
       curl
-      vim
       zip
       unzip
-      git
-      git-crypt
       stow
       bind
       parted
@@ -68,7 +66,6 @@
       usbutils
       ffmpeg
       nix-index
-      rxvt_unicode.terminfo
     ];
   };
 
