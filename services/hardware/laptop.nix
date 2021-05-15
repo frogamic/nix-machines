@@ -1,4 +1,4 @@
 { pkgs, ... } : {
-  imports = [ ./backlight.nix ];
-  services.tlp.enable = true;
+	imports = [ ./backlight.nix ];
+	services.tlp.enable = true;
 }

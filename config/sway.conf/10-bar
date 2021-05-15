@@ -1,4 +1,4 @@
 bar {
-  position top
-  swaybar_command waybar
+	position top
+	swaybar_command waybar
 }
