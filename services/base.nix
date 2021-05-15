@@ -31,12 +31,12 @@
 
 	programs.zsh.enable = true;
 
-	environment.etc.inputrc.text = lib.mkForce (
-		''
-			set editing-mode vi
-		''
-		+ builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc>
-	);
+	# environment.etc.inputrc.text = lib.mkForce (
+		# ''
+			# set editing-mode vi
+		# ''
+		# + builtins.readFile <pkgs/nixos/modules/programs/bash/inputrc>
+	# );
 
 	environment = {
 		shellAliases = {

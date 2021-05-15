@@ -13,8 +13,6 @@
 		perl
 		git
 		git-crypt
-	]) ++
-	(with import ../lib/pkgs-stable.nix config; [
-		nixops
+		stable.nixops
 	]);
 }

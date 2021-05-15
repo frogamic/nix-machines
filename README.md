@@ -7,7 +7,7 @@ This repository contains my configurations for my Linux PCs that run [NixOS](htt
 To get up and running quickly, run the following in a shell on a NixOS system:
 
 ```bash
-nixos-rebuild switch --impure --no-write-lock-file --flake github:frogamic/nix-machines
+nixos-rebuild switch --no-write-lock-file --flake github:frogamic/nix-machines
 ```
 
 ## Repository Structure

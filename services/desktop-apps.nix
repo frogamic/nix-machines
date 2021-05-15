@@ -19,9 +19,7 @@
 			discord
 			mpv
 			mupdf
-		]) ++
-		(with import ../lib/pkgs-stable.nix config; [
-			chromium
+			stable.chromium
 		]) ++
 		(with pkgs.xfce; [
 			xfconf

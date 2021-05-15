@@ -3,11 +3,9 @@
 	dirName = builtins.dirOf file;
 in with pkgs; let
 	defaultAttrs = {
-		builder = "${bash}/bin/bash";
 		args = [ ./mkConfig.sh ];
 		baseInputs = [ coreutils gawk gnused gnugrep ];
 		buildInputs = [ python3 perl deno nodejs ];
-		system = builtins.currentSystem;
 		name = fileName;
 		src = [
 			file
@@ -20,4 +18,4 @@ in with pkgs; let
 				[ ]
 		);
 	};
-in derivation (config.environment.variables // defaultAttrs // attrs)
+in stdenv.mkDerivation (config.environment.variables // defaultAttrs // attrs)
