@@ -23,11 +23,11 @@ bindsym --locked XF86AudioPrev exec playerctl previous
 # Mute
 bindsym --locked XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $wobsock ) || pamixer --get-volume > $wobsock
 
-# Overload mute key for device switching
-bindsym --locked Ctrl+XF86AudioMute exec notify-send -u low -t 1500 -i audio-card "Previous Audio Device" "$(pacycle prev sink)"
-bindsym --locked Shift+XF86AudioMute exec notify-send -u low -t 1500 -i audio-card "Next Audio Device" "$(pacycle next sink)"
-bindsym --locked Mod4+XF86AudioMute exec notify-send -u low -t 1500 -i audio-input-microphone "Previous Audio Input" "$(pacycle prev source)"
-bindsym --locked Alt+XF86AudioMute exec notify-send -u low -t 1500 -i audio-input-microphone "Next Audio Input" "$(pacycle next source)"
+# Overload volume keys for device switching
+bindsym --locked $mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-card "Next Audio Device" "$(pacycle next sink)"
+bindsym --locked $mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-card "Previous Audio Device" "$(pacycle prev sink)"
+bindsym --locked Ctrl+$mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Next Audio Input" "$(pacycle next source)"
+bindsym --locked Ctrl+$mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Previous Audio Input" "$(pacycle prev source)"
 
 # Ctrl for small volume change
 bindsym --locked Ctrl+XF86AudioRaiseVolume exec pamixer -ui 1 && pamixer --get-volume > $wobsock
