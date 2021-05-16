@@ -33,7 +33,11 @@ in {
 3. Rebuild your system as normal: `nixos-rebuild switch`
 
 #### Explanation
-What you have just done is compile a single file comprised of the content of `config/example.conf/00-basic` and the outputs of executing `config/example.conf/50-something.js` and `config/my-pc/example.conf/10-my-pc-specific.py`
+What you have just done is compile a single file comprised of the content of `config/example.conf/00-basic` and the outputs of executing `config/example.conf/50-something.js` and `config/my-pc/example.conf/10-my-pc-specific.py`.
+
+## File order
+
+Bare configs are evaluated first, global then machine specific, then all files within a folder are enumerated and evaluated in order, machine specific files replacing global if both have the same name.
 
 ## Usage
 
@@ -50,8 +54,3 @@ The module `mkConfig.nix` contains a single function with the following signatur
 * `filename` is the name of the config file, this can be a file or a folder
 * `derivationAttrs` is an optional set of attributes to be passed to the `derivation` function. For example you could pass `{ buildInputs = [ pkgs.lua ] }` if you wanted only lua to be available for executing the compiled configs.
 * The returned derivation builds a single file in the nix store containing the combination of the input files.
-
-## Todo
-
-* Ensure file ordering works as expected between machines and base config.
-* Make files from the machine config overwrite files of the same name in the base config folder.

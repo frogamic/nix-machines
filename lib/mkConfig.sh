@@ -15,29 +15,31 @@ export HOME="$(pwd)"
 
 evaluate () {
 	if [[ -x "$1" ]]; then
+		echo "Executing ${1}"
 		interpreter=$(head -n1 "$1" | sed -E 's/#!\s*\S*\/env\s*//')
-		env "${interpreter[@]}" $1
+		env "${interpreter[@]}" $1 >> $out
 	else
-		cat "$1"
+		echo "Concatenating ${1}"
+		cat "$1" >> $out
 	fi
 }
 
-for s in "$src/$fileName"; do
+declare -A sources
+
+for s in "${src}/${fileName}" "${src}/${hostName}/${fileName}"; do
 	if [ -d "$s" ]; then
 		for f in $s/*; do
-			evaluate "$f" >> $out
+			file="$(basename "$f")"
+			if [ ${sources[$file]+_} ]; then
+				echo "${f} replaces ${sources[$file]}"
+			fi
+			sources[$file]="$f"
 		done
-	else
-		evaluate "$s" >> $out
+	elif [ -f "$s" ]; then
+		evaluate "$s"
 	fi
 done
 
-for s in "$src/$hostName/$fileName"; do
-	if [ -d "$s" ]; then
-		for f in $s/*; do
-			evaluate "$f" >> $out
-		done
-	elif [ -f "$src/$hostName/$fileName" ]; then
-		evaluate "$s" >> $out
-	fi
+for s in $(echo "${!sources[@]}" | tr " " "\n" | sort); do
+	evaluate "${sources[$s]}"
 done
