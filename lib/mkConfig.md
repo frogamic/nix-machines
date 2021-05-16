@@ -25,7 +25,7 @@ tree
 ```nix
 # example.nix
 { config, pkgs, ... } : let
-  example-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ../config/example.conf {};
+  example-conf = import ../lib/mkConfig.nix { inherit pkgs config; } ../config "example.conf" {};
 in {
   environment.etc."example-configuration".source = example-conf;
 }
@@ -40,13 +40,14 @@ What you have just done is compile a single file comprised of the content of `co
 The module `mkConfig.nix` contains a single function with the following signature:
 
 ```nix
-{ pkgs, config } : path : derivationAttrs : derivation
+{ pkgs, config } : path : filename : derivationAttrs : derivation
 ```
 
 * `{ pkgs, config }` are the packages and configuration of your NixOS system.
   * `pkgs` provides the build prerequisites and environment.
   * `config` is used to determine the hostname of the target system.
-* `path` is the path to the base configuration, this can be a file or a folder. The machine specific config (if it exists) should be in a folder alongside the configuration.
+* `path` is the folder containing the base configuration. The machine specific config (if it exists) should be in a folder in this folder.
+* `filename` is the name of the config file, this can be a file or a folder
 * `derivationAttrs` is an optional set of attributes to be passed to the `derivation` function. For example you could pass `{ buildInputs = [ pkgs.lua ] }` if you wanted only lua to be available for executing the compiled configs.
 * The returned derivation builds a single file in the nix store containing the combination of the input files.
 

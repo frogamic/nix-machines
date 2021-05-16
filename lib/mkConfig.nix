@@ -1,21 +1,10 @@
-{ pkgs, config, ... } : file : attrs : let
-	fileName = builtins.baseNameOf file;
-	dirName = builtins.dirOf file;
-in with pkgs; let
+{ pkgs, config, ... } : dirName : fileName : attrs :
+with pkgs; let
 	defaultAttrs = {
-		args = [ ./mkConfig.sh ];
+		args = [ ./mkConfig.sh fileName config.networking.hostName ];
 		baseInputs = [ coreutils gawk gnused gnugrep ];
 		buildInputs = [ python3 perl deno nodejs ];
 		name = fileName;
-		src = [
-			file
-		] ++ (
-			let
-				hostpath = "${dirName}/${config.system.name}/${fileName}";
-			in if builtins.pathExists hostpath then
-				[ hostpath ]
-			else
-				[ ]
-		);
+		src = [ dirName ];
 	};
 in stdenv.mkDerivation (config.environment.variables // defaultAttrs // attrs)

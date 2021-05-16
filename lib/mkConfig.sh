@@ -3,6 +3,9 @@ set -o pipefail
 set -o errexit
 set -o errtrace
 
+fileName=$1
+hostName=$2
+
 unset PATH
 for p in $baseInputs $buildInputs; do
 	PATH="$p/bin${PATH:+:}${PATH:-}"
@@ -19,12 +22,22 @@ evaluate () {
 	fi
 }
 
-for s in $src; do
+for s in "$src/$fileName"; do
 	if [ -d "$s" ]; then
 		for f in $s/*; do
 			evaluate "$f" >> $out
 		done
-	else 
+	else
+		evaluate "$s" >> $out
+	fi
+done
+
+for s in "$src/$hostName/$fileName"; do
+	if [ -d "$s" ]; then
+		for f in $s/*; do
+			evaluate "$f" >> $out
+		done
+	elif [ -f "$src/$hostName/$fileName" ]; then
 		evaluate "$s" >> $out
 	fi
 done

@@ -70,7 +70,7 @@ in {
 	environment = let
 		XCURSOR_THEME = "Quintom_Ink";
 	in {
-		etc."sway/config".source = (import ../lib/mkConfig.nix args ../config/sway.conf {
+		etc."sway/config".source = (import ../lib/mkConfig.nix args ../config "sway.conf" {
 			XCURSOR_THEME = XCURSOR_THEME;
 		});
 		variables = {
