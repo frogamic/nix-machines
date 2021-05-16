@@ -1,4 +1,4 @@
-### Begin ninhursag sway.conf
+### Begin ninhursag sway-config
 
 input "2:14:ETPS/2_Elantech_TrackPoint" {
 	pointer_accel -0.3
