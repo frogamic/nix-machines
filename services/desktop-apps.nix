@@ -4,12 +4,12 @@
 
 	environment = {
 		variables = {
-			BROWSER = "firefox-devedition";
+			BROWSER = "firefox";
 		};
 		systemPackages =
 		(with pkgs; [
 			xdg-utils
-			firefox-devedition-bin
+			firefox-bin
 			gimp
 			gimpPlugins.gap
 			inkscape
