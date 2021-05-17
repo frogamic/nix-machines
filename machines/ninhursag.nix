@@ -11,6 +11,7 @@ overlays : rec {
 				../services/hardware/amdgpu.nix
 				../services/hardware/ssd.nix
 				../services/hardware/laptop.nix
+				../services/hardware/bluetooth.nix
 
 				../services/base.nix
 				../services/fingerprint.nix

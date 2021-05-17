@@ -10,6 +10,7 @@ overlays : rec {
 				../services/hardware/amdcpu.nix
 				../services/hardware/amdgpu.nix
 				../services/hardware/ssd.nix
+				../services/hardware/bluetooth.nix
 
 				../users/dominic.nix
 

@@ -53,6 +53,7 @@
 			zip
 			unzip
 			stow
+			lsof
 			bind
 			parted
 			ripgrep
