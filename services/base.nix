@@ -10,6 +10,7 @@
 		./sway.nix
 		./desktop-apps.nix
 		./develop.nix
+		./fzf.nix
 		./android.nix
 		./steam.nix
 	];
