@@ -1,3 +1,7 @@
+# Import the most important environment variables into the D-Bus and systemd
+# user environments (e.g. required for screen sharing and Pinentry prompts):
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
