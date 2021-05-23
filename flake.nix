@@ -17,7 +17,10 @@
 			};
 			mkNixosSystem = machineConfig: inputs.nixpkgs.lib.nixosSystem (
 				machineConfig // {
-					modules = [ (mkOverlays machineConfig.system) ] ++ machineConfig.modules;
+					modules = machineConfig.modules ++ [
+						{ system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev; }
+						(mkOverlays machineConfig.system)
+					];
 				}
 			);
 			mkMachine = folder: machine: {
