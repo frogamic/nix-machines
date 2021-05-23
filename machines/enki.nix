@@ -1,7 +1,6 @@
-overlays : rec {
+{
 	system = "x86_64-linux";
 	modules = [
-		(overlays system)
 		({ config, pkgs, ... } : {
 			networking.hostName = "enki";
 
