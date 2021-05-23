@@ -5,6 +5,7 @@
 		flake = "github:frogamic/nix-machines";
 		flags = [
 			"--no-write-lock-file"
+			"-L"
 		];
 	};
 
