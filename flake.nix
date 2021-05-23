@@ -2,11 +2,13 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-20.09";
+		myOverlay.url = "github:frogamic/nixpkgs-overlay";
 	};
 	outputs = { self, ... } @ inputs:
 		let
 			mkOverlays = system: {
 				nixpkgs.overlays = [
+					inputs.myOverlay.lib
 					(final: prev: {
 						stable = inputs.nixpkgs-stable.legacyPackages."${system}";
 						GodFuckingDamnitInputrcIsPartOfLibreadlineNotBash = {

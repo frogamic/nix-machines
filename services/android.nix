@@ -1,6 +1,4 @@
-{ pkgs, ... } : let
-	mkAdbApp = import ../lib/mkAdbApp.nix pkgs;
-in {
+{ pkgs, ... }: {
 	programs.adb.enable = true;
 
 	environment.systemPackages = with pkgs; [
@@ -8,13 +6,13 @@ in {
 		android-file-transfer
 		android-udev-rules
 
-		(mkAdbApp {
+		(mylib.mkAdbApp {
 			bin = "fgo";
 			name = "com.aniplex.fategrandorder.en";
 			crop = "1080:1920:0:278";
 			title = "Fate/Grand Order";
 		})
-		(mkAdbApp {
+		(mylib.mkAdbApp {
 			bin = "touhoulw";
 			name = "jp.goodsmile.touhoulostwordglobal_android";
 			crop = "1080:2204:0:136";

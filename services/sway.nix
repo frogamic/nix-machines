@@ -71,13 +71,9 @@ in {
 	};
 
 	environment = let
-		XCURSOR_THEME = "Quintom_Ink";
-	in {
-		etc."sway/config".source = (import ../lib/mkConfig.nix args ../config "sway-config" {
-			XCURSOR_THEME = XCURSOR_THEME;
-		});
-		variables = {
-			inherit XCURSOR_THEME;
-		};
+		mkConfig = pkgs.mylib.mkConfig ../config config.networking.hostName;
+	in rec {
+		variables.XCURSOR_THEME = "Quintom_Ink";
+		etc."sway/config".source = (mkConfig "sway-config" variables);
 	};
 }
