@@ -54,6 +54,8 @@ in {
 			xwayland
 			mako
 			libnotify
+			grim
+			slurp
 			wl-clipboard
 			wofi
 			alacritty
@@ -63,6 +65,7 @@ in {
 			breeze-icons
 		]) ++ [
 			(pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
+			(pkgs.writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
 			quintom-cursor-theme
 		];
 	};

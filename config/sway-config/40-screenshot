@@ -1,0 +1,8 @@
+bindsym {
+	Print exec sway-screenshot
+	$mod+Print exec sway-screenshot output
+	$mod+S exec sway-screenshot region
+	$mod+Shift+S exec sway-screenshot window
+	$mod+Alt+S exec sway-screenshot
+	$mod+Ctrl+S exec sway-screenshot output
+}

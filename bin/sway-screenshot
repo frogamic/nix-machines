@@ -1,0 +1,31 @@
+#! /usr/bin/env bash
+
+set -Eeuo pipefail
+
+OUT_FOLDER="${HOME}/Pictures/Screenshots"
+SLURP_OPTS=("-b" "00000040" "-B" "00000066")
+GRIM_OPTS=()
+
+if [ $# -ge 1 ]; then
+	case $1 in
+		output)
+			GRIM_OPTS+=("-g" "$(slurp "${SLURP_OPTS[@]}" -o -r)")
+			;;
+		window)
+			GRIM_OPTS+=("-g" "$(swaymsg -t get_tree \
+				| jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+				| slurp "${SLURP_OPTS[@]}" -r)")
+			;;
+		region)
+			GRIM_OPTS+=("-g" "$(slurp "${SLURP_OPTS[@]}" -d)")
+			;;
+	esac
+fi
+
+ISO_TIME="$(date --iso-8601=seconds)"
+
+mkdir -p "$OUT_FOLDER"
+
+grim "${GRIM_OPTS[@]}" -t "png" - \
+	| tee "${OUT_FOLDER}/${ISO_TIME%%+*}.png" \
+	| wl-copy -t "image/png"
