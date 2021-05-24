@@ -77,4 +77,5 @@
 	};
 
 	nix.autoOptimiseStore = true;
+	nix.sandboxPaths = [ "/bin/sh=${pkgs.bash}/bin/sh" ];
 }
