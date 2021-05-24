@@ -1,5 +1,5 @@
 { config, pkgs, ... } : {
-	# Required for Discord
+	# Required for Discord and Chromium
 	nixpkgs.config.allowUnfree = true;
 
 	environment = {
@@ -14,7 +14,6 @@
 			gimpPlugins.gap
 			inkscape
 			krita
-			# yed
 			spotify
 			discord
 			mpv
