@@ -1,34 +1,7 @@
-args@{ config, pkgs, lib, ...} : let
-	quintom-cursor-theme = with pkgs; stdenv.mkDerivation rec {
-		name = "${package-name}-${version}";
-		package-name = "quintom-cursor-theme";
-		version = "d23e5733";
-
-		src = builtins.fetchGit {
-			url = "https://gitlab.com/Burning_Cube/quintom-cursor-theme.git";
-			rev = "d23e57333e816033cf20481bdb47bb1245ed5d4d";
-		};
-
-		installPhase = ''
-			mkdir -p $out/share/icons
-			for theme in "Quintom_Ink" "Quintom_Snow"; do
-				cp -r "$theme Cursors/$theme" $out/share/icons/
-			done
-		'';
-
-		meta = {
-			description = "Quintom Cursor Theme";
-			platforms = lib.platforms.all;
-		};
-	};
-in {
+{ config, pkgs, lib, ... } : {
 	imports = [
 		./waybar.nix
 	];
-	services.xserver.displayManager.gdm = {
-		#enable = true;
-		wayland = true;
-	};
 
 	programs.sway = {
 		enable = true;
@@ -63,10 +36,10 @@ in {
 			breeze-gtk
 			breeze-qt5
 			breeze-icons
+			mypkgs.quintom-cursor-theme
 		]) ++ [
 			(pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
 			(pkgs.writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
-			quintom-cursor-theme
 		];
 	};
 
