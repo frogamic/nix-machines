@@ -32,12 +32,9 @@
 
 	programs.zsh.enable = true;
 
-	environment.etc.inputrc.text = lib.mkForce (
-		''
-			set editing-mode vi
-		''
-		+ pkgs.GodFuckingDamnitInputrcIsPartOfLibreadlineNotBash.inputrc
-	);
+	environment.inputrc.extraConfig = ''
+		set editing-mode vi
+	'';
 
 	environment = {
 		shellAliases = {

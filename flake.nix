@@ -8,18 +8,15 @@
 		let
 			mkOverlays = system: {
 				nixpkgs.overlays = [
-					inputs.myOverlay.lib
 					(final: prev: {
 						stable = inputs.nixpkgs-stable.legacyPackages."${system}";
-						GodFuckingDamnitInputrcIsPartOfLibreadlineNotBash = {
-							inputrc = builtins.readFile "${inputs.nixpkgs}/nixos/modules/programs/bash/inputrc";
-						};
 					})
 				];
 			};
 			mkNixosSystem = machineConfig: inputs.nixpkgs.lib.nixosSystem (
 				machineConfig // {
 					modules = machineConfig.modules ++ [
+						inputs.myOverlay.nixosModule
 						{ system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev; }
 						(mkOverlays machineConfig.system)
 					];
