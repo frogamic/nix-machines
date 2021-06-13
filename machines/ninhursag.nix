@@ -51,6 +51,7 @@
 				};
 			};
 
+			services.xserver.libinput.touchpad.middleEmulation = false;
 			hardware.trackpoint = {
 				enable = true;
 				emulateWheel = true;

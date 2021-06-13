@@ -14,6 +14,7 @@
 			gimpPlugins.gap
 			inkscape
 			krita
+			drawio
 			spotify
 			discord
 			mpv
