@@ -26,6 +26,7 @@
 			swayidle
 			xwayland
 			mako
+			kanshi
 			libnotify
 			grim
 			slurp
@@ -48,5 +49,6 @@
 	in rec {
 		variables.XCURSOR_THEME = "Quintom_Ink";
 		etc."sway/config".source = (mkConfig "sway-config" variables);
+		etc."kanshi/config".source = (mkConfig "kanshi-config" {});
 	};
 }
