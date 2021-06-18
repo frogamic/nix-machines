@@ -37,7 +37,7 @@
 			breeze-gtk
 			breeze-qt5
 			breeze-icons
-			mypkgs.quintom-cursor-theme
+			quintom-cursor-theme
 		]) ++ [
 			(pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
 			(pkgs.writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
