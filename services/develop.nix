@@ -13,6 +13,7 @@
 		perl
 		git
 		git-crypt
-		stable.nixops
+		nixops
+		morph
 	]);
 }
