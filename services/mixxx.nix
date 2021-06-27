@@ -1,7 +1,6 @@
 { pkgs, ... }: {
 	environment.systemPackages = [
-		(pkgs.writeScriptBin "mixxx" ''
-			#! ${pkgs.bash}
+		(pkgs.writeShellScriptBin "mixxx" ''
 			exec ${pkgs.mixxx}/bin/mixxx -platform xcb
 		'')
 	];

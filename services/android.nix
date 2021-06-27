@@ -19,14 +19,12 @@
 			title = "Touhou LostWord";
 		})
 
-		(pkgs.writeScriptBin "adbshot" ''
-			#! ${pkgs.stdenv.shell}
+		(pkgs.writeShellScriptBin "adbshot" ''
 			FILENAME="$(date --iso-8601=seconds).png"
 			adb shell screencap -p > "$FILENAME" && \
 			${pkgs.file}/bin/file "$FILENAME"
 		'')
-		(pkgs.writeScriptBin "adbscreen" ''
-			#! ${pkgs.stdenv.shell}
+		(pkgs.writeShellScriptBin "adbscreen" ''
 			args=(
 				"--render-driver" "opengl" \
 				"--bit-rate" "12M" \
