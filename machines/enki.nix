@@ -16,6 +16,7 @@
 				../services/base.nix
 				../services/grub-savedefault.nix
 				../services/texlive.nix
+				../services/mixxx.nix
 			];
 
 			boot = {
