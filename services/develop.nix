@@ -11,6 +11,7 @@
 		yarn
 		python3
 		perl
+		ghc
 		git
 		git-crypt
 		morph
