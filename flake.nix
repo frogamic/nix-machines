@@ -2,7 +2,6 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-20.09";
-		myOverlay.url = "github:frogamic/nixpkgs-overlay";
 	};
 	outputs = { self, ... } @ inputs:
 		let
@@ -16,7 +15,7 @@
 			mkNixosSystem = machineConfig: inputs.nixpkgs.lib.nixosSystem (
 				machineConfig // {
 					modules = machineConfig.modules ++ [
-						inputs.myOverlay.nixosModule
+						self.nixosModule
 						{ system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev; }
 						(mkOverlays machineConfig.system)
 					];
@@ -37,9 +36,19 @@
 			);
 			machineFolder = ./machines;
 		in
-		{
+		rec {
 			nixosConfigurations = builtins.listToAttrs (
 				map (mkMachine machineFolder) (getMachines machineFolder)
 			);
+			overlay = final: prev: {
+				mylib = import ./lib prev;
+				mypkgs = import ./pkgs prev;
+			};
+			nixosModule = { pkgs, ... }: {
+				nixpkgs.overlays = [
+					overlay
+				];
+				imports = import ./modules;
+			};
 		};
 }

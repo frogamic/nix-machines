@@ -10,7 +10,9 @@ To get up and running quickly, run the following in a shell on a NixOS system:
 nixos-rebuild switch --no-write-lock-file --flake github:frogamic/nix-machines
 ```
 
-## Repository Structure
+# Repository Structure
+
+## Configuration
 
 ### machines
 
@@ -39,3 +41,24 @@ This is where executable files that will be included in the build are stored.
 ### users
 
 This is where users accounts are configured. Since my PCs are all single user there is only me. There are also helper function(s) for configuring multiple similar users should it even not just be me; Cloud-scalable user config.
+
+## Overlay
+
+Part of this configuration is an extension to nixpkgs in the form of an overlay supplying `mypkgs` and `mylib`, and a set of modules providing their own options.
+
+### src
+
+Helper functions to build out the module.
+
+### pkgs
+
+Extra packages, available under `mypkgs` in the overlay.
+
+### libs
+
+Extra lib functions, available under `mylibs` in the overlay.
+
+### Modules
+
+Extra modules to provide more generalised extra configuration for my machines and theoretically other consumers of this flake.
+Technically there is no difference between these and those in `services` except for the intent.
