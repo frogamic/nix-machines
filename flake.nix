@@ -1,7 +1,7 @@
 {
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-20.09";
+		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-21.05";
 	};
 	outputs = { self, ... } @ inputs:
 		let
