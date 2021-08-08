@@ -33,7 +33,15 @@
 
 				loader = {
 					timeout = 2;
-					systemd-boot.enable = true;
+					systemd-boot = {
+						enable = true;
+						configurationLimit = 10;
+						secureBoot = {
+							enable = true;
+							keyPath = "/root/secure-boot/db.key";
+							certPath = "/root/secure-boot/db.crt";
+						};
+					};
 				};
 			};
 
