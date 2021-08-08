@@ -14,6 +14,8 @@ let
 
     inherit (pkgs) python3 sbsigntool;
 
+    binutils = pkgs.binutils-unwrapped;
+
     systemd = config.systemd.package;
 
     nix = config.nix.package.out;
