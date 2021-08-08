@@ -20,6 +20,7 @@
 			mpv
 			mupdf
 			stable.chromium
+			_1password-gui
 		]) ++
 		(with pkgs.xfce; [
 			xfconf
