@@ -117,6 +117,10 @@ def write_entry(profile: Optional[str], generation: int) -> None:
             osrel = profile_path(profile, generation, "etc/os-release")
             cmdline = "%s/cmdline" % (tmpdir)
 
+            efistub = profile_path(profile, generation, "sw/lib/systemd/boot/efi/linuxx64.efi.stub")
+            if not os.path.exists(efistub):
+                efistub = "@systemd@lib/systemd/boot/efi/linuxx64.efi.stub"
+
             try:
                 append_initrd_secrets = profile_path(profile, generation, "append-initrd-secrets")
                 subprocess.check_call([append_initrd_secrets, initrd])
@@ -135,7 +139,7 @@ def write_entry(profile: Optional[str], generation: int) -> None:
                 *efi_section("cmdline", cmdline, "0x30000"),
                 *efi_section("linux", kernel, "0x40000"),
                 *efi_section("initrd", initrd, "0x3000000"),
-                "@systemd@/lib/systemd/boot/efi/linuxx64.efi.stub",
+                efistub,
                 "%s/unified.efi" % (tmpdir)])
             return "%s/unified.efi" % (tmpdir)
         install_signed_if_not_signed(make_unified_kernel, entry_file)
