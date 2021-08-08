@@ -6,6 +6,8 @@
 	programs.sway = {
 		enable = true;
 		extraSessionCommands = ''
+			eval $(gnome-keyring-daemon --start)
+			export SSH_AUTH_SOCK
 			export MOZ_ENABLE_WAYLAND=1
 			${if config.services.xserver ? layout then
 				"export XKB_DEFAULT_LAYOUT=\"${config.services.xserver.layout}\""
@@ -44,9 +46,15 @@
 		];
 	};
 
+	services.gnome.gnome-keyring.enable = true;
+	programs.seahorse.enable = true;
+
 	environment = let
 		mkConfig = pkgs.mylib.mkConfig ../config config.networking.hostName;
 	in rec {
+		loginShellInit = ''
+			[[ "$(tty)" != '/dev/tty1' ]] || pidof sway > /dev/null || exec sway
+		'';
 		variables.XCURSOR_THEME = "Quintom_Ink";
 		etc."sway/config".source = (mkConfig "sway-config" variables);
 		etc."kanshi/config".source = (mkConfig "kanshi-config" {});
