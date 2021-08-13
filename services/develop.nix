@@ -12,7 +12,7 @@
 		python3
 		perl
 		ghc
-		git
+		gitAndTools.gitFull
 		git-crypt
 		morph
 	]);
