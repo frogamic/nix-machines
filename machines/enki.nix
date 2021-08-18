@@ -14,7 +14,6 @@
 				../users/dominic.nix
 
 				../services/base.nix
-				../services/grub-savedefault.nix
 				../services/texlive.nix
 				../services/mixxx.nix
 			];
@@ -28,6 +27,7 @@
 				];
 
 				loader.grub = {
+					default = "saved";
 					efiSupport = true;
 					device = "nodev";
 					useOSProber = true;
