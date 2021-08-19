@@ -5,7 +5,7 @@
 			> /dev/null
 	'' else ""}
 	exec ${scrcpy}/bin/scrcpy -Sw \
-		--window-title '${if title == "" then bin else title}' \
+		${if title != "" then "--window-title '${title}'" else ""} \
 		${if crop != "" then "--crop '${crop}'" else ""} \
 		--render-driver opengl \
 		--bit-rate 12M
