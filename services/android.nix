@@ -3,11 +3,11 @@
 
 	boot = {
 		extraModulePackages = [ (config.boot.kernelPackages.v4l2loopback.overrideAttrs (old: {
-			outputs = ["out"];
-			postInstall = ''
-				make install-utils PREFIX=$out
-			'';
-		})) ];
+			meta = {
+				inherit (old) meta;
+				outputsToInstall = [ "out" ];
+			};
+		}))];
 		kernelModules = [ "v4l2loopback" ];
 		extraModprobeConfig = ''
 			options v4l2loopback exclusive_caps=1
@@ -15,6 +15,7 @@
 	};
 
 	environment.systemPackages = with pkgs; [
+		config.boot.kernelPackages.v4l2loopback
 		droidcam
 		adbfs-rootless
 		android-file-transfer
