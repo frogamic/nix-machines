@@ -16,7 +16,13 @@
 				machineConfig // {
 					modules = machineConfig.modules ++ [
 						self.nixosModule
-						{ system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev; }
+						{
+							system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
+							nix = {
+								nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+								registry.nixpkgs.flake = inputs.nixpkgs;
+							};
+						}
 						(mkOverlays machineConfig.system)
 					];
 				}
