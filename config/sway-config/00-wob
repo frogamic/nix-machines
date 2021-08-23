@@ -1,0 +1,16 @@
+### Begin wob setup
+
+set $wobsock /tmp/wob-sway-sock
+exec rm -f $wobsock && mkfifo $wobsock \
+	&& tail -f $wobsock \
+		| wob --anchor bottom \
+					--width 768 \
+					--height 20 \
+					--margin 20 \
+					--offset 0 \
+					--border 1 \
+					--padding 2 \
+					--border-color '#EEEEEEAA' \
+					--bar-color '#FFFFFFAA' \
+					--background-color '#000000AA'
+
