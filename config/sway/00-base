@@ -3,6 +3,7 @@
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 exec "XDG_CONFIG_HOME=/etc kanshi"
+exec "XDG_CONFIG_HOME=/etc mako"
 
 set $mod Mod4
 # Home row direction keys, like vim

@@ -56,7 +56,8 @@
 			[[ "$(tty)" != '/dev/tty1' ]] || pidof sway > /dev/null || exec sway
 		'';
 		variables.XCURSOR_THEME = "Quintom_Ink";
-		etc."sway/config".source = (mkConfig "sway-config" variables);
-		etc."kanshi/config".source = (mkConfig "kanshi-config" {});
+		etc."sway/config".source = (mkConfig "sway" variables);
+		etc."kanshi/config".source = (mkConfig "kanshi" {});
+		etc."mako/config".source = (mkConfig "mako" {});
 	};
 }

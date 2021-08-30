@@ -1,0 +1,9 @@
+default-timeout=10000
+
+background-color=#000000BB
+border-color=#EEEEEEBB
+text-color=#FFFFFFEE
+font=DejaVuSans 11
+padding=15,20
+border-size=1
+border-radius=5
