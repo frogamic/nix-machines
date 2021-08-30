@@ -1,0 +1,9 @@
+	"network": {
+		"format-wifi": "{signalStrength}% ",
+		"format-ethernet": "{ifname} ",
+		"format-linked": "{ifname} ",
+		"format-disconnected": "Disconnected ⚠",
+		"format-alt": "{ifname}: {ipaddr}/{cidr}",
+		"tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+		"tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}"
+	},

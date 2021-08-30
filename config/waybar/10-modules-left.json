@@ -1,0 +1,4 @@
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode"
+	],

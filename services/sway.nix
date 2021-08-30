@@ -1,8 +1,4 @@
 { config, pkgs, lib, ... } : {
-	imports = [
-		./waybar.nix
-	];
-
 	programs.sway = {
 		enable = true;
 		extraSessionCommands = ''
@@ -24,6 +20,7 @@
 			playerctl
 			pamixer
 			wob
+			waybar
 			swaylock
 			swayidle
 			xwayland
@@ -43,8 +40,17 @@
 		]) ++ [
 			(pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
 			(pkgs.writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
-		];
+		] ++ (
+			if config.hardware.pulseaudio.enable then
+				[ pkgs.pavucontrol ]
+			else
+				[ ]
+			);
 	};
+
+	fonts.fonts = [
+		pkgs.font-awesome
+	];
 
 	services.gnome.gnome-keyring.enable = true;
 	programs.seahorse.enable = true;
@@ -57,7 +63,9 @@
 		'';
 		variables.XCURSOR_THEME = "Quintom_Ink";
 		etc."sway/config".source = (mkConfig "sway" variables);
-		etc."kanshi/config".source = (mkConfig "kanshi" {});
-		etc."mako/config".source = (mkConfig "mako" {});
+		etc."xdg/kanshi/config".source = (mkConfig "kanshi" {});
+		etc."xdg/mako/config".source = (mkConfig "mako" {});
+		etc."xdg/waybar/config".source = (mkConfig "waybar" {});
+		etc."xdg/waybar/style.css".source = (mkConfig "waybar.css" {});
 	};
 }

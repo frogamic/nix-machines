@@ -1,8 +1,8 @@
-{ pkgs, ... } : {
-	fonts.fonts = with pkgs; [
+{ pkgs, ... }: with pkgs; {
+	fonts.fonts = [
 		font-awesome
 	];
 	environment.systemPackages = [
-		pkgs.waybar
+		waybar
 	];
 }

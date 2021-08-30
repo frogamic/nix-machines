@@ -2,8 +2,8 @@
 # user environments (e.g. required for screen sharing and Pinentry prompts):
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
-exec "XDG_CONFIG_HOME=/etc kanshi"
-exec "XDG_CONFIG_HOME=/etc mako"
+exec "XDG_CONFIG_HOME=/etc/xdg kanshi"
+exec "XDG_CONFIG_HOME=/etc/xdg mako"
 
 set $mod Mod4
 # Home row direction keys, like vim
