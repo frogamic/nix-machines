@@ -2,6 +2,5 @@
 		"disable-scroll": true
 	},
 	"sway/mode": {
-		"format": "<span style=\"italic\">{}</span>",
 		"tooltip": false
 	},

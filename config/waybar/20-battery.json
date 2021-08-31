@@ -3,9 +3,9 @@
 			"warning": 25,
 			"critical": 10
 		},
-		"format": "{capacity}% {icon}",
-		"format-charging": "{capacity}% ",
-		"format-plugged": "{capacity}% ",
+		"format": "{icon} {capacity}%",
+		"format-charging": " {capacity}%",
+		"format-plugged": " {capacity}%",
 		"format-icons": ["", "", "", "", ""]
 	},
 	"battery#bat2": {
