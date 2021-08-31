@@ -97,7 +97,7 @@ window#waybar.hidden {
 #battery.charging {
 	color: #53f57e;
 	animation-name: blink;
-	animation-duration: 5s;
+	animation-duration: 3s;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
@@ -112,7 +112,7 @@ window#waybar.hidden {
 #battery.warning:not(.charging) {
 	color: #f5ba53;
 	animation-name: blink;
-	animation-duration: 0.5s;
+	animation-duration: 1.5s;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
