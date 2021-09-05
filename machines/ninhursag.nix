@@ -66,14 +66,27 @@
 				emulateWheel = true;
 			};
 
-			fileSystems."/" = {
-				device = "/dev/disk/by-uuid/3605938b-fc96-44f8-94c7-424426b76314";
-				fsType = "ext4";
+			boot.initrd.luks.devices.cryptroot = {
+				device = "/dev/disk/by-uuid/94750b3e-4442-4491-8637-5f46363c3750";
+				preLVM = true;
+				allowDiscards = true;
+				bypassWorkqueues = true;
+				preOpenCommands = ''
+				echo 50 > /sys/class/backlight/amdgpu_bl0/brightness
+				'';
 			};
 
-			fileSystems."/efi" = {
-				device = "/dev/disk/by-uuid/6333-886D";
-				fsType = "vfat";
+			fileSystems = {
+				"/" = {
+					device = "/dev/disk/by-uuid/54713050-50cc-4ed1-864d-e9d28b6c92d9";
+					fsType = "btrfs";
+					options = [ "autodefrag" "noatime" ];
+				};
+
+				"/efi" = {
+					device = "/dev/disk/by-uuid/6333-886D";
+					fsType = "vfat";
+				};
 			};
 
 			nix.maxJobs = 16;
