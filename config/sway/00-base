@@ -4,6 +4,7 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 
 exec "XDG_CONFIG_HOME=/etc/xdg kanshi"
 exec "XDG_CONFIG_HOME=/etc/xdg mako"
+exec "systembus-notify"
 
 set $mod Mod4
 # Home row direction keys, like vim

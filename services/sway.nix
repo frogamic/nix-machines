@@ -27,6 +27,7 @@
 			mako
 			kanshi
 			libnotify
+			systembus-notify
 			grim
 			slurp
 			wl-clipboard

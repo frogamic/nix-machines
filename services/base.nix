@@ -8,6 +8,7 @@
 		./ssh.nix
 		./fonts.nix
 		./sway.nix
+		./antivirus.nix
 		./desktop-apps.nix
 		./develop.nix
 		./fzf.nix
