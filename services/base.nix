@@ -68,15 +68,9 @@
 		];
 	};
 
-	services = {
-		fwupd = {
-			enable = true;
-			enableTestRemote = true;
-		};
-		clamav = {
-			updater.enable = true;
-			daemon.enable = true;
-		};
+	services.fwupd = {
+		enable = true;
+		enableTestRemote = true;
 	};
 
 	nix.autoOptimiseStore = true;
