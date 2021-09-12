@@ -13,10 +13,11 @@
 				../services/hardware/bluetooth.nix
 				../services/hardware/fingerprint.nix
 
-				../services/mixxx.nix
-				../services/base.nix
-
 				../users/dominic.nix
+
+				../services/base.nix
+				../services/mixxx.nix
+				../services/3dprinting.nix
 			];
 
 			boot = {
