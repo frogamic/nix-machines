@@ -1,5 +1,6 @@
 { config, pkgs, ... }: {
 	programs.adb.enable = true;
+	users.users.me.extraGroups = [ "adbusers" ];
 
 	boot = {
 		extraModulePackages = [ (config.boot.kernelPackages.v4l2loopback.overrideAttrs (old: {
