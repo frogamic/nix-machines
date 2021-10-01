@@ -1,7 +1,11 @@
 { lib, config, ... }: {
-	services.getty.extraArgs = [
-		"--nohostname"
-	];
+	services.getty = {
+		extraArgs = [
+			"--nohostname"
+			"-n"
+		];
+		loginOptions = config.users.users.me.name;
+	};
 
 	environment.etc.issue = lib.mkForce {
 		# hostname:tty

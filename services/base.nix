@@ -1,6 +1,8 @@
 { lib, pkgs, ... } : {
 
 	imports = [
+		../users/me.nix
+
 		./login.nix
 		./nixFlakes.nix
 		./updates.nix

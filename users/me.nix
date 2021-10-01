@@ -1,5 +1,6 @@
 { config, pkgs, ... } : {
-	users.users.dominic = {
+	users.users.me = {
+		name = "dominic";
 		isNormalUser = true;
 		shell = pkgs.zsh;
 		extraGroups = import ./privileged-groups.nix config;

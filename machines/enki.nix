@@ -11,8 +11,6 @@
 				../services/hardware/ssd.nix
 				../services/hardware/bluetooth.nix
 
-				../users/dominic.nix
-
 				../services/base.nix
 				../services/texlive.nix
 				../services/mixxx.nix
