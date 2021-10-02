@@ -5,6 +5,7 @@
 			eval $(gnome-keyring-daemon --start)
 			export SSH_AUTH_SOCK
 			export MOZ_ENABLE_WAYLAND=1
+			export MOZ_DBUS_REMOTE=1
 			${if config.services.xserver ? layout then
 				"export XKB_DEFAULT_LAYOUT=\"${config.services.xserver.layout}\""
 			else ""}
