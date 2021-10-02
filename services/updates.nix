@@ -1,4 +1,4 @@
-{ lib, config, ... } : {
+{ config, lib, pkgs, ... } : {
 	system.autoUpgrade = {
 		enable = true;
 		dates = "23:00";
@@ -15,4 +15,14 @@
 		${config.nix.package.out}/bin/nix-collect-garbage --quiet
 		/nix/var/nix/profiles/system/bin/switch-to-configuration switch
 	'';
+
+	environment.systemPackages = [(
+		pkgs.writeShellScriptBin "nixos-upgrade" ''
+		${config.systemd.package}/bin/journalctl -f -u nixos-upgrade.service -n 0 &
+		jpid="$!"
+		${config.systemd.package}/bin/systemctl start nixos-upgrade.service
+		sleep 0.5s
+		kill "$jpid"
+		''
+	)];
 }
