@@ -94,8 +94,12 @@ window#waybar.hidden {
 	margin-right: 0;
 }
 
-#battery.charging {
+#battery.charging,
+#battery.full {
 	color: #53f57e;
+}
+
+#battery.charging {
 	animation-name: blink;
 	animation-duration: 3s;
 	animation-timing-function: linear;
