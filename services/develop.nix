@@ -1,6 +1,7 @@
 { config, pkgs, ... } : {
 
 	imports = [
+		./hardware-dev.nix
 		./aws.nix
 		./podman.nix
 	];
