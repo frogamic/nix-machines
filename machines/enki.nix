@@ -32,8 +32,12 @@
 					useOSProber = true;
 					gfxmodeEfi = "1920x1200";
 					splashImage = null;
+					extraEntries = ''
+menuentry "UEFI Firmware Setup" {
+	fwsetup
+}
+					'';
 				};
-
 			};
 
 			networking = {
@@ -49,7 +53,7 @@
 					device = "/dev/disk/by-uuid/421aae2b-d64b-4e8f-a5bd-8e4c79f3b4ae";
 					fsType = "ext4";
 				};
-				"/efi" = {
+				"${config.boot.loader.efi.efiSysMountPoint}" = {
 					device = "/dev/disk/by-uuid/0D39-C351";
 					fsType = "vfat";
 				};
