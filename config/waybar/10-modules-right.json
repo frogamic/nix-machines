@@ -1,9 +1,9 @@
 	"modules-right": [
 		//"custom/media",
+		"tray",
 		"pulseaudio",
 		"network",
 		"battery",
 		"battery#bat2",
-		"tray",
 		"clock"
 	],
