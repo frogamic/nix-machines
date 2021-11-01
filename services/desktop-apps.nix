@@ -7,7 +7,19 @@
 			BROWSER = "firefox";
 		};
 		systemPackages =
-		(with pkgs; [
+		(with pkgs; let
+			discordWayland = symlinkJoin {
+				name = "discord";
+				paths = [ discord ];
+				buildInputs = [ makeWrapper ];
+				postBuild = ''
+					wrapProgram $out/bin/Discord --add-flags \
+						"--enable-features=UseOzonePlatform --ozone-platform=wayland"
+					mv $out/bin/discord $out/bin/Discord-Xwayland
+					ln -s $out/bin/Discord $out/bin/discord
+				'';
+			};
+		in [
 			xdg-utils
 			firefox-bin
 			gimp
@@ -16,7 +28,7 @@
 			krita
 			drawio
 			spotify
-			discord
+			discordWayland
 			mpv
 			mupdf
 			stable.chromium
