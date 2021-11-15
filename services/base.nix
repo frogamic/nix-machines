@@ -61,7 +61,7 @@
 			file
 			jq
 			bat
-			tree
+			stable.tree
 			killall
 			pstree
 			pciutils
