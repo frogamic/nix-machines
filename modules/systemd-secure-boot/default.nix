@@ -162,12 +162,12 @@ in {
   config = mkIf cfg.enable {
     assertions = [
       {
-        assertion = !isNull cfg.secureBoot.keyPath;
+        assertion = !(cfg.secureBoot.enable && isNull cfg.secureBoot.keyPath);
 
         message = "The secureboot signing key must be provided";
       }
       {
-        assertion = !isNull cfg.secureBoot.certPath;
+        assertion = !(cfg.secureBoot.enable && isNull cfg.secureBoot.certPath);
 
         message = "The secureboot signing certificate must be provided";
       }
