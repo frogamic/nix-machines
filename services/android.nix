@@ -25,7 +25,7 @@
 		(mylib.mkAdbApp {
 			bin = "fgo";
 			name = "com.aniplex.fategrandorder.en";
-			crop = "1080:1920:0:278";
+			crop = "1080:2176:0:150";
 			title = "Fate/Grand Order";
 		})
 		(mylib.mkAdbApp {
