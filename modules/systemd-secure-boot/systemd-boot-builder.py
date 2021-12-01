@@ -18,22 +18,25 @@ import os.path
 from typing import Tuple, List, Optional, Callable
 
 
-def install_signed_if_not_signed(source: Callable[[], str], dest: str) -> None:
-    try:
-        subprocess.check_call(
-            ["@sbsigntool@/bin/sbverify", "--cert=@certPath@", dest],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL)
-    except subprocess.CalledProcessError:
-        subprocess.check_call([
-            "@sbsigntool@/bin/sbsign",
-            "--key=@keyPath@",
-            "--cert=@certPath@",
-            "--output=%s.tmp" % (dest),
-            source()],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL)
-        os.rename("%s.tmp" % (dest), dest)
+def install_signed_if_required(source: Callable[[], str], dest: str) -> None:
+    if "@secureBootEnable@" == "1":
+        try:
+            subprocess.check_call(
+                ["@sbsigntool@/bin/sbverify", "--cert=@certPath@", dest],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL)
+        except subprocess.CalledProcessError:
+            subprocess.check_call([
+                "@sbsigntool@/bin/sbsign",
+                "--key=@keyPath@",
+                "--cert=@certPath@",
+                "--output=%s.tmp" % (dest),
+                source()],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL)
+            os.rename("%s.tmp" % (dest), dest)
+    elif not os.path.exists(dest):
+        shutil.copy(source(), dest)
 
 def efi_section(name: str, path: str, vma: str) -> List[str]:
     return [
@@ -142,7 +145,7 @@ def write_entry(profile: Optional[str], generation: int) -> None:
                 efistub,
                 "%s/unified.efi" % (tmpdir)])
             return "%s/unified.efi" % (tmpdir)
-        install_signed_if_not_signed(make_unified_kernel, entry_file)
+        install_signed_if_required(make_unified_kernel, entry_file)
 
 
 def mkdir_p(path: str) -> None:
@@ -248,8 +251,8 @@ def main() -> None:
                 print("updating systemd-boot from %s to %s" % (sdboot_version, systemd_version))
                 subprocess.check_call(["@systemd@/bin/bootctl", "--path=@efiSysMountPoint@", "update"])
 
-    install_signed_if_not_signed(lambda: "@systemd@/lib/systemd/boot/efi/systemd-bootx64.efi", "@efiSysMountPoint@/EFI/BOOT/BOOTX64.efi")
-    install_signed_if_not_signed(lambda: "@systemd@/lib/systemd/boot/efi/systemd-bootx64.efi", "@efiSysMountPoint@/EFI/systemd/systemd-bootx64.efi")
+    install_signed_if_required(lambda: "@systemd@/lib/systemd/boot/efi/systemd-bootx64.efi", "@efiSysMountPoint@/EFI/BOOT/BOOTX64.efi")
+    install_signed_if_required(lambda: "@systemd@/lib/systemd/boot/efi/systemd-bootx64.efi", "@efiSysMountPoint@/EFI/systemd/systemd-bootx64.efi")
 
     mkdir_p("@efiSysMountPoint@/EFI/Linux")
     mkdir_p("@efiSysMountPoint@/loader/entries")

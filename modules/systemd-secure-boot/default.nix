@@ -30,6 +30,8 @@ let
 
     inherit (cfg.secureBoot) keyPath certPath;
 
+    secureBootEnable = cfg.secureBoot.enable;
+
     inherit (efi) efiSysMountPoint canTouchEfiVariables;
 
     memtest86 = if cfg.memtest86.enable then pkgs.memtest86-efi else "";
