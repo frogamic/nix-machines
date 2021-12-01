@@ -53,6 +53,7 @@
 			curl
 			zip
 			unzip
+			unar
 			stow
 			lsof
 			bind
