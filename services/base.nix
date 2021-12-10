@@ -33,7 +33,10 @@
 		useXkbConfig = true;
 	};
 
-	programs.zsh.enable = true;
+	programs = {
+		zsh.enable = true;
+		gnupg.agent.enable = true;
+	};
 
 	environment.inputrc.extraConfig = ''
 		set editing-mode vi
