@@ -1,5 +1,6 @@
 {
 	inputs = {
+		flake-utils.url = "github:numtide/flake-utils";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-21.05";
 	};
@@ -47,5 +48,9 @@
 			nixosConfigurations = builtins.listToAttrs (
 				map (mkMachine machineFolder) (getMachines machineFolder)
 			);
-		};
+		} // (inputs.flake-utils.lib.eachSystem inputs.flake-utils.lib.defaultSystems (
+			system: {
+				packages = (import ./.).pkgs inputs.nixpkgs.legacyPackages.${system};
+			}
+		));
 }

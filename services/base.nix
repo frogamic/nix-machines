@@ -3,6 +3,8 @@
 	imports = [
 		../users/me.nix
 
+		./hardware/nitrokey.nix
+
 		./login.nix
 		./nixFlakes.nix
 		./updates.nix
