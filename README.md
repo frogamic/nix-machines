@@ -40,7 +40,7 @@ This is where executable files that will be included in the build are stored.
 
 ### users
 
-This is where users accounts are configured. Since my PCs are all single user there is only me. There are also helper function(s) for configuring multiple similar users should it even not just be me; Cloud-scalable user config.
+This is where users accounts are configured. Since my PCs are all single user there is only me.
 
 ## Overlay
 
