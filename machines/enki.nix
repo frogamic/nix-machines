@@ -63,7 +63,7 @@ menuentry "UEFI Firmware Setup" {
 				{ device = "/dev/disk/by-uuid/a02708dd-61b9-4405-b49b-863494d06c37"; }
 			];
 
-			nix.maxJobs = 16;
+			nix.settings.max-jobs = 16;
 
 			system.stateVersion = "20.09";
 		})

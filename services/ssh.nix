@@ -3,6 +3,6 @@
 		enable = true;
 		startWhenNeeded = true;
 		passwordAuthentication = false;
-		challengeResponseAuthentication = false;
+		kbdInteractiveAuthentication = false;
 	};
 }
