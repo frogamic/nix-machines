@@ -24,6 +24,7 @@
 			waybar
 			swaylock
 			swayidle
+			swaybg
 			xwayland
 			mako
 			kanshi
@@ -68,5 +69,6 @@
 		etc."xdg/mako/config".source = (mkConfig "mako" {});
 		etc."xdg/waybar/config".source = (mkConfig "waybar" {});
 		etc."xdg/waybar/style.css".source = (mkConfig "waybar.css" {});
+		etc."sway/wallpaper.png".source = ../config/wallpaper.png;
 	};
 }
