@@ -2,7 +2,6 @@
 	boot.initrd.kernelModules = [ "amdgpu" ];
 	services.xserver = {
 		videoDrivers = [ "AMDGPU" ];
-		useGlamor = true;
 	};
 	hardware.opengl = {
 		enable = true;
