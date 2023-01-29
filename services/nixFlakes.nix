@@ -1,8 +1,6 @@
 { pkgs, ... } : {
-	nix = {
-		package = pkgs.nixFlakes;
-		extraOptions = ''
-			experimental-features = nix-command flakes
-		'';
-	};
+	nix.extraOptions = ''
+		experimental-features = nix-command flakes
+		extra-experimental-features = nix-command
+	'';
 }
