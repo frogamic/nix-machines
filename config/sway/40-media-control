@@ -1,5 +1,9 @@
 ### Begin media key control
 
+set $wobsock /tmp/wob-sway-sock
+exec_always rm -f $wobsock && mkfifo $wobsock \
+	&& tail -f $wobsock | wob -c /etc/xdg/wob/wob.ini
+
 exec playerctld
 
 bindsym --locked {
