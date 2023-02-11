@@ -1,7 +1,7 @@
 * {
 	border: none;
 	border-radius: 0;
-	font-family: "DejaVu Sans", Helvetica, Arial, sans-serif, "Font Awesome 5 Free";
+	font-family: "DejaVu Sans", Helvetica, Arial, sans-serif, "Font Awesome 6 Free";
 	font-size: 13px;
 	min-height: 0;
 	color: #ffffff;
@@ -76,7 +76,7 @@ window#waybar.hidden {
 #network.wifi,
 #backlight,
 #clock {
-	font-family: "DejaVu Sans Mono", "Font Awesome 5 Free";
+	font-family: "DejaVu Sans Mono", "Font Awesome 6 Free";
 }
 
 #window,
