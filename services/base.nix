@@ -4,6 +4,7 @@
 		../users/me.nix
 
 		./hardware/nitrokey.nix
+		./hardware/flipper.nix
 
 		./login.nix
 		./nixFlakes.nix
