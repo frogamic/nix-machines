@@ -14,7 +14,6 @@
 				../services/hardware/fingerprint.nix
 
 				../services/base.nix
-				../services/mixxx.nix
 				../services/3dprinting.nix
 			];
 
