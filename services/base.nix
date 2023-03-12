@@ -18,8 +18,6 @@
 		./develop.nix
 		./fzf.nix
 		./android.nix
-		./steam.nix
-		./photography.nix
 	];
 
 	networking.useDHCP = lib.mkDefault false;

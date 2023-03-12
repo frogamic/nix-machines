@@ -13,7 +13,6 @@
 
 				../services/base.nix
 				../services/texlive.nix
-				../services/3dprinting.nix
 			];
 
 			boot = {

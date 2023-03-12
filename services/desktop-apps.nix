@@ -2,6 +2,12 @@
 	# Required for Discord and Chromium
 	nixpkgs.config.allowUnfree = true;
 
+	imports = [
+		./steam.nix
+		./photography.nix
+		./3dprinting.nix
+	];
+
 	environment = {
 		variables = {
 			BROWSER = "firefox";
