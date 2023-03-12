@@ -12,6 +12,7 @@
 		yarn
 		python3
 		perl
+		go
 		ghc
 		gitAndTools.gitFull
 		git-crypt
