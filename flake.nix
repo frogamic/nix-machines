@@ -2,7 +2,12 @@
 	inputs = {
 		flake-utils.url = "github:numtide/flake-utils";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-21.05";
+		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+		nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-22.11-darwin";
+		darwin = {
+			url = "github:lnl7/nix-darwin/master";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 	outputs = { self, ... } @ inputs:
 		let
@@ -52,5 +57,19 @@
 			system: {
 				packages = (import ./.).pkgs inputs.nixpkgs.legacyPackages.${system};
 			}
-		));
+			)) // ({
+				darwinConfigurations = rec {
+					ashur = inputs.darwin.lib.darwinSystem {
+						system = "aarch64-darwin";
+						inputs = {
+							inherit (inputs) darwin;
+							nixpkgs = inputs.nixpkgs-darwin;
+						};
+						modules = [
+							./darwin/ashur.nix
+						];
+					};
+					"ashur.internal.frogamic.website" = ashur;
+				};
+			});
 }
