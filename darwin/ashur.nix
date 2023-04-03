@@ -76,7 +76,7 @@
     '';
   };
 
-  # security.pam.enableSudoTouchIdAuth = true;
+  security.pam.enableSudoTouchIdAuth = true;
 
   # system.activationScripts.applications.text = let
   #   env = pkgs.buildEnv {
