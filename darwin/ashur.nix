@@ -7,6 +7,8 @@
     yj
     vim
     git
+    git-lfs
+    git-crypt
     ripgrep
     fzf
     bat
@@ -22,7 +24,7 @@
 
     alacritty
 
-    nodejs-16_x
+    nodejs
     python3
     go
 
@@ -36,11 +38,7 @@
     kustomize
 
     pv
-  ] ++ (with nodePackages; [
-    yarn
-    lerna
-    typescript
-  ]);
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
