@@ -1,0 +1,4 @@
+profile {
+	output "LG Electronics LG TV 0x00000101" enable mode 3840x2160 position 0,0
+	output eDP-1 enable mode 1920x1080 position 960,2160
+}
