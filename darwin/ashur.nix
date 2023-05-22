@@ -27,6 +27,7 @@
     nodejs
     python3
     go
+    gopls
 
     kubectl
     kubectx

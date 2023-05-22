@@ -13,6 +13,7 @@
 		python3
 		perl
 		go
+		gopls
 		ghc
 		gitAndTools.gitFull
 		git-crypt
