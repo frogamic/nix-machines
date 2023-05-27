@@ -27,12 +27,13 @@ bindsym --locked {
 	Shift+XF86AudioLowerVolume exec pamixer -ud 10 && pamixer --get-volume > $wobsock
 
 	# Overload volume keys for device switching
-	--no-repeat {
-		$mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-card "Next Audio Device" "$(pacycle next sink)"
-		$mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-card "Previous Audio Device" "$(pacycle prev sink)"
-		Ctrl+$mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Next Audio Input" "$(pacycle next source)"
-		Ctrl+$mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Previous Audio Input" "$(pacycle prev source)"
-	}
+	# TODO: replace pacycle
+	# --no-repeat {
+	# 	$mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-card "Next Audio Device" "$(pacycle next sink)"
+	# 	$mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-card "Previous Audio Device" "$(pacycle prev sink)"
+	# 	Ctrl+$mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Next Audio Input" "$(pacycle next source)"
+	# 	Ctrl+$mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Previous Audio Input" "$(pacycle prev source)"
+	# }
 
 	# backlight control
 	Ctrl+XF86MonBrightnessUp exec backlightctl inc 2 > $wobsock

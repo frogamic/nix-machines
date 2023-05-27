@@ -10,6 +10,7 @@
 				../services/hardware/amdgpu.nix
 				../services/hardware/ssd.nix
 				../services/hardware/bluetooth.nix
+				../services/hardware/sound.nix
 
 				../services/base.nix
 				../services/texlive.nix

@@ -10,7 +10,6 @@
 		./nixFlakes.nix
 		./updates.nix
 		./emulatedSystems.nix
-		./sound.nix
 		./ssh.nix
 		./fonts.nix
 		./sway.nix

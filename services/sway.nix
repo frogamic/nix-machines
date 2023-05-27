@@ -40,14 +40,8 @@
 			breeze-icons
 			quintom-cursor-theme
 		]) ++ [
-			(pkgs.writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
 			(pkgs.writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
-		] ++ (
-			if config.hardware.pulseaudio.enable then
-				[ pkgs.pavucontrol ]
-			else
-				[ ]
-			);
+		];
 	};
 
 	fonts.fonts = [
