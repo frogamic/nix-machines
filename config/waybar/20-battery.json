@@ -8,6 +8,3 @@
 		"format-plugged": " {capacity}%",
 		"format-icons": ["", "", "", "", ""]
 	},
-	"battery#bat2": {
-		"bat": "BAT2"
-	},
