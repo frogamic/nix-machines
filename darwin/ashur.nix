@@ -17,6 +17,8 @@
     # nix-index
     gnumake
     ffmpeg
+    gnupg
+    pinentry_mac
 
     awscli2
     python39Packages.cfn-lint
