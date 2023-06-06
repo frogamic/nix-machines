@@ -91,7 +91,6 @@
 				{ device = "/dev/disk/by-uuid/37885878-19c4-4b10-857e-80e0c989057a"; }
 			];
 
-
 			nix.settings.max-jobs = 16;
 
 			system.stateVersion = "20.09"; # Did you read the comment?

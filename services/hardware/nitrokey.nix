@@ -1,7 +1,14 @@
 { pkgs, ... }: {
+
 	hardware.nitrokey.enable = true;
-	users.users.me.extraGroups = [ "nitrokey" ];
-	environment.systemPackages = [
-		pkgs.pynitrokey
+
+	environment.systemPackages = with pkgs; [
+		pynitrokey
+		opensc
+		pcsctools
 	];
+
+	services.pcscd = {
+		enable = true;
+	};
 }
