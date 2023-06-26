@@ -3,8 +3,8 @@
 		enable = true;
 		startWhenNeeded = true;
 		settings = {
-			passwordAuthentication = false;
-			kbdInteractiveAuthentication = false;
+			PasswordAuthentication = false;
+			KbdInteractiveAuthentication = false;
 		};
 	};
 }
