@@ -2,8 +2,8 @@
 	inputs = {
 		flake-utils.url = "github:numtide/flake-utils";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
-		nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-22.11-darwin";
+		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
+		nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
 			inputs.nixpkgs.follows = "nixpkgs";
