@@ -5,10 +5,6 @@
     python39Packages.yq
     jq
     yj
-    vim
-    git
-    git-lfs
-    git-crypt
     ripgrep
     fzf
     bat
@@ -20,16 +16,7 @@
     gnupg
     pinentry_mac
 
-    awscli2
-    python39Packages.cfn-lint
-    saml2aws
-
     alacritty
-
-    nodejs
-    python3
-    go
-    gopls
 
     kubectl
     kubectx
@@ -41,7 +28,10 @@
     kustomize
 
     pv
-  ];
+  ]
+    ++ ((import ../services/develop.nix { inherit pkgs; }).environment.systemPackages)
+    ++ ((import ../services/aws.nix { inherit pkgs; }).environment.systemPackages)
+  ;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;

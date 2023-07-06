@@ -1,4 +1,4 @@
-{ config, pkgs, ... } : {
+{ pkgs, ... } : {
 
 	imports = [
 		./hardware-dev.nix
@@ -8,15 +8,24 @@
 
 	environment.systemPackages = (with pkgs; [
 		vim
-		nodejs
-		yarn
+		gitFull
+		git-lfs
+		git-crypt
 		python3
 		perl
+
+		nodejs
+		yarn
+
 		go
 		gopls
-		ghc
-		gitAndTools.gitFull
-		git-crypt
+
+		rustc
+		rustfmt
+		cargo
+		clippy
+		gcc
+
 		morph
 	]);
 }
