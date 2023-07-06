@@ -6,7 +6,7 @@
 		nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
-			inputs.nixpkgs.follows = "nixpkgs";
+			inputs.nixpkgs.follows = "nixpkgs-darwin";
 		};
 	};
 	outputs = { self, ... } @ inputs:
