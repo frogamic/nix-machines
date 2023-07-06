@@ -94,8 +94,6 @@
 			];
 
 			nix.settings.max-jobs = 16;
-
-			system.stateVersion = "20.09"; # Did you read the comment?
 		})
 	];
 }

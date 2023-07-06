@@ -63,8 +63,6 @@ menuentry "UEFI Firmware Setup" {
 			];
 
 			nix.settings.max-jobs = 16;
-
-			system.stateVersion = "20.09";
 		})
 	];
 }

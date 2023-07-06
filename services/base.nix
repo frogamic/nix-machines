@@ -82,4 +82,5 @@
 	};
 
 	nix.settings.auto-optimise-store = true;
+	system.stateVersion = lib.mkDefault "23.05"; # Did you read the comment?
 }
