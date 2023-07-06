@@ -25,6 +25,7 @@
 					"usb_storage"
 					"sd_mod"
 					"rtsx_pci_sdmmc"
+					"thinkpad_acpi"
 				];
 				kernelParams = [ "acpi_backlight=native" ];
 				kernelPackages = pkgs.linuxPackages_latest;
@@ -71,6 +72,7 @@
 				bypassWorkqueues = true;
 				preOpenCommands = ''
 				echo 50 > /sys/class/backlight/amdgpu_bl0/brightness
+				echo 1 > /sys/class/leds/tpacpi::kbd_backlight/brightness
 				'';
 			};
 

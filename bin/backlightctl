@@ -16,6 +16,12 @@ else
 fi
 
 PCT=$(brightnessctl -m -c "backlight" set "$CHANGE" | cut -d "," -f 4)
-brightnessctl -d "tpacpi::kbd_backlight" set "$PCT" > /dev/null
-PCT="${PCT%%%}"
+PCT="${PCT%\%}"
+KBD=0
+if [ $PCT -lt 40 ]; then
+	KBD=1
+elif [ $PCT -lt 60 ]; then
+	KBD=2
+fi
+brightnessctl -d "tpacpi::kbd_backlight" set "$KBD" > /dev/null
 echo "$PCT"
