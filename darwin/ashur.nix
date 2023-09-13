@@ -15,6 +15,7 @@
     ffmpeg
     gnupg
     pinentry_mac
+    ntfs3g
 
     alacritty
 
