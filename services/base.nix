@@ -25,7 +25,8 @@
 	i18n.defaultLocale = "en_AU.UTF-8";
 
 	services.xserver = {
-		layout = "dvorak,us";
+		layout = "us";
+		xkbVariant = "dvorak";
 		xkbOptions = "caps:swapescape";
 	};
 
