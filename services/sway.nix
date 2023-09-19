@@ -44,10 +44,6 @@
 		];
 	};
 
-	fonts.fonts = [
-		pkgs.font-awesome
-	];
-
 	services.gnome.gnome-keyring.enable = true;
 	programs.seahorse.enable = true;
 

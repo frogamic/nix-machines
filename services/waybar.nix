@@ -1,5 +1,5 @@
 { pkgs, ... }: with pkgs; {
-	fonts.fonts = [
+	fonts.packages = [
 		font-awesome
 	];
 	environment.systemPackages = [
