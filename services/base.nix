@@ -73,6 +73,7 @@
 			usbutils
 			ffmpeg
 			nix-index
+			lm_sensors
 		];
 	};
 
