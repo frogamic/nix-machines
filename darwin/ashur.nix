@@ -22,7 +22,6 @@
     kubectl
     kubectx
     stern
-    octant
     kind
     kubernetes-helm
     # kubescape
