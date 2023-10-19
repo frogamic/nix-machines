@@ -13,6 +13,7 @@
 				../services/hardware/bluetooth.nix
 				../services/hardware/sound.nix
 				../services/hardware/fingerprint.nix
+				../services/hardware/secureboot.nix
 
 				../services/base.nix
 			];
