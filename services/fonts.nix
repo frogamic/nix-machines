@@ -1,5 +1,5 @@
 { pkgs, ... } : {
-	fonts.fonts = with pkgs; [
+	fonts.packages = with pkgs; [
 		twemoji-color-font
 		google-fonts
 		liberation_ttf
