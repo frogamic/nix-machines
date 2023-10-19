@@ -35,11 +35,6 @@
 					systemd-boot = {
 						enable = true;
 						configurationLimit = 10;
-						secureBoot = {
-							enable = true;
-							keyPath = "/root/secure-boot/db.key";
-							certPath = "/root/secure-boot/db.crt";
-						};
 					};
 				};
 			};
