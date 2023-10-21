@@ -1,7 +1,7 @@
 * {
 	border: none;
 	border-radius: 0;
-	font-family: "DejaVu Sans", Helvetica, Arial, sans-serif, "Font Awesome 6 Free";
+	font-family: "DejaVu Sans", "Font Awesome 6 Free", Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	min-height: 0;
 	color: #ffffff;
@@ -64,19 +64,6 @@ window#waybar.hidden {
 #clock {
 	margin-top: -1px;
 	font-size: 14px;
-}
-
-#workspaces,
-#temperature,
-#cpu,
-#memory,
-#disk,
-#pulseaudio,
-#battery,
-#network.wifi,
-#backlight,
-#clock {
-	font-family: "DejaVu Sans Mono", "Font Awesome 6 Free";
 }
 
 #window,

@@ -1,4 +1,9 @@
 { config, pkgs, lib, ... } : {
+
+	imports = [
+		./waybar.nix
+	];
+
 	programs.sway = {
 		enable = true;
 		extraSessionCommands = ''
@@ -21,7 +26,6 @@
 			playerctl
 			pamixer
 			wob
-			waybar
 			swaylock
 			swayidle
 			swaybg
@@ -57,8 +61,6 @@
 		etc."sway/config".source = (mkConfig "sway" variables);
 		etc."xdg/kanshi/config".source = (mkConfig "kanshi" {});
 		etc."xdg/mako/config".source = (mkConfig "mako" {});
-		etc."xdg/waybar/config".source = (mkConfig "waybar" {});
-		etc."xdg/waybar/style.css".source = (mkConfig "waybar.css" {});
 		etc."xdg/wob/wob.ini".source = (mkConfig "wob.ini" {});
 		etc."sway/wallpaper.png".source = ../config/wallpaper.png;
 	};
