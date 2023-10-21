@@ -31,7 +31,10 @@
 							system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
 							nix = {
 								nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-								registry.nixpkgs.flake = inputs.nixpkgs;
+								registry = {
+									nixpkgs.flake = inputs.nixpkgs;
+									n.flake = inputs.nixpkgs;
+								};
 							};
 						}
 						(mkOverlays machineConfig.system)
