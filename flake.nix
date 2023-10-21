@@ -8,6 +8,10 @@
 			url = "github:lnl7/nix-darwin/master";
 			inputs.nixpkgs.follows = "nixpkgs-darwin";
 		};
+		lanzaboote = {
+			url = "github:nix-community/lanzaboote/v0.3.0";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 	outputs = { self, ... } @ inputs:
 		let
@@ -21,6 +25,7 @@
 			mkNixosSystem = machineConfig: inputs.nixpkgs.lib.nixosSystem (
 				machineConfig // {
 					modules = machineConfig.modules ++ [
+						inputs.lanzaboote.nixosModules.lanzaboote
 						self.nixosModule
 						{
 							system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
