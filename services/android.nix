@@ -21,11 +21,11 @@
 		adbfs-rootless
 		android-file-transfer
 		android-udev-rules
+		scrcpy
 
 		(mylib.mkAdbApp {
 			bin = "fgo";
 			name = "com.aniplex.fategrandorder.en";
-			crop = "1080:2176:0:150";
 			title = "Fate/Grand Order";
 		})
 		(mylib.mkAdbApp {
@@ -33,12 +33,6 @@
 			name = "com.YoStarEN.Arknights";
 			crop = "1080:2140:0:100";
 			title = "Arknights";
-		})
-		(mylib.mkAdbApp {
-			bin = "touhoulw";
-			name = "jp.goodsmile.touhoulostwordglobal_android";
-			crop = "1080:2204:0:136";
-			title = "Touhou LostWord";
 		})
 		(mylib.mkAdbApp {
 			bin="adbscreen";

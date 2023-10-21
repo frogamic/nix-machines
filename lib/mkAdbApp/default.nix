@@ -8,5 +8,5 @@
 		${if title != "" then "--window-title '${title}'" else ""} \
 		${if crop != "" then "--crop '${crop}'" else ""} \
 		--render-driver opengl \
-		--bit-rate 12M
+		--video-bit-rate 12M
 ''
