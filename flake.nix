@@ -11,6 +11,7 @@
 		lanzaboote = {
 			url = "github:nix-community/lanzaboote/v0.3.0";
 			inputs.nixpkgs.follows = "nixpkgs";
+			inputs.flake-utils.follows = "flake-utils";
 		};
 	};
 	outputs = { self, ... } @ inputs:
