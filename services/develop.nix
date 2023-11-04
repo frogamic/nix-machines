@@ -27,5 +27,6 @@
 		gcc
 
 		morph
+		deploy-rs
 	]);
 }
