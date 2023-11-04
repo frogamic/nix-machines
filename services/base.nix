@@ -21,62 +21,36 @@
 
 	networking.useDHCP = lib.mkDefault false;
 	boot.supportedFilesystems = [ "ntfs" ];
-	time.timeZone = "Australia/Melbourne";
-	i18n.defaultLocale = "en_AU.UTF-8";
 
-	services.xserver = {
-		layout = "us";
-		xkbVariant = "dvorak";
-		xkbOptions = "caps:swapescape";
-	};
-
-	console = {
-		font = "Lat2-Terminus16";
-		useXkbConfig = true;
-	};
-
-	programs = {
-		zsh.enable = true;
-		gnupg.agent.enable = true;
-	};
+	programs.gnupg.agent.enable = true;
 
 	environment.inputrc.extraConfig = ''
 		set editing-mode vi
 	'';
 
-	environment = {
-		shellAliases = {
-			ll = "ls -alh";
-			ns = "function _ns() { nix-shell -p \"$1\" --run \"$*\"; }; _ns";
-		};
-		variables = {
-			EDITOR = "vim";
-		};
-
-		systemPackages = with pkgs; [
-			openssl
-			curl
-			zip
-			unzip
-			unar
-			stow
-			lsof
-			bind
-			parted
-			ripgrep
-			file
-			jq
-			bat
-			tree
-			killall
-			pstree
-			pciutils
-			usbutils
-			ffmpeg
-			nix-index
-			lm_sensors
-		];
-	};
+	environment.systemPackages = with pkgs; [
+		openssl
+		curl
+		zip
+		unzip
+		unar
+		stow
+		lsof
+		bind
+		parted
+		ripgrep
+		file
+		jq
+		bat
+		tree
+		killall
+		pstree
+		pciutils
+		usbutils
+		ffmpeg
+		nix-index
+		lm_sensors
+	];
 
 	services.fwupd = {
 		enable = true;
