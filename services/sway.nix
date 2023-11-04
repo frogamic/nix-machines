@@ -24,7 +24,6 @@
 		wrapperFeatures.gtk = true;
 		extraPackages = (with pkgs; [
 			playerctl
-			pamixer
 			wob
 			swaylock
 			swayidle
@@ -43,9 +42,12 @@
 			breeze-qt5
 			breeze-icons
 			quintom-cursor-theme
-		]) ++ [
-			(pkgs.writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
-		];
+			pavucontrol
+			pamixer
+			pulseaudio
+			(writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
+			(writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
+		]);
 	};
 
 	services.gnome.gnome-keyring.enable = true;
