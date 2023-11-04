@@ -14,71 +14,65 @@
 			inputs.flake-utils.follows = "flake-utils";
 		};
 	};
-	outputs = { self, ... } @ inputs:
-		let
-			mkOverlays = system: {
-				nixpkgs.overlays = [
-					(final: prev: {
-						stable = inputs.nixpkgs-stable.legacyPackages."${system}";
-					})
+
+	outputs = { self, ... } @ inputs: let
+		machineFolder = ./machines;
+		getMachines = folder: with inputs.nixpkgs.lib; (
+			attrNames (filterAttrs
+				(filename: entryType: entryType == "directory")
+				(builtins.readDir folder)
+			)
+		);
+		mkMachine = name: let
+			config = import (machineFolder + "/${name}");
+		in {
+			inherit name;
+			value = inputs.nixpkgs.lib.nixosSystem (config // {
+				modules = config.modules ++ [
+					inputs.lanzaboote.nixosModules.lanzaboote
+					self.nixosModules.default
+				];
+			});
+		};
+	in {
+		nixosModules.default = {
+			imports = import ./modules;
+			nixpkgs.overlays = [
+				self.overlays.default
+			];
+			nix = {
+				nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+				registry = {
+					nixpkgs.flake = inputs.nixpkgs;
+					n.flake = inputs.nixpkgs;
+				};
+			};
+			system.configurationRevision = inputs.nixpkgs.lib.optionalString (self ? rev) self.rev;
+		};
+
+		overlays.default = final: prev: {
+			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
+			mylib = import ./lib prev;
+			mypkgs = self.packages."${prev.system}";
+		};
+
+		nixosConfigurations = builtins.listToAttrs (
+			map mkMachine (getMachines machineFolder)
+		);
+
+		darwinConfigurations = {
+			ashur = inputs.darwin.lib.darwinSystem {
+				system = "aarch64-darwin";
+				inputs = {
+					inherit (inputs) darwin;
+					nixpkgs = inputs.nixpkgs-darwin;
+				};
+				modules = [
+					./darwin/ashur.nix
 				];
 			};
-			mkNixosSystem = machineConfig: inputs.nixpkgs.lib.nixosSystem (
-				machineConfig // {
-					modules = machineConfig.modules ++ [
-						inputs.lanzaboote.nixosModules.lanzaboote
-						self.nixosModule
-						{
-							system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
-							nix = {
-								nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-								registry = {
-									nixpkgs.flake = inputs.nixpkgs;
-									n.flake = inputs.nixpkgs;
-								};
-							};
-						}
-						(mkOverlays machineConfig.system)
-					];
-				}
-			);
-			mkMachine = folder: machine: {
-				name = machine;
-				value = mkNixosSystem (import (folder + "/${machine}.nix"));
-			};
-			getMachines = folder: with inputs.nixpkgs; (
-				map (lib.removeSuffix ".nix") (
-					lib.attrNames (
-						lib.filterAttrs
-						(filename: entryType: entryType == "regular" && lib.hasSuffix ".nix" filename)
-						(builtins.readDir folder)
-					)
-				)
-			);
-			machineFolder = ./machines;
-		in
-		{
-			inherit (import ./.) overlay nixosModule;
-			nixosConfigurations = builtins.listToAttrs (
-				map (mkMachine machineFolder) (getMachines machineFolder)
-			);
-		} // (inputs.flake-utils.lib.eachSystem inputs.flake-utils.lib.defaultSystems (
-			system: {
-				packages = (import ./.).pkgs inputs.nixpkgs.legacyPackages.${system};
-			}
-			)) // ({
-				darwinConfigurations = rec {
-					ashur = inputs.darwin.lib.darwinSystem {
-						system = "aarch64-darwin";
-						inputs = {
-							inherit (inputs) darwin;
-							nixpkgs = inputs.nixpkgs-darwin;
-						};
-						modules = [
-							./darwin/ashur.nix
-						];
-					};
-					"ashur.internal.frogamic.website" = ashur;
-				};
-			});
+		};
+	} // (inputs.flake-utils.lib.eachSystem inputs.flake-utils.lib.defaultSystems (system: {
+		packages = import ./pkgs inputs.nixpkgs.legacyPackages.${system};
+	}));
 }

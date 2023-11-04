@@ -5,17 +5,17 @@
 			networking.hostName = "ninhursag";
 
 			imports = [
-				../services/hardware/efi.nix
-				../services/hardware/amdcpu.nix
-				../services/hardware/amdgpu.nix
-				../services/hardware/ssd.nix
-				../services/hardware/laptop.nix
-				../services/hardware/bluetooth.nix
-				../services/hardware/sound.nix
-				../services/hardware/fingerprint.nix
-				../services/hardware/secureboot.nix
+				../../services/hardware/efi.nix
+				../../services/hardware/amdcpu.nix
+				../../services/hardware/amdgpu.nix
+				../../services/hardware/ssd.nix
+				../../services/hardware/laptop.nix
+				../../services/hardware/bluetooth.nix
+				../../services/hardware/sound.nix
+				../../services/hardware/fingerprint.nix
+				../../services/hardware/secureboot.nix
 
-				../services/base.nix
+				../../services/base.nix
 			];
 
 			boot = {

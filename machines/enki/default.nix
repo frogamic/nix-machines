@@ -5,15 +5,15 @@
 			networking.hostName = "enki";
 
 			imports = [
-				../services/hardware/efi.nix
-				../services/hardware/amdcpu.nix
-				../services/hardware/amdgpu.nix
-				../services/hardware/ssd.nix
-				../services/hardware/bluetooth.nix
-				../services/hardware/sound.nix
+				../../services/hardware/efi.nix
+				../../services/hardware/amdcpu.nix
+				../../services/hardware/amdgpu.nix
+				../../services/hardware/ssd.nix
+				../../services/hardware/bluetooth.nix
+				../../services/hardware/sound.nix
 
-				../services/base.nix
-				../services/texlive.nix
+				../../services/base.nix
+				../../services/texlive.nix
 			];
 
 			boot = {
