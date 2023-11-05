@@ -47,7 +47,7 @@
 					n.flake = inputs.nixpkgs;
 				};
 			};
-			system.configurationRevision = inputs.nixpkgs.lib.optionalString (self ? rev) self.rev;
+			system.configurationRevision = self.rev or self.dirtyRev;
 		};
 
 		overlays.default = final: prev: {
