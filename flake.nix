@@ -47,7 +47,11 @@
 					n.flake = inputs.nixpkgs;
 				};
 			};
-			system.configurationRevision = self.rev or self.dirtyRev;
+			system.configurationRevision = self.rev or self.dirtyRev or (builtins.trace ''
+#######################################################
+WARNING: system.configurationRevision could not be set!
+#######################################################
+			'' null);
 		};
 
 		overlays.default = final: prev: {
