@@ -1,5 +1,5 @@
 profile {
 	output "Dell Inc. DELL U2412M 504H12CR656S" enable mode 1920x1200 position 0,0 transform 90
-	output "Goldstar Company Ltd 27GL850 910NTTQ7B705" enable mode 2560x1440 position 1200,190
+	output "LG Electronics 27GL850 910NTTQ7B705" enable mode 2560x1440 position 1200,190
 	output "Dell Inc. DELL U2412M 9W5YH35M1KFL" enable mode 1920x1200 position 3760,0 transform 270
 }
