@@ -64,7 +64,7 @@
 		allowDiscards = true;
 		bypassWorkqueues = true;
 		preOpenCommands = ''
-			echo 50 > /sys/class/backlight/amdgpu_bl0/brightness
+			echo 100 > /sys/class/backlight/amdgpu_bl0/brightness
 			echo 1 > /sys/class/leds/tpacpi::kbd_backlight/brightness
 		'';
 	};
