@@ -40,11 +40,14 @@
 		parted
 		ripgrep
 		file
+		python39Packages.yq
 		jq
+		yj
 		bat
 		tree
 		killall
 		pstree
+		pv
 		pciutils
 		usbutils
 		ffmpeg
