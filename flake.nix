@@ -43,6 +43,13 @@
 			nix = {
 				nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 				registry = {
+					master.to = {
+						type = "github";
+						owner = "NixOS";
+						repo = "nixpkgs";
+						ref = "master";
+					};
+					stable.flake = inputs.nixpkgs-stable;
 					nixpkgs.flake = inputs.nixpkgs;
 					n.flake = inputs.nixpkgs;
 				};
