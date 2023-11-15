@@ -17,23 +17,16 @@
 
 	outputs = { self, ... } @ inputs: let
 		machineFolder = ./machines;
-		getMachines = folder: with inputs.nixpkgs.lib; (
-			attrNames (filterAttrs
-				(filename: entryType: entryType == "directory")
-				(builtins.readDir folder)
-			)
-		);
-		mkMachine = name: let
-			config = import (machineFolder + "/${name}");
-		in {
-			inherit name;
-			value = inputs.nixpkgs.lib.nixosSystem (config // {
+		mkMachine = name:
+			let
+				config = (import (machineFolder + "/${name}"));
+			in
+			inputs.nixpkgs.lib.nixosSystem (config // {
 				modules = config.modules ++ [
 					inputs.lanzaboote.nixosModules.lanzaboote
 					self.nixosModules.default
 				];
 			});
-		};
 	in {
 		nixosModules.default = {
 			imports = import ./modules;
@@ -63,13 +56,15 @@ WARNING: system.configurationRevision could not be set!
 
 		overlays.default = final: prev: {
 			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
-			mylib = import ./lib prev;
+			mylib = import ./mylib prev;
 			mypkgs = self.packages."${prev.system}";
 		};
 
-		nixosConfigurations = builtins.listToAttrs (
-			map mkMachine (getMachines machineFolder)
-		);
+		lib = import ./lib;
+
+		nixosConfigurations = inputs.nixpkgs.lib.genAttrs
+			(self.lib.getMachines machineFolder)
+			mkMachine;
 
 		darwinConfigurations = {
 			ashur = inputs.darwin.lib.darwinSystem {

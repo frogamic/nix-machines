@@ -46,17 +46,17 @@ This is where users accounts are configured. Since my PCs are all single user th
 
 Part of this configuration is an extension to nixpkgs in the form of an overlay supplying `mypkgs` and `mylib`, and a set of modules providing their own options.
 
-### src
+### lib
 
-Helper functions to build out the module.
+Helper functions to build out the module. Output from the flake as `.lib`.
+
+### mylib
+
+Helper functions that depend on nixpkgs, intended to be used via the included default overlay like `nixpkgs.mylib.<fn>`.
 
 ### pkgs
 
 Extra packages, available under `mypkgs` in the overlay.
-
-### libs
-
-Extra lib functions, available under `mylibs` in the overlay.
 
 ### Modules
 

@@ -1,1 +1,1 @@
-import ../src/nixImportable.nix ./.
+import ../lib/nixImportable.nix ./.

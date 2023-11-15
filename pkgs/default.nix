@@ -1,1 +1,1 @@
-nixpkgs: import ../src/callAllPackages.nix nixpkgs ./. {}
+nixpkgs: import ../mylib/callAllPackages.nix nixpkgs ./. {}
