@@ -15,13 +15,13 @@
 		};
 	};
 
-	outputs = { self, ... } @ inputs: let
+	outputs = { self, nixpkgs, ... } @ inputs: let
 		machineFolder = ./machines;
 		mkMachine = name:
 			let
 				config = (import (machineFolder + "/${name}"));
 			in
-			inputs.nixpkgs.lib.nixosSystem (config // {
+			nixpkgs.lib.nixosSystem (config // {
 				modules = config.modules ++ [
 					inputs.lanzaboote.nixosModules.lanzaboote
 					self.nixosModules.default
@@ -34,7 +34,7 @@
 				self.overlays.default
 			];
 			nix = {
-				nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+				nixPath = [ "nixpkgs=${nixpkgs}" ];
 				registry = {
 					master.to = {
 						type = "github";
@@ -43,8 +43,8 @@
 						ref = "master";
 					};
 					stable.flake = inputs.nixpkgs-stable;
-					nixpkgs.flake = inputs.nixpkgs;
-					n.flake = inputs.nixpkgs;
+					nixpkgs.flake = nixpkgs;
+					n.flake = nixpkgs;
 				};
 			};
 			system.configurationRevision = self.rev or self.dirtyRev or (builtins.trace ''
@@ -62,23 +62,22 @@ WARNING: system.configurationRevision could not be set!
 
 		lib = import ./lib;
 
-		nixosConfigurations = inputs.nixpkgs.lib.genAttrs
+		nixosConfigurations = nixpkgs.lib.genAttrs
 			(self.lib.getMachines machineFolder)
 			mkMachine;
 
-		darwinConfigurations = {
-			ashur = inputs.darwin.lib.darwinSystem {
-				system = "aarch64-darwin";
-				inputs = {
-					inherit (inputs) darwin;
-					nixpkgs = inputs.nixpkgs-darwin;
-				};
-				modules = [
-					./darwin/ashur.nix
-				];
-			};
-		};
+		darwinConfigurations = nixpkgs.lib.genAttrs
+			(self.lib.getMachines ./darwin)
+			(name:
+				inputs.darwin.lib.darwinSystem (import (./darwin + "/${name}")) // {
+					inputs = {
+						inherit (inputs) darwin;
+						nixpkgs = inputs.nixpkgs-darwin;
+					};
+				}
+			);
+
 	} // (inputs.flake-utils.lib.eachSystem inputs.flake-utils.lib.defaultSystems (system: {
-		packages = import ./pkgs inputs.nixpkgs.legacyPackages.${system};
+		packages = import ./pkgs nixpkgs.legacyPackages.${system};
 	}));
 }

@@ -29,8 +29,8 @@
 
     pv
   ]
-    ++ ((import ../services/develop.nix { inherit pkgs; }).environment.systemPackages)
-    ++ ((import ../services/aws.nix { inherit pkgs; }).environment.systemPackages)
+    ++ ((import ../../services/develop.nix { inherit pkgs; }).environment.systemPackages)
+    ++ ((import ../../services/aws.nix { inherit pkgs; }).environment.systemPackages)
   ;
 
   # Auto upgrade nix package and the daemon service.
