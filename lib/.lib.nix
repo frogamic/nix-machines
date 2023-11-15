@@ -1,15 +1,8 @@
+/*
+These functions are copied from nixpkgs.lib to remove the dependency on nixpkgs
+*/
 with builtins;
 rec {
-
-	removeSuffix = suffix: str:
-		let
-			sufLen = stringLength suffix;
-			sLen = stringLength str;
-		in
-			if sufLen <= sLen && suffix == substring (sLen - sufLen) sufLen str then
-				substring 0 (sLen - sufLen) str
-			else
-				str;
 
 	filterAttrs = pred: set:
 		listToAttrs (
@@ -26,5 +19,15 @@ rec {
 			lenSuffix = stringLength suffix;
 		in
 			lenContent >= lenSuffix && substring (lenContent - lenSuffix) lenContent str == suffix;
+
+	removeSuffix = suffix: str:
+		let
+			sufLen = stringLength suffix;
+			sLen = stringLength str;
+		in
+			if sufLen <= sLen && suffix == substring (sLen - sufLen) sufLen str then
+				substring 0 (sLen - sufLen) str
+			else
+				str;
 
 }

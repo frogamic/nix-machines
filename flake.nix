@@ -17,16 +17,6 @@
 
 	outputs = { self, nixpkgs, ... } @ inputs: let
 		machineFolder = ./machines;
-		mkMachine = name:
-			let
-				config = (import (machineFolder + "/${name}"));
-			in
-			nixpkgs.lib.nixosSystem (config // {
-				modules = config.modules ++ [
-					inputs.lanzaboote.nixosModules.lanzaboote
-					self.nixosModules.default
-				];
-			});
 	in {
 		nixosModules.default = {
 			imports = import ./modules;
@@ -63,13 +53,26 @@ WARNING: system.configurationRevision could not be set!
 		lib = import ./lib;
 
 		nixosConfigurations = nixpkgs.lib.genAttrs
-			(self.lib.getMachines machineFolder)
-			mkMachine;
+			(self.lib.getMachines machineFolder "linux")
+			(name:
+				let
+					config = (import (machineFolder + "/${name}"));
+				in
+				nixpkgs.lib.nixosSystem (config // {
+					modules = config.modules ++ [
+						inputs.lanzaboote.nixosModules.lanzaboote
+						self.nixosModules.default
+					];
+				})
+			);
 
 		darwinConfigurations = nixpkgs.lib.genAttrs
-			(self.lib.getMachines ./darwin)
+			(self.lib.getMachines machineFolder "darwin")
 			(name:
-				inputs.darwin.lib.darwinSystem (import (./darwin + "/${name}")) // {
+				let
+					config = (import (machineFolder + "/${name}"));
+				in
+				inputs.darwin.lib.darwinSystem config // {
 					inputs = {
 						inherit (inputs) darwin;
 						nixpkgs = inputs.nixpkgs-darwin;
