@@ -17,30 +17,36 @@
 	outputs = { self, nixpkgs, ... } @ inputs: let
 		machineFolder = ./machines;
 	in {
-		nixosModules.default = {
-			imports = import ./modules;
-			nixpkgs.overlays = [
-				self.overlays.default
-			];
-			nix = {
-				nixPath = [ "nixpkgs=${nixpkgs}" ];
-				registry = {
-					master.to = {
-						type = "github";
-						owner = "NixOS";
-						repo = "nixpkgs";
-						ref = "master";
-					};
-					stable.flake = inputs.nixpkgs-stable;
-					nixpkgs.flake = nixpkgs;
-					n.flake = nixpkgs;
-				};
+		nixosModules = {
+			default = {
+				imports = with self.nixosModules; [ withImports noImports ];
 			};
-			system.configurationRevision = self.rev or self.dirtyRev or (builtins.trace ''
-#######################################################
-WARNING: system.configurationRevision could not be set!
-#######################################################
-			'' null);
+			withImports = {
+				imports = import ./modules;
+			};
+			noImports = {
+				nixpkgs.overlays = [
+					self.overlays.default
+				];
+				nix = {
+					nixPath = [ "nixpkgs=${nixpkgs}" ];
+					registry = {
+						master.to = {
+							type = "github";
+							owner = "NixOS";
+							repo = "nixpkgs";
+							ref = "master";
+						};
+						stable.flake = inputs.nixpkgs-stable;
+						nixpkgs.flake = nixpkgs;
+						n.flake = nixpkgs;
+					};
+				};
+				system.configurationRevision = self.rev or self.dirtyRev or (builtins.trace
+					"WARNING: system.configurationRevision could not be set!"
+					null
+				);
+			};
 		};
 
 		overlays.default = final: prev: {
@@ -75,6 +81,7 @@ WARNING: system.configurationRevision could not be set!
 					inputs = {
 						inherit (inputs) darwin nixpkgs;
 					};
+					modules = config.modules ++ [ self.nixosModules.noImports ];
 				})
 			);
 
