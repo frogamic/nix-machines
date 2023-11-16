@@ -3,10 +3,9 @@
 		flake-utils.url = "github:numtide/flake-utils";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
-		nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-23.05-darwin";
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
-			inputs.nixpkgs.follows = "nixpkgs-darwin";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		lanzaboote = {
 			url = "github:nix-community/lanzaboote/v0.3.0";
@@ -72,12 +71,11 @@ WARNING: system.configurationRevision could not be set!
 				let
 					config = (import (machineFolder + "/${name}"));
 				in
-				inputs.darwin.lib.darwinSystem config // {
+				inputs.darwin.lib.darwinSystem (config // {
 					inputs = {
-						inherit (inputs) darwin;
-						nixpkgs = inputs.nixpkgs-darwin;
+						inherit (inputs) darwin nixpkgs;
 					};
-				}
+				})
 			);
 
 	} // (inputs.flake-utils.lib.eachSystem inputs.flake-utils.lib.defaultSystems (system: {
