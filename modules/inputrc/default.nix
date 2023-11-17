@@ -1,6 +1,6 @@
 { lib, config, ... }:
-	with lib;
 	let
+		inherit (lib) mkDefault mkIf mkOption types;
 		cfg = config.environment.inputrc;
 	in
 	{

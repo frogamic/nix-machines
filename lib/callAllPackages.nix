@@ -1,9 +1,9 @@
 nixpkgs: folder: extra:
 
-with builtins;
-
 let
+	inherit (builtins) baseNameOf listToAttrs;
 	inherit (import ../lib/.lib.nix) removeSuffix;
+
 	callPackage = path: {
 		name = removeSuffix ".nix" (baseNameOf path);
 		value = nixpkgs.callPackage path extra;

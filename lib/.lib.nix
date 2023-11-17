@@ -1,7 +1,10 @@
 /*
 These functions are copied from nixpkgs.lib to remove the dependency on nixpkgs
 */
-with builtins;
+let
+	inherit (builtins) attrNames concatMap listToAttrs stringLength substring;
+in
+
 rec {
 
 	filterAttrs = pred: set:

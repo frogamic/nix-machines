@@ -1,8 +1,8 @@
 folder: system:
-with builtins;
 
 let
-	inherit (import ./.lib.nix) filterAttrs removeSuffix hasSuffix;
+	inherit (builtins) attrNames filter readDir;
+	inherit (import ./.lib.nix) filterAttrs hasSuffix removeSuffix;
 	nixImportable = import ./nixImportable.nix;
 in
 

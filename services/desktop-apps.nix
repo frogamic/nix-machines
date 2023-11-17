@@ -13,7 +13,7 @@
 			BROWSER = "firefox";
 		};
 		systemPackages =
-		(with pkgs; [
+		with pkgs; [
 			xdg-utils
 			firefox-bin
 			gimp
@@ -28,15 +28,16 @@
 			mupdf
 			stable.chromium
 			_1password-gui
-		]) ++
-		(with pkgs.xfce; [
-			xfconf
-			exo
-			thunar
-			thunar-volman
-			thunar-archive-plugin
-			tumbler
-			ristretto
-		]);
+		] ++ (
+			with xfce; [
+				xfconf
+				exo
+				thunar
+				thunar-volman
+				thunar-archive-plugin
+				tumbler
+				ristretto
+			]
+		);
 	};
 }

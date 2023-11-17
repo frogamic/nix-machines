@@ -1,8 +1,7 @@
 path:
 
-with builtins;
-
 let
+	inherit (builtins) attrNames pathExists readDir;
 	inherit (import ./.lib.nix) filterAttrs hasPrefix hasSuffix;
 in
 
