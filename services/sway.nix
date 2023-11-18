@@ -1,5 +1,6 @@
-{ config, pkgs, lib, ... } : {
+{ config, pkgs, lib, ... }:
 
+{
 	imports = [
 		./waybar.nix
 	];
@@ -25,8 +26,8 @@
 		extraPackages = (with pkgs; [
 			playerctl
 			wob
-			swaylock
 			swayidle
+			swaylock-fancy
 			swaybg
 			xwayland
 			mako
@@ -56,11 +57,13 @@
 	environment = let
 		mkConfig = pkgs.mylib.mkConfig ../config config.networking.hostName;
 	in rec {
+		variables.XCURSOR_THEME = "Quintom_Ink";
 		loginShellInit = ''
 			[[ "$(tty)" != '/dev/tty1' ]] || pidof sway > /dev/null || exec sway
 		'';
-		variables.XCURSOR_THEME = "Quintom_Ink";
-		etc."sway/config".source = (mkConfig "sway" variables);
+		etc."sway/config".source = (mkConfig "sway" (variables // {
+			LOCKER_COMMAND = "${pkgs.swaylock-fancy}/bin/swaylock-fancy --pixelate --daemonize";
+		}));
 		etc."xdg/kanshi/config".source = (mkConfig "kanshi" {});
 		etc."xdg/mako/config".source = (mkConfig "mako" {});
 		etc."xdg/wob/wob.ini".source = (mkConfig "wob.ini" {});
