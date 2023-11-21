@@ -2,8 +2,8 @@
 
 const lockCmd = Deno.env.get('LOCKER_COMMAND');
 const lockTimeout = 300;
-const screenOffDelay = 30;
-const sleepDelay = 180;
+const screenOffDelay = 60;
+const sleepDelay = 240;
 const resumeCmd = "swaymsg \"output * dpms on\"";
 
 console.log('\n### Begin lockCmd script');
