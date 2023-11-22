@@ -1,6 +1,4 @@
 { config, pkgs, ... } : {
-	networking.hostName = "enki";
-
 	imports = [
 		../../services/hardware/efi.nix
 		../../services/hardware/amdcpu.nix

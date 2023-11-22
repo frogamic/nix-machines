@@ -67,6 +67,7 @@
 					modules = config.modules ++ [
 						inputs.lanzaboote.nixosModules.lanzaboote
 						self.nixosModules.default
+						{ networking.hostName = self.lib.mkDefault name; }
 					];
 				})
 			);
