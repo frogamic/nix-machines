@@ -1,6 +1,7 @@
-{ lib, ... }: let
-	myDefault = lib.mkOverride 900;
-in {
+let
+	myDefault = (import ../lib).mkDefault;
+in
+{
 	programs.zsh.enable = myDefault true;
 
 	time.timeZone = myDefault "Australia/Melbourne";
