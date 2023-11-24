@@ -61,9 +61,8 @@
 		loginShellInit = ''
 			[[ "$(tty)" != '/dev/tty1' ]] || pidof sway > /dev/null || exec sway
 		'';
-		etc."sway/config".source = (mkConfig "sway" (variables // {
-			LOCKER_COMMAND = "${pkgs.swaylock-fancy}/bin/swaylock-fancy --pixelate --daemonize";
-		}));
+		etc."sway/config".source = (mkConfig "sway" variables);
+		etc."xdg/swayidle/config".source = (mkConfig "swayidle" {});
 		etc."xdg/kanshi/config".source = (mkConfig "kanshi" {});
 		etc."xdg/mako/config".source = (mkConfig "mako" {});
 		etc."xdg/wob/wob.ini".source = (mkConfig "wob.ini" {});

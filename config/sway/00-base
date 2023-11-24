@@ -4,6 +4,7 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSO
 
 exec "XDG_CONFIG_HOME=/etc/xdg kanshi"
 exec "XDG_CONFIG_HOME=/etc/xdg mako"
+exec "XDG_CONFIG_HOME=/etc/xdg swayidle -w"
 
 set $mod Mod4
 # Home row direction keys, like vim
@@ -62,6 +63,9 @@ bindsym {
 	$mod+Shift+Down move down
 	$mod+Shift+Up move up
 	$mod+Shift+Right move right
+
+	# Manual screen locking
+	--release $mod+Alt+l exec loginctl lock-session
 
 	--no-repeat {
 		# Change keyboard layout
