@@ -10,5 +10,5 @@ listToAttrs (
 			name = removeSuffix ".nix" (baseNameOf file);
 			value = import file;
 		})
-		(import ./nixImportable.nix ./.)
+		(import ./getImportable.nix ./.)
 )

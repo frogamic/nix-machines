@@ -10,4 +10,4 @@ let
 	};
 in
 
-listToAttrs (map callPackage (import ../lib/nixImportable.nix folder))
+listToAttrs (map callPackage (import ../lib/getImportable.nix folder))
