@@ -18,7 +18,9 @@ fi
 PCT=$(brightnessctl -m -c "backlight" set "$CHANGE" | cut -d "," -f 4)
 PCT="${PCT%\%}"
 KBD=0
-if [ $PCT -lt 40 ]; then
+if [ $PCT -eq 0 ]; then
+	KBD=0
+elif [ $PCT -lt 40 ]; then
 	KBD=1
 elif [ $PCT -lt 60 ]; then
 	KBD=2
