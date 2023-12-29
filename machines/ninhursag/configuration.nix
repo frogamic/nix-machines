@@ -9,6 +9,7 @@
 		../../services/hardware/sound.nix
 		../../services/hardware/fingerprint.nix
 		../../services/hardware/secureboot.nix
+		../../services/hardware/rtl-sdr.nix
 
 		../../services/base.nix
 	];
