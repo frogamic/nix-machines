@@ -26,6 +26,7 @@
 		extraPackages = (with pkgs; [
 			playerctl
 			wob
+			acpi
 			swayidle
 			swaylock-fancy
 			swaybg
@@ -48,6 +49,7 @@
 			pulseaudio
 			(writeScriptBin "pacycle" (builtins.readFile ../bin/pacycle))
 			(writeScriptBin "sway-screenshot" (builtins.readFile ../bin/sway-screenshot))
+			(writeScriptBin "sleep-if-battery" (builtins.readFile ../bin/sleep-if-battery))
 		]);
 	};
 

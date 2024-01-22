@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+set -eu
+
+output=$(acpi -a)
+if [[ "$?" == "0" && "$output" == *"on-line"* ]]; then
+	exit 0
+fi
+systemctl suspend
