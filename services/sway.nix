@@ -7,19 +7,21 @@
 
 	programs.sway = {
 		enable = true;
-		extraSessionCommands = ''
+		extraSessionCommands = let
+			xkb = config.services.xserver.xkb;
+		in ''
 			eval $(gnome-keyring-daemon --start)
 			export SSH_AUTH_SOCK
 			export MOZ_ENABLE_WAYLAND=1
 			export MOZ_DBUS_REMOTE=1
-			${if config.services.xserver ? layout then
-				"export XKB_DEFAULT_LAYOUT=\"${config.services.xserver.layout}\""
+			${if xkb ? layout then
+				"export XKB_DEFAULT_LAYOUT=\"${xkb.layout}\""
 			else ""}
-			${if config.services.xserver ? xkbOptions then
-				"export XKB_DEFAULT_OPTIONS=\"${config.services.xserver.xkbOptions}\""
+			${if xkb ? options then
+				"export XKB_DEFAULT_OPTIONS=\"${xkb.options}\""
 			else ""}
-			${if config.services.xserver ? xkbVariant then
-				"export XKB_DEFAULT_VARIANT=\"${config.services.xserver.xkbVariant}\""
+			${if xkb ? variant then
+				"export XKB_DEFAULT_VARIANT=\"${xkb.variant}\""
 			else ""}
 		'';
 		wrapperFeatures.gtk = true;

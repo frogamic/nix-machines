@@ -7,10 +7,10 @@ in
 	time.timeZone = myDefault "Australia/Melbourne";
 	i18n.defaultLocale = myDefault "en_AU.UTF-8";
 
-	services.xserver = {
+	services.xserver.xkb = {
 		layout = myDefault "us";
-		xkbVariant = myDefault "dvorak";
-		xkbOptions = myDefault "caps:swapescape";
+		variant = myDefault "dvorak";
+		options = myDefault "caps:swapescape";
 	};
 
 	console = {
