@@ -3,7 +3,8 @@
 	hardware.nitrokey.enable = true;
 
 	environment.systemPackages = with pkgs; [
-		pynitrokey
+		# pynitrokey
+		# nitrokey-app2
 		opensc
 		pcsctools
 	];
