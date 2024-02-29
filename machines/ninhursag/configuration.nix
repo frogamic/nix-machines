@@ -1,4 +1,4 @@
-{ config, pkgs, ... } : {
+{ config, pkgs, lib, ... } : {
 	imports = [
 		../../services/hardware/efi.nix
 		../../services/hardware/amdcpu.nix
@@ -51,7 +51,10 @@
 		};
 	};
 
-	services.xserver.libinput.touchpad.middleEmulation = false;
+	services.xserver = {
+		xkb.options = pkgs.mylib.mkDefault "altwin:prtsc_rwin";
+		libinput.touchpad.middleEmulation = false;
+	};
 	hardware.trackpoint = {
 		enable = true;
 		emulateWheel = true;
