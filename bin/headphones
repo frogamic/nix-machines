@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+set -euo pipefail
+
+MAC="00:0A:45:25:7B:FE"
+
+if [[ "$#" == "0" ]]; then
+	bluetoothctl connect "$MAC"
+elif [[ "$1" == "d" ]]; then
+	bluetoothctl disconnect "$MAC"
+fi
