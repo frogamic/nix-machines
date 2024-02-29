@@ -1,7 +1,7 @@
 # Start ninhursag media-control
-bindcode --no-repeat {
-	452 exec playerctl previous
-	453 exec playerctl play-pause
-	454 exec playerctl next
+bindsym --no-repeat {
+	XF86Messenger exec playerctl previous
+	XF86Go exec playerctl play-pause
+	Cancel exec playerctl next
 }
 # End ninhursag media-control
