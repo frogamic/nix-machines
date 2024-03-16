@@ -17,6 +17,9 @@
 		./develop.nix
 		./fzf.nix
 		./android.nix
+		./steam.nix
+		./photography.nix
+		# ./3dprinting.nix
 	];
 
 	networking.useDHCP = lib.mkDefault false;
