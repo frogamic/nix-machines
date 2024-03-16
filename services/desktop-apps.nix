@@ -11,7 +11,6 @@
 			xdg-utils
 			firefox-bin
 			gimp
-			gimpPlugins.gap
 			inkscape
 			krita
 			drawio
