@@ -41,6 +41,7 @@
 		interfaces = {
 			wlp3s0.useDHCP = true;
 			enp2s0f0.useDHCP = true;
+			enp6s0f3u1u1.useDHCP = true;
 		};
 		supplicant.wlp3s0 = {
 			userControlled.enable = true;
