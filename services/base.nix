@@ -22,7 +22,7 @@
 		# ./3dprinting.nix
 	];
 
-	networking.useDHCP = lib.mkDefault false;
+	networking.useDHCP = lib.mkDefault true;
 	boot.supportedFilesystems = [ "ntfs" ];
 
 	programs.gnupg.agent.enable = true;

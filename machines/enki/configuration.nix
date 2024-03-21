@@ -34,10 +34,6 @@ fwsetup
 		};
 	};
 
-	networking = {
-		interfaces.enp4s0.useDHCP = true;
-	};
-
 	fileSystems = {
 		"/" = {
 			device = "/dev/disk/by-uuid/389c0259-8dbe-4efd-9693-ddeedf66defe";
