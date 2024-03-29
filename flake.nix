@@ -3,6 +3,7 @@
 		flake-utils.url = "github:numtide/flake-utils";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+		nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -31,12 +32,7 @@
 				nix = {
 					nixPath = [ "nixpkgs=${nixpkgs}" ];
 					registry = {
-						master.to = {
-							type = "github";
-							owner = "NixOS";
-							repo = "nixpkgs";
-							ref = "master";
-						};
+						master.flake = inputs.nixpkgs-master;
 						stable.flake = inputs.nixpkgs-stable;
 						nixpkgs.flake = nixpkgs;
 						n.flake = nixpkgs;
@@ -51,6 +47,7 @@
 
 		overlays.default = final: prev: {
 			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
+			master = inputs.nixpkgs-master.legacyPackages."${prev.system}";
 			mylib = import ./mylib prev;
 			mypkgs = self.packages."${prev.system}";
 		};
