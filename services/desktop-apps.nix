@@ -20,6 +20,9 @@
 			mpv
 			mupdf
 			stable.chromium
+			libreoffice
+			hunspell
+			hunspellDicts.en-au-large
 		] ++ (
 			with xfce; [
 				xfconf
