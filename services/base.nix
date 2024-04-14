@@ -15,7 +15,6 @@
 		./sway.nix
 		./desktop-apps.nix
 		./develop.nix
-		./fzf.nix
 		./android.nix
 		./steam.nix
 		./photography.nix
@@ -25,7 +24,13 @@
 	networking.useDHCP = lib.mkDefault true;
 	boot.supportedFilesystems = [ "ntfs" ];
 
-	programs.gnupg.agent.enable = true;
+	programs = {
+		gnupg.agent.enable = true;
+		fzf = {
+			fuzzyCompletion = true;
+			keybindings = true;
+		};
+	};
 
 	environment.inputrc.extraConfig = ''
 		set editing-mode vi
