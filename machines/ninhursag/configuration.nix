@@ -62,7 +62,9 @@
 		allowDiscards = true;
 		bypassWorkqueues = true;
 		preOpenCommands = ''
-			echo 100 > /sys/class/backlight/amdgpu_bl0/brightness
+			for bl in /sys/class/backlight/*/brightness; do
+				echo 100 > $bl
+			done
 			echo 1 > /sys/class/leds/tpacpi::kbd_backlight/brightness
 		'';
 	};
