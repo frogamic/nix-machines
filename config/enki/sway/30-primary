@@ -1,0 +1,2 @@
+workspace 1 output "LG Electronics 27GL850 910NTTQ7B705"
+exec 'sleep 1; swaymsg workspace 1'
