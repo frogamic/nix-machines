@@ -2,8 +2,8 @@
 
 set -eu
 
-output=$(acpi -a)
-if [[ "$?" == "0" && "$output" == *"on-line"* ]]; then
+output="$(acpi -a 2>&1)"
+if [[ "$?" == "0" ]] && [[ "$output" == *"on-line"* || "$output" == *"No support"* ]]; then
 	exit 0
 fi
-systemctl suspend
+echo systemctl suspend
