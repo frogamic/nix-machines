@@ -1,0 +1,6 @@
+timeout 600 'swaylock-fancy --pixelate --daemonize'
+timeout 720 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+before-sleep 'swaylock-fancy --pixelate --daemonize'
+after-resume 'swaymsg "output * dpms on"'
+lock 'swaylock-fancy --pixelate --daemonize
+unlock 'swaymsg "output * dpms on"'
