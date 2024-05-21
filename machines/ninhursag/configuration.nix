@@ -47,9 +47,9 @@
 		};
 	};
 
-	services.xserver = {
-		xkb.options = pkgs.mylib.mkDefault "altwin:prtsc_rwin";
+	services = {
 		libinput.touchpad.middleEmulation = false;
+		xserver.xkb.options = pkgs.mylib.mkDefault "altwin:prtsc_rwin";
 	};
 	hardware.trackpoint = {
 		enable = true;
