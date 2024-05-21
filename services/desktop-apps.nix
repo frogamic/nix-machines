@@ -23,6 +23,7 @@
 			libreoffice
 			hunspell
 			hunspellDicts.en-au-large
+			obsidian
 		] ++ (
 			with xfce; [
 				xfconf
