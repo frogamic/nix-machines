@@ -16,7 +16,6 @@
 			drawio
 			spotify
 			discord
-			beeper
 			mpv
 			mupdf
 			stable.chromium
