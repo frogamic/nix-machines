@@ -4,6 +4,7 @@
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 		nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+		nixpkgs-frogamic.url = "github:frogamic/nixpkgs/main";
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +49,7 @@
 		overlays.default = final: prev: {
 			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
 			master = inputs.nixpkgs-master.legacyPackages."${prev.system}";
+			frogamic = inputs.nixpkgs-frogamic.legacyPackages."${prev.system}";
 			mylib = import ./mylib prev;
 			mypkgs = self.packages."${prev.system}";
 		};
