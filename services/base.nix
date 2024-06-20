@@ -48,7 +48,7 @@
 		parted
 		ripgrep
 		file
-		python39Packages.yq
+		python3Packages.yq
 		jq
 		yj
 		bat

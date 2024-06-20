@@ -2,7 +2,7 @@
 
 {
 	environment.systemPackages = with pkgs; [
-		python39Packages.yq
+		python3Packages.yq
 		jq
 		yj
 		ripgrep
