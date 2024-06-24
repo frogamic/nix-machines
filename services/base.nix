@@ -21,7 +21,10 @@
 		# ./3dprinting.nix
 	];
 
-	networking.useDHCP = lib.mkDefault true;
+	networking = lib.mkDefault {
+		useDHCP = true;
+		useNetworkd = true;
+	};
 	boot.supportedFilesystems = [ "ntfs" ];
 
 	programs = {
