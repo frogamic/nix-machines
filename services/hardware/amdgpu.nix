@@ -1,19 +1,19 @@
 { config, pkgs, ... } : {
-	boot.initrd.kernelModules = [ "amdgpu" ];
 	services.xserver = {
-		videoDrivers = [ "AMDGPU" ];
+		videoDrivers = [ "amdgpu" ];
 	};
-	hardware.opengl = {
-		enable = true;
-		driSupport = true;
-		driSupport32Bit = true;
-		extraPackages32 = with pkgs.driversi686Linux; [
-			amdvlk
-		];
-		extraPackages = with pkgs; [
-			amdvlk
-			rocm-opencl-icd
-			rocm-opencl-runtime
-		];
+	hardware = {
+		graphics = {
+			enable = true;
+			enable32Bit = true;
+		};
+		amdgpu = {
+			initrd.enable = true;
+			opencl.enable = true;
+			amdvlk = {
+				enable = true;
+				support32Bit.enable = true;
+			};
+		};
 	};
 }
