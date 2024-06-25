@@ -1,4 +1,6 @@
-{ lib, pkgs, ... } : {
+{ lib, pkgs, config, ... } : let
+	inherit (lib) mkDefault;
+in {
 
 	imports = [
 		../users/me.nix
@@ -21,7 +23,7 @@
 		# ./3dprinting.nix
 	];
 
-	networking = lib.mkDefault {
+	networking = mkDefault {
 		useDHCP = true;
 		useNetworkd = true;
 	};
@@ -66,8 +68,15 @@
 		lm_sensors
 	];
 
-	services.fwupd.enable = true;
+	services = {
+		fwupd.enable = true;
+		btrfs.autoScrub.enable = mkDefault (
+			lib.lists.any
+				(x: x.fsType == "btrfs")
+				(lib.attrsets.attrValues config.fileSystems)
+		);
+	};
 
 	nix.settings.auto-optimise-store = true;
-	system.stateVersion = lib.mkDefault "23.05"; # Did you read the comment?
+	system.stateVersion = mkDefault "23.05"; # Did you read the comment?
 }
