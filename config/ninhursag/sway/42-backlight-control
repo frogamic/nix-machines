@@ -1,0 +1,15 @@
+# Begin ninhursag backlight-control
+exec_always backlightctl inc 0
+
+bindsym --locked {
+	# backlight control
+	Ctrl+XF86MonBrightnessUp exec backlightctl inc 2 > $wobsock
+	Ctrl+XF86MonBrightnessDown exec backlightctl dec 2 > $wobsock
+
+	XF86MonBrightnessUp exec backlightctl inc 5 > $wobsock
+	XF86MonBrightnessDown exec backlightctl dec 5 > $wobsock
+
+	Shift+XF86MonBrightnessUp exec backlightctl inc 10 > $wobsock
+	Shift+XF86MonBrightnessDown exec backlightctl dec 10 > $wobsock
+}
+# End ninhursag backlight-control

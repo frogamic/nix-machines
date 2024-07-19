@@ -33,14 +33,4 @@ bindsym --locked {
 		Ctrl+$mod+XF86AudioRaiseVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Next Audio Input" "$(pacycle next source)"
 		Ctrl+$mod+XF86AudioLowerVolume exec notify-send -u low -t 1500 -i audio-input-microphone "Previous Audio Input" "$(pacycle prev source)"
 	}
-
-	# backlight control
-	Ctrl+XF86MonBrightnessUp exec backlightctl inc 2 > $wobsock
-	Ctrl+XF86MonBrightnessDown exec backlightctl dec 2 > $wobsock
-
-	XF86MonBrightnessUp exec backlightctl inc 5 > $wobsock
-	XF86MonBrightnessDown exec backlightctl dec 5 > $wobsock
-
-	Shift+XF86MonBrightnessUp exec backlightctl inc 10 > $wobsock
-	Shift+XF86MonBrightnessDown exec backlightctl dec 10 > $wobsock
 }
