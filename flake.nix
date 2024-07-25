@@ -1,10 +1,10 @@
 {
 	inputs = {
-		flake-utils.url = "github:numtide/flake-utils";
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 		nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 		nixpkgs-frogamic.url = "github:frogamic/nixpkgs/main";
+		flake-utils.url = "github:numtide/flake-utils";
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +13,10 @@
 			url = "github:nix-community/lanzaboote/v0.4.1";
 			inputs.nixpkgs.follows = "nixpkgs";
 			inputs.flake-utils.follows = "flake-utils";
+		};
+		disko = {
+			url = "github:nix-community/disko/v1.6.1";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
 
@@ -65,6 +69,7 @@
 				nixpkgs.lib.nixosSystem (config // {
 					modules = config.modules ++ [
 						inputs.lanzaboote.nixosModules.lanzaboote
+						inputs.disko.nixosModules.disko
 						self.nixosModules.default
 						{ networking.hostName = self.lib.mkDefault name; }
 					];

@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... } : {
 	imports = [
+		./disko.nix
+
 		../../services/hardware/efi.nix
 		../../services/hardware/amdcpu.nix
 		../../services/hardware/amdgpu.nix
@@ -55,36 +57,6 @@
 		enable = true;
 		emulateWheel = true;
 	};
-
-	boot.initrd.luks.devices.cryptroot = {
-		device = "/dev/disk/by-uuid/94750b3e-4442-4491-8637-5f46363c3750";
-		preLVM = true;
-		allowDiscards = true;
-		bypassWorkqueues = true;
-		preOpenCommands = ''
-			for bl in /sys/class/backlight/*/brightness; do
-				echo 100 > $bl
-			done
-			echo 1 > /sys/class/leds/tpacpi::kbd_backlight/brightness
-		'';
-	};
-
-	fileSystems = {
-		"/" = {
-			device = "/dev/disk/by-uuid/54713050-50cc-4ed1-864d-e9d28b6c92d9";
-			fsType = "btrfs";
-			options = [ "autodefrag" "noatime" ];
-		};
-
-		"/efi" = {
-			device = "/dev/disk/by-uuid/6333-886D";
-			fsType = "vfat";
-		};
-	};
-
-	swapDevices = [
-		{ device = "/dev/disk/by-uuid/37885878-19c4-4b10-857e-80e0c989057a"; }
-	];
 
 	nix.settings.max-jobs = 16;
 }
