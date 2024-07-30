@@ -1,24 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+	imports = [ ../../services/base-darwin.nix ];
+
 	environment.systemPackages = with pkgs; [
-		python3Packages.yq
-		jq
-		yj
-		ripgrep
-		fzf
-		bat
-		tree
-		pstree
-		# nix-index
-		gnumake
-		ffmpeg
-		gnupg
-		pinentry_mac
-		ntfs3g
-
-		alacritty
-
 		kubectl
 		kubectx
 		stern
@@ -26,38 +11,14 @@
 		kubernetes-helm
 		# kubescape
 		kustomize
-
-		pv
 	]
 		++ ((import ../../services/develop.nix { inherit pkgs; }).environment.systemPackages)
 		++ ((import ../../services/aws.nix { inherit pkgs; }).environment.systemPackages)
 	;
 
-	# Auto upgrade nix package and the daemon service.
-	services.nix-daemon.enable = true;
+	homebrew.casks = [ "bluesnooze" ];
 
-	programs.zsh = {
-		enable = true;
-		enableFzfHistory = true;
-	};
+	nix.settings.max-jobs = 12;
 
 	system.stateVersion = 4;
-
-	nix = {
-		settings = {
-			max-jobs = 12;
-			trusted-users = [
-				"@admin"
-			];
-		};
-		configureBuildUsers = true;
-		gc = {
-			automatic = true;
-		};
-		extraOptions = ''
-			experimental-features = nix-command flakes
-		'';
-	};
-
-	security.pam.enableSudoTouchIdAuth = true;
 }
