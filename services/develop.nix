@@ -13,6 +13,7 @@
 		git-crypt
 		python3
 		perl
+		powershell
 
 		nodejs
 		yarn
@@ -24,7 +25,9 @@
 		rustfmt
 		cargo
 		clippy
+
 		gcc
+		gnumake
 
 		morph
 		deploy-rs
