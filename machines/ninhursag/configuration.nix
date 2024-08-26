@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... } : {
 	imports = [
 		./disko.nix
+		./impermanence.nix
 
 		../../services/hardware/efi.nix
 		../../services/hardware/amdcpu.nix
