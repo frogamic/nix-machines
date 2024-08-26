@@ -18,6 +18,7 @@
 			url = "github:nix-community/disko/v1.6.1";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		impermanence.url = "github:nix-community/impermanence";
 	};
 
 	outputs = { self, nixpkgs, ... } @ inputs: let
@@ -70,6 +71,7 @@
 					modules = config.modules ++ [
 						inputs.lanzaboote.nixosModules.lanzaboote
 						inputs.disko.nixosModules.disko
+						inputs.impermanence.nixosModules.impermanence
 						self.nixosModules.default
 						{ networking.hostName = self.lib.mkDefault name; }
 					];
