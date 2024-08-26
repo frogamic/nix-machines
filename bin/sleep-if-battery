@@ -6,4 +6,4 @@ output="$(acpi -a 2>&1)"
 if [[ "$?" == "0" ]] && [[ "$output" == *"on-line"* || "$output" == *"No support"* ]]; then
 	exit 0
 fi
-echo systemctl suspend
+systemctl suspend
