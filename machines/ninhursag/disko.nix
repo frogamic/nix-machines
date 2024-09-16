@@ -52,9 +52,6 @@
 						extraArgs = [ "-f" ];
 						mountOptions = [ "autodefrag" "compress=zstd" "noatime" ];
 						subvolumes = {
-							current_root.mountpoint = "/";
-							home.mountpoint = "/home";
-							root.mountpoint = "/root";
 							nix.mountpoint = "/nix";
 							persist.mountpoint = "/mnt/persist";
 						};

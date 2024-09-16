@@ -12,9 +12,15 @@ let
 	};
 in
 {
-	# disko.devices."${root.vg}"."${root.pool}".lvs."${root.volume}".content.subvolumes."${persist.subvolume}".mountpoint = persist.mount;
 
-	fileSystems."${persist.mount}".neededForBoot = true;
+	fileSystems = {
+		"${persist.mount}".neededForBoot = true;
+		"/" = {
+			device = "/dev/${root.pool}/${root.volume}";
+			fsType = "btrfs";
+			options = [ "subvol=/${root.subvolume}" ];
+		};
+	};
 
 	boot.initrd.postDeviceCommands = lib.mkAfter ''
 		btrfstmp="/impermanence"
