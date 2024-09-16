@@ -56,6 +56,7 @@
 							home.mountpoint = "/home";
 							root.mountpoint = "/root";
 							nix.mountpoint = "/nix";
+							persist.mountpoint = "/mnt/persist";
 						};
 					};
 				};
