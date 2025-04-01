@@ -4,12 +4,11 @@
 
 	environment = {
 		variables = {
-			BROWSER = "firefox";
+			BROWSER = "librewolf";
 		};
 		systemPackages =
 		with pkgs; [
 			xdg-utils
-			firefox-bin
 			gimp
 			inkscape
 			krita
@@ -34,5 +33,14 @@
 				ristretto
 			]
 		);
+	};
+
+	programs.firefox = {
+		enable = true;
+		package = pkgs.librewolf;
+		policies = {
+			disableTelemetry = true;
+			disableFirefoxStudies = true;
+		};
 	};
 }
