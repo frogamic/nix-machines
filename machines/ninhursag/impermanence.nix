@@ -10,6 +10,7 @@ let
 		pool = "lvm_pool";
 		vg = "lvm_vg";
 	};
+	prepend = pre: post: "${pre}${post}";
 in
 {
 
@@ -50,18 +51,23 @@ in
 
 	environment.persistence."${persist.mount}" = {
 		hideMounts = true;
-		files = [
-			"/etc/machine-id"
-			"/etc/wpa_supplicant.conf"
-		];
+		files = (map (prepend "/etc/") [
+			"machine-id"
+			"wpa_supplicant.conf"
+		]);
 		directories = [
-			"/etc/secureboot"
-			"/var/log"
-			"/var/lib/bluetooth"
-			"/var/lib/fprint"
-			"/var/lib/nixos"
-			"/var/lib/systemd"
-		];
+			config.boot.lanzaboote.pkiBundle
+		] ++ (map (prepend "/var/") (
+			[
+				"log"
+			] ++ (map (prepend "lib/") [
+				"alsa"
+				"bluetooth"
+				"fprint"
+				"nixos"
+				"systemd"
+			])
+		));
 		users.me = {
 			home = "/home/dominic";
 			directories = [
@@ -73,7 +79,24 @@ in
 				"repos"
 				"Videos"
 				".ssh"
-			];
+				".gnupg"
+				".mozilla/firefox"
+				# ".wine"
+			] ++ (map (prepend ".config/") [
+				"discord"
+				"dconf"
+				"gtk-2.0"
+				"gtk-3.0"
+				# "gh"
+				"Thunar"
+				"xfce4"
+			]) ++ (map (prepend ".cache/") [
+				# "wine"
+				# "winetricks"
+				"zsh"
+				"nix"
+				"mozilla/firefox"
+			]);
 		};
 	};
 }
