@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... } : {
 	imports = [
 		./disko.nix
-		./impermanence.nix
 
 		../../services/hardware/efi.nix
 		../../services/hardware/amdcpu.nix
@@ -36,6 +35,18 @@
 				enable = true;
 				configurationLimit = 10;
 			};
+		};
+	};
+
+	impermanence = {
+		enable = true;
+		rootFileSystem = {
+			btrfsSubvolume = "impermanent_root";
+			device = "/dev/lvm_pool/nixos";
+		};
+		persistentFilesystem = {
+			btrfsSubvolume = "persist";
+			mountPoint = "/mnt/persist";
 		};
 	};
 
