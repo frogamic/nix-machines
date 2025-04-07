@@ -14,7 +14,7 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		disko = {
-			url = "github:nix-community/disko/v1.6.1";
+			url = "github:nix-community/disko/v1.11.0";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		impermanence.url = "github:nix-community/impermanence";
