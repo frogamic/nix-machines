@@ -1,5 +1,6 @@
 { lib, config, ... }:
 let
+	inherit (builtins) listToAttrs;
 	inherit (lib) mkEnableOption mkIf mkOption types;
 
 	prependList = pre: list: map (post: "${pre}${post}") list;
@@ -7,34 +8,45 @@ let
 	cfg = config.impermanence;
 in
 {
-	options.impermanence = {
+	options.impermanence = with types; {
 
 		enable = mkEnableOption "Enables impermanence module";
 
 		rootFileSystem = mkOption {
-			type = types.submodule {
+			type = submodule {
 				options = {
 					btrfsSubvolume = mkOption {
-						type = types.str;
+						type = str;
 					};
 					device = mkOption {
-						type = types.path;
+						type = path;
 					};
 				};
 			};
 		};
 
 		persistentFilesystem = mkOption {
-			type = types.submodule {
+			type = submodule {
 				options = {
 					btrfsSubvolume = mkOption {
-						type = types.str;
+						type = str;
 					};
 					mountPoint = mkOption {
-						type = types.path;
+						type = path;
 					};
 				};
 			};
+		};
+
+		users = mkOption {
+			type = listOf (
+				submodule {
+					options = {
+						key = mkOption {type = str;};
+						home = mkOption {type = path;};
+					};
+				}
+			);
 		};
 	};
 
@@ -93,36 +105,39 @@ in
 					"systemd"
 				])
 			));
-			users.me = {
-				home = "/home/dominic";
-				directories = [
-					"Desktop"
-					"Documents"
-					"Downloads"
-					"Music"
-					"Pictures"
-					"repos"
-					"Videos"
-					".ssh"
-					".gnupg"
-					".mozilla/firefox"
-					# ".wine"
-				] ++ (prependList ".config/" [
-					"discord"
-					"dconf"
-					"gtk-2.0"
-					"gtk-3.0"
-					# "gh"
-					"Thunar"
-					"xfce4"
-				]) ++ (prependList ".cache/" [
-					# "wine"
-					# "winetricks"
-					"zsh"
-					"nix"
-					"mozilla/firefox"
-				]);
-			};
+			users = listToAttrs (map (user: {
+				name = user.key;
+				value = {
+					inherit (user) home;
+					directories = [
+						"Desktop"
+						"Documents"
+						"Downloads"
+						"Music"
+						"Pictures"
+						"repos"
+						"Videos"
+						".ssh"
+						".gnupg"
+						".mozilla/firefox"
+						# ".wine"
+					] ++ (prependList ".config/" [
+						"discord"
+						"dconf"
+						"gtk-2.0"
+						"gtk-3.0"
+						# "gh"
+						"Thunar"
+						"xfce4"
+					]) ++ (prependList ".cache/" [
+						# "wine"
+						# "winetricks"
+						"zsh"
+						"nix"
+						"mozilla/firefox"
+					]);
+				};
+			}) cfg.users);
 		};
 	};
 }
