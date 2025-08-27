@@ -1,0 +1,91 @@
+[[profile]]
+name = "Docked at Home Desk (centre only)"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	adaptive_sync = true
+	position = "0,0"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "320,1440"
+
+[[profile]]
+name = "Docked at Home Desk (centre, left)"
+	[[profile.output]]
+	search = [ "v=Dell Inc.", "m=U2412M", "s=504H12CR656S" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	transform = "90"
+	position = "-1200,-190"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	adaptive_sync = true
+	position = "0,0"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "320,1440"
+
+[[profile]]
+name = "Docked at Home Desk (centre, right)"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	adaptive_sync = true
+	position = "0,0"
+	[[profile.output]]
+	search = [ "v=Dell Inc.", "m=U2412M", "s=9W5YH35M1KFL" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "2560,-190"
+	transform = "270"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "320,1440"
+
+[[profile]]
+name = "Docked at Home Desk (full)"
+	[[profile.output]]
+	search = [ "v=Dell Inc.", "m=U2412M", "s=504H12CR656S" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	transform = "90"
+	position = "-1200,-190"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	adaptive_sync = true
+	position = "0,0"
+	[[profile.output]]
+	search = [ "v=Dell Inc.", "m=U2412M", "s=9W5YH35M1KFL" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "2560,-190"
+	transform = "270"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "320,1440"

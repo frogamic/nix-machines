@@ -1,0 +1,51 @@
+[[profile]]
+name = "Unknown 2160p"
+	[[profile.output]]
+	search = "/.*"
+	enable = true
+	position = "0,0"
+	mode = "3840x2160"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	mode = "1920x1080"
+	position = "960,2160"
+
+[[profile]]
+name = "Unknown 1440p"
+	[[profile.output]]
+	search = "/.*"
+	enable = true
+	position = "0,0"
+	mode = "2560x1440"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	mode = "1920x1080@60.049"
+	position = "320,1440"
+
+[[profile]]
+name = "Unknown 1200p"
+	[[profile.output]]
+	search = "/.*"
+	enable = true
+	position = "0,0"
+		mode = "1920x1200"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	mode = "1920x1200@60.049"
+	position = "0,1080"
+
+[[profile]]
+name = "Unknown 1080p"
+	[[profile.output]]
+	search = "/.*"
+	enable = true
+	position = "0,0"
+	mode = "1920x1080"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	mode = "1920x1080@60.049"
+	position = "0,1080"

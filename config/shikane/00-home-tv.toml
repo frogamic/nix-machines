@@ -1,0 +1,9 @@
+[[profile]]
+name = "Living Room TV Only"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=LG TV", "s=0x00000101" ]
+	enable = true
+	scale = 1.5
+	mode = "best"
+	adaptive_sync = true
+	position = "0,0"

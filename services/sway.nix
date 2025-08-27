@@ -34,7 +34,7 @@
 			swaybg
 			xwayland
 			mako
-			kanshi
+			shikane
 			libnotify
 			grim
 			slurp
@@ -68,7 +68,7 @@
 		'';
 		etc."sway/config".source = (mkConfig "sway" variables);
 		etc."xdg/swayidle/config".source = (mkConfig "swayidle" {});
-		etc."xdg/kanshi/config".source = (mkConfig "kanshi" {});
+		etc."xdg/shikane/config.toml".source = (mkConfig "shikane" {});
 		etc."xdg/mako/config".source = (mkConfig "mako" {});
 		etc."xdg/wob/wob.ini".source = (mkConfig "wob.ini" {});
 		etc."sway/wallpaper.png".source = ../config/wallpaper.png;

@@ -1,0 +1,15 @@
+[[profile]]
+name = "Laptop plus Living Room TV"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=LG TV", "s=0x00000101" ]
+	enable = true
+	scale = 1.5
+	mode = "best"
+	adaptive_sync = true
+	position = "0,0"
+	[[profile.output]]
+	search = "n=eDP-1"
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "960,2160"
