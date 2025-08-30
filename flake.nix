@@ -1,7 +1,7 @@
 {
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 		nixpkgs-master.url = "github:NixOS/nixpkgs/master";
 		nixpkgs-frogamic.url = "github:frogamic/nixpkgs/main";
 		flake-utils.url = "github:numtide/flake-utils";
@@ -14,7 +14,7 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		disko = {
-			url = "github:nix-community/disko/v1.11.0";
+			url = "github:nix-community/disko/v1.12.0";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		impermanence.url = "github:nix-community/impermanence";
