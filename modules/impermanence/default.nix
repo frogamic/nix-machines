@@ -3,11 +3,11 @@ let
 	inherit (builtins) listToAttrs;
 	inherit (lib) mkEnableOption mkIf mkOption types;
 
-	prependList = pre: list: map (post: "${pre}${post}") list;
-
 	cfg = config.impermanence;
 in
 {
+	imports = (import ../../lib/getImportable.nix ./.);
+
 	options.impermanence = with types; {
 
 		enable = mkEnableOption "Enables impermanence module";
@@ -47,6 +47,31 @@ in
 					};
 				}
 			);
+		};
+
+		persistence = mkOption {
+			type = submodule {
+				options = {
+					files = mkOption {
+						type = listOf anything;
+					};
+					directories = mkOption {
+						type = listOf anything;
+					};
+					user = mkOption {
+						type = submodule {
+							options = {
+								files = mkOption {
+									type = listOf anything;
+								};
+								directories = mkOption {
+									type = listOf anything;
+								};
+							};
+						};
+					};
+				};
+			};
 		};
 	};
 
@@ -88,54 +113,13 @@ in
 		'';
 
 		environment.persistence."${cfg.persistentFilesystem.mountPoint}" = {
+			inherit (cfg.persistence) files directories;
 			hideMounts = true;
-			files = (prependList "/etc/" [
-				"machine-id"
-				"wpa_supplicant.conf"
-			]);
-			directories = [
-				config.boot.lanzaboote.pkiBundle
-			] ++ (prependList "/var/" ([
-					"log"
-				] ++ (prependList "lib/" [
-					"alsa"
-					"bluetooth"
-					"fprint"
-					"nixos"
-					"systemd"
-				])
-			));
 			users = listToAttrs (map (user: {
 				name = user.key;
 				value = {
 					inherit (user) home;
-					directories = [
-						"Desktop"
-						"Documents"
-						"Downloads"
-						"Music"
-						"Pictures"
-						"repos"
-						"Videos"
-						".ssh"
-						".gnupg"
-						".mozilla/firefox"
-						# ".wine"
-					] ++ (prependList ".config/" [
-						"discord"
-						"dconf"
-						"gtk-2.0"
-						"gtk-3.0"
-						# "gh"
-						"Thunar"
-						"xfce4"
-					]) ++ (prependList ".cache/" [
-						# "wine"
-						# "winetricks"
-						"zsh"
-						"nix"
-						"mozilla/firefox"
-					]);
+					inherit (cfg.persistence.user) files directories;
 				};
 			}) cfg.users);
 		};
