@@ -1,8 +1,12 @@
+{ config, ... }:
 let
 	myDefault = (import ../lib).mkDefault;
 in
 {
-	programs.zsh.enable = myDefault true;
+	programs.zsh = {
+		enable = myDefault true;
+		histFile = myDefault "$HOME/.histfile";
+	};
 
 	time.timeZone = myDefault "Australia/Melbourne";
 	i18n.defaultLocale = myDefault "en_AU.UTF-8";
@@ -28,4 +32,8 @@ in
 			EDITOR = myDefault "vim";
 		};
 	};
+
+	impermanence.persistence.user.files = [
+		".histfile"
+	];
 }

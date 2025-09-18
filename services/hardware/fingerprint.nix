@@ -1,4 +1,4 @@
-{ ... } : {
+{
 	services.fprintd.enable = true;
 	security = {
 		pam.services.login.fprintAuth = true;
@@ -10,4 +10,7 @@
 			})
 		'';
 	};
+	impermanence.persistence.directories = [
+		"/var/lib/fprint"
+	];
 }

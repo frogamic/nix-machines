@@ -1,4 +1,4 @@
-{ pkgs, lib, ... } : {
+{ pkgs, lib, ... } : rec {
 	environment.systemPackages = with pkgs; [
 		sbctl
 		tpm2-tools
@@ -11,4 +11,7 @@
 			pkiBundle = "/etc/secureboot";
 		};
 	};
+	impermanence.persistence.directories = [
+		boot.lanzaboote.pkiBundle
+	];
 }

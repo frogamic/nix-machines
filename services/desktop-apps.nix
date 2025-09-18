@@ -43,4 +43,12 @@
 			disableFirefoxStudies = true;
 		};
 	};
+
+	impermanence.persistence = {
+		user = {
+			directories = [
+				".librewolf"
+			];
+		};
+	};
 }

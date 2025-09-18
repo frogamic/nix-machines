@@ -79,4 +79,46 @@ in {
 
 	nix.settings.auto-optimise-store = true;
 	system.stateVersion = mkDefault "23.05"; # Did you read the comment?
+
+	impermanence.persistence = {
+		files = [
+			"/etc/machine-id"
+			"/etc/wpa_supplicant.conf"
+		];
+		directories = [
+			"/var/log"
+			"/var/lib/alsa"
+			"/var/lib/nixos"
+			"/var/lib/systemd"
+			"/var/lib/btrfs"
+			"/var/lib/fwupd"
+			"/var/cache/fwupd"
+		];
+		user = {
+			files = [];
+			directories = [
+				"Desktop"
+				"Documents"
+				"Downloads"
+				"Music"
+				"Pictures"
+				"Videos"
+				"repos"
+				".ssh"
+				".gnupg"
+				# ".wine"
+				".config/discord"
+				".config/dconf"
+				".config/gtk-2.0"
+				".config/gtk-3.0"
+				# ".config/gh"
+				".config/Thunar"
+				".config/xfce4"
+				# ".cache/wine"
+				# ".cache/winetricks"
+				".cache/zsh"
+				".cache/nix"
+			];
+		};
+	};
 }
