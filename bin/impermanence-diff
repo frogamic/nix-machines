@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+set -euo pipefail
+
+sudo rsync \
+  --archive \
+  --prune-empty-dirs \
+  --verbose \
+  --one-file-system --one-file-system \
+  --dry-run \
+  --no-links \
+  --exclude '/tmp/*' \
+  --exclude '/root/*' \
+  / /mnt/persist/ \
+  | rg -v '^skipping|/$'

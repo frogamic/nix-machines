@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 let
 	inherit (builtins) listToAttrs;
 	inherit (lib) mkEnableOption mkIf mkOption types;
@@ -6,8 +6,6 @@ let
 	cfg = config.impermanence;
 in
 {
-	imports = (import ../../lib/getImportable.nix ./.);
-
 	options.impermanence = with types; {
 
 		enable = mkEnableOption "Enables impermanence module";
@@ -112,16 +110,21 @@ in
 			umount "$btrfstmp"
 		'';
 
-		environment.persistence."${cfg.persistentFilesystem.mountPoint}" = {
-			inherit (cfg.persistence) files directories;
-			hideMounts = true;
-			users = listToAttrs (map (user: {
-				name = user.key;
-				value = {
-					inherit (user) home;
-					inherit (cfg.persistence.user) files directories;
-				};
-			}) cfg.users);
+		environment = {
+			systemPackages = [
+				(pkgs.writeScriptBin "impermanence-diff" (builtins.readFile ../bin/impermanence-diff))
+			];
+			persistence."${cfg.persistentFilesystem.mountPoint}" = {
+				inherit (cfg.persistence) files directories;
+				hideMounts = true;
+				users = listToAttrs (map (user: {
+					name = user.key;
+					value = {
+						inherit (user) home;
+						inherit (cfg.persistence.user) files directories;
+					};
+				}) cfg.users);
+			};
 		};
 	};
 }
