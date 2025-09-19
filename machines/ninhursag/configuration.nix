@@ -65,6 +65,10 @@
 		};
 	};
 
+	impermanence.persistence.files = [
+		"/etc/wpa_supplicant.conf"
+	];
+
 	services = {
 		libinput.touchpad.middleEmulation = false;
 		xserver.xkb.options = pkgs.mylib.mkDefault "altwin:prtsc_rwin";

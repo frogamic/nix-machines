@@ -33,7 +33,12 @@ in
 		};
 	};
 
-	impermanence.persistence.user.files = [
-		".histfile"
-	];
+	impermanence.persistence.user = {
+		files = [
+			".histfile"
+		];
+		directories = [
+			".cache/zsh"
+		];
+	};
 }

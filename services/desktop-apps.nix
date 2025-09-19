@@ -9,10 +9,6 @@
 		systemPackages =
 		with pkgs; [
 			xdg-utils
-			gimp
-			inkscape
-			krita
-			drawio
 			spotify
 			discord
 			mpv
@@ -48,6 +44,11 @@
 		user = {
 			directories = [
 				".librewolf"
+				".cache/librewolf"
+				".config/discord"
+				".config/Thunar"
+				".config/spotify"
+				".config/libreoffice"
 			];
 		};
 	};
