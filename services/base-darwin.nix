@@ -51,8 +51,8 @@ in
 			source ${pkgs.fzf}/share/fzf/completion.bash
 			source ${pkgs.fzf}/share/fzf/key-bindings.bash
 		'';
+		nix-index-database.comma.enable = true;
 	};
-
 
 	# Auto upgrade nix package and the daemon service.
 	services.nix-daemon.enable = mkDefault true;

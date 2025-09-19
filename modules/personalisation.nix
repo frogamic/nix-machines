@@ -25,8 +25,6 @@ in
 	environment = {
 		shellAliases = {
 			ll = "ls -alh";
-			nr = "function my_nr() { nix run \"nixpkgs#$1\" -- \"\${@:2}\"; }; my_nr";
-			nru = "function my_nr() { NIXPKGS_ALLOW_UNFREE=1 nix run \"nixpkgs#$1\" --impure -- \"\${@:2}\"; }; my_nr";
 		};
 		variables = {
 			EDITOR = myDefault "vim";

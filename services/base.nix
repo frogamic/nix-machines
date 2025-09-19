@@ -35,6 +35,7 @@ in {
 			fuzzyCompletion = true;
 			keybindings = true;
 		};
+		nix-index-database.comma.enable = true;
 	};
 
 	environment.inputrc.extraConfig = ''
