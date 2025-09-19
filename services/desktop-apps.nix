@@ -9,7 +9,7 @@
 		systemPackages =
 		with pkgs; [
 			xdg-utils
-			spotify
+			tidal-hifi
 			discord
 			mpv
 			mupdf
@@ -47,7 +47,7 @@
 				".cache/librewolf"
 				".config/discord"
 				".config/Thunar"
-				".config/spotify"
+				".config/tidal-hifi"
 				".config/libreoffice"
 			];
 		};
