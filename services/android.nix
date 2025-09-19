@@ -29,4 +29,8 @@
 			${pkgs.file}/bin/file "$FILENAME"
 		'')
 	];
+
+	impermanence.persistence.user.directories = [
+		".android"
+	];
 }

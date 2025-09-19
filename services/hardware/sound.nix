@@ -10,4 +10,13 @@
 	environment.systemPackages = [
 		pkgs.wireplumber
 	];
+	impermanence.persistence = {
+		directories = [
+			"/var/lib/alsa"
+		];
+		user.directories = [
+			".config/pulse"
+			".local/state/wireplumber"
+		];
+	};
 }

@@ -7,4 +7,7 @@
 	]) ++ (with pkgs.frogamic; [
 		stack_master
 	]);
+	impermanence.persistence.user.directories = [
+		".aws"
+	];
 }

@@ -16,4 +16,8 @@
 			};
 		};
 	};
+
+	impermanence.persistence.user.directories = [
+		".cache/radv_builtin_shaders"
+	];
 }
