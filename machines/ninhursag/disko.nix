@@ -54,6 +54,8 @@
 						subvolumes = {
 							nix.mountpoint = "/nix";
 							persist.mountpoint = "/mnt/persist";
+							var_log.mountpoint = "/var/log";
+							var_lib_steam.mountpoint = "/var/lib/steam";
 						};
 					};
 				};
