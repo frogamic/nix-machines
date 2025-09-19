@@ -18,6 +18,10 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		impermanence.url = "github:nix-community/impermanence";
+		nix-index-database = {
+			url = "github:nix-community/nix-index-database";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = { self, nixpkgs, ... } @ inputs: let
@@ -71,6 +75,7 @@
 						inputs.lanzaboote.nixosModules.lanzaboote
 						inputs.disko.nixosModules.disko
 						inputs.impermanence.nixosModules.impermanence
+						inputs.nix-index-database.nixosModules.nix-index
 						self.nixosModules.default
 						{ networking.hostName = self.lib.mkDefault name; }
 					];
@@ -87,7 +92,10 @@
 					inputs = {
 						inherit (inputs) darwin nixpkgs;
 					};
-					modules = config.modules ++ [ self.nixosModules.noImports ];
+					modules = config.modules ++ [
+						inputs.nix-index-database.darwinModules.nix-index
+						self.nixosModules.noImports
+					];
 				})
 			);
 
