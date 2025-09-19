@@ -85,7 +85,6 @@ in {
 			"/etc/machine-id"
 		];
 		directories = [
-			"/var/log"
 			"/var/lib/nixos"
 			"/var/lib/systemd"
 			"/var/lib/btrfs"
