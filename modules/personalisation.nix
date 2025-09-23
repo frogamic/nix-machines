@@ -5,7 +5,7 @@ in
 {
 	programs.zsh = {
 		enable = myDefault true;
-		histFile = myDefault "$HOME/.histfile";
+		histFile = myDefault "$HOME/.local/share/zsh/.histfile";
 	};
 
 	time.timeZone = myDefault "Australia/Melbourne";
@@ -32,11 +32,9 @@ in
 	};
 
 	impermanence.persistence.user = {
-		files = [
-			".histfile"
-		];
 		directories = [
 			".cache/zsh"
+			".local/share/zsh"
 		];
 	};
 }
