@@ -22,6 +22,10 @@
 			url = "github:nix-community/nix-index-database";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		dotfiles = {
+			url = "github:frogamic/dotfiles";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = { self, nixpkgs, ... } @ inputs: let
@@ -76,6 +80,7 @@
 						inputs.disko.nixosModules.disko
 						inputs.impermanence.nixosModules.impermanence
 						inputs.nix-index-database.nixosModules.nix-index
+						inputs.dotfiles.nixosModules.default
 						self.nixosModules.default
 						{ networking.hostName = self.lib.mkDefault name; }
 					];
