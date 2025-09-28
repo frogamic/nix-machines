@@ -52,7 +52,16 @@
 			key = "me";
 			home = "/home/dominic";
 		} ];
+		persistence.directories = [
+			"/root/hashed-passwords/"
+		];
 	};
+
+	users = {
+		mutableUsers = false;
+		users.me.hashedPasswordFile = "/root/hashed-passwords/dominic";
+	};
+
 
 	networking = {
 		wireless.enable = false;
