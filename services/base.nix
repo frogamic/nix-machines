@@ -67,6 +67,7 @@ in {
 		ffmpeg
 		nix-index
 		lm_sensors
+		exfat
 	];
 
 	services = {
