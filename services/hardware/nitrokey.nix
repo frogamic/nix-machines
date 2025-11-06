@@ -4,7 +4,7 @@
 
 	environment.systemPackages = (with pkgs; [
 		opensc
-		pcsctools
+		pcsc-tools
 	]) ++ (with pkgs.frogamic; [
 		pynitrokey
 		nitrokey-app2

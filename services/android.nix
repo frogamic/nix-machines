@@ -6,7 +6,6 @@
 		droidcam
 		adbfs-rootless
 		android-file-transfer
-		android-udev-rules
 		scrcpy
 
 		(mylib.mkAdbApp {
