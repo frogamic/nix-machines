@@ -4,7 +4,7 @@ name = "Docked at Home Desk (centre only)"
 	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
 	enable = true
 	scale = 1
-	mode = "best"
+	mode = "preferred"
 	adaptive_sync = true
 	position = "0,0"
 	[[profile.output]]
@@ -17,7 +17,7 @@ name = "Docked at Home Desk (centre only)"
 [[profile]]
 name = "Docked at Home Desk (centre, left)"
 	[[profile.output]]
-	search = [ "v=Dell Inc.", "m=U2412M", "s=504H12CR656S" ]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=504H12CR656S" ]
 	enable = true
 	scale = 1
 	mode = "best"
@@ -27,7 +27,7 @@ name = "Docked at Home Desk (centre, left)"
 	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
 	enable = true
 	scale = 1
-	mode = "best"
+	mode = "preferred"
 	adaptive_sync = true
 	position = "0,0"
 	[[profile.output]]
@@ -43,11 +43,11 @@ name = "Docked at Home Desk (centre, right)"
 	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
 	enable = true
 	scale = 1
-	mode = "best"
+	mode = "preferred"
 	adaptive_sync = true
 	position = "0,0"
 	[[profile.output]]
-	search = [ "v=Dell Inc.", "m=U2412M", "s=9W5YH35M1KFL" ]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=9W5YH35M1KFL" ]
 	enable = true
 	scale = 1
 	mode = "best"
@@ -63,7 +63,7 @@ name = "Docked at Home Desk (centre, right)"
 [[profile]]
 name = "Docked at Home Desk (full)"
 	[[profile.output]]
-	search = [ "v=Dell Inc.", "m=U2412M", "s=504H12CR656S" ]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=504H12CR656S" ]
 	enable = true
 	scale = 1
 	mode = "best"
@@ -73,11 +73,11 @@ name = "Docked at Home Desk (full)"
 	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
 	enable = true
 	scale = 1
-	mode = "best"
+	mode = "preferred"
 	adaptive_sync = true
 	position = "0,0"
 	[[profile.output]]
-	search = [ "v=Dell Inc.", "m=U2412M", "s=9W5YH35M1KFL" ]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=9W5YH35M1KFL" ]
 	enable = true
 	scale = 1
 	mode = "best"

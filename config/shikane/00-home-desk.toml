@@ -1,7 +1,7 @@
 [[profile]]
 name = "Home Desk Only"
 	[[profile.output]]
-	search = [ "v=Dell Inc.", "m=U2412M", "s=504H12CR656S" ]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=504H12CR656S" ]
 	enable = true
 	scale = 1
 	mode = "best"
@@ -11,11 +11,11 @@ name = "Home Desk Only"
 	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
 	enable = true
 	scale = 1
-	mode = "best"
+	mode = "preferred"
 	adaptive_sync = true
 	position = "0,0"
 	[[profile.output]]
-	search = [ "v=Dell Inc.", "m=U2412M", "s=9W5YH35M1KFL" ]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=9W5YH35M1KFL" ]
 	enable = true
 	scale = 1
 	mode = "best"
