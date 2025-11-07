@@ -12,12 +12,14 @@
 		# kubescape
 		kustomize
 	]
+		++ ((import ../../services/ai.nix { inherit pkgs; }).environment.systemPackages)
 		++ ((import ../../services/develop.nix { inherit pkgs; }).environment.systemPackages)
 		++ ((import ../../services/aws.nix { inherit pkgs; }).environment.systemPackages)
 	;
 
 	homebrew.casks = [
 		"visual-studio-code"
+		"kiro-cli"
 	];
 
 	nix.settings.max-jobs = 12;
