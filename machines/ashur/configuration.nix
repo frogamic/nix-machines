@@ -16,9 +16,14 @@
 		++ ((import ../../services/aws.nix { inherit pkgs; }).environment.systemPackages)
 	;
 
-	homebrew.casks = [ "bluesnooze" ];
+	homebrew.casks = [
+		"visual-studio-code"
+	];
 
 	nix.settings.max-jobs = 12;
 
-	system.stateVersion = 4;
+	system = {
+		primaryUser = "dominic";
+		stateVersion = 4;
+	};
 }

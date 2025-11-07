@@ -1,28 +1,33 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
 	inherit (lib) mkDefault mkAfter;
 in
 
 {
-	environment.systemPackages = with pkgs; [
-		yq-go
-		jq
-		yj
-		ripgrep
-		fzf
-		bat
-		tree
-		pstree
-		pv
-		ffmpeg
-		ntfs3g
-		dos2unix
+	environment = {
+		systemPath = lib.mkAfter [
+			config.homebrew.brewPrefix
+		];
+		systemPackages = with pkgs; [
+			yq-go
+			jq
+			yj
+			ripgrep
+			fzf
+			bat
+			tree
+			pstree
+			pv
+			ffmpeg
+			ntfs3g
+			dos2unix
 
-		gnupg
-		pinentry_mac
+			gnupg
+			pinentry_mac
 
-		obsidian
-	];
+			obsidian
+		];
+	};
 
 	# Required for Obsidian
 	nixpkgs.config.allowUnfree = true;
@@ -35,13 +40,13 @@ in
 			autoUpdate = mkDefault true;
 		};
 		global.autoUpdate = mkDefault false;
+		casks = [ "bluesnooze" ];
 	};
 
 	programs = {
 		gnupg.agent.enable = mkDefault true;
 
 		zsh = {
-			enable = mkDefault true;
 			interactiveShellInit = mkAfter ''
 				source ${pkgs.fzf}/share/fzf/completion.zsh
 				source ${pkgs.fzf}/share/fzf/key-bindings.zsh
@@ -54,26 +59,44 @@ in
 		nix-index-database.comma.enable = true;
 	};
 
-	# Auto upgrade nix package and the daemon service.
-	services.nix-daemon.enable = mkDefault true;
-
 	nix = {
+		enable = true;
 		settings = {
 			trusted-users = mkDefault [
 				"@admin"
 			];
 			experimental-features = mkDefault ["nix-command" "flakes"];
 		};
-		configureBuildUsers = mkDefault true;
 		gc = {
 			automatic = mkDefault true;
 		};
 	};
 
-	system.keyboard = {
-		enableKeyMapping = mkDefault true;
-		remapCapsLockToEscape = mkDefault true;
+	system = {
+		keyboard = {
+			enableKeyMapping = mkDefault true;
+			remapCapsLockToEscape = mkDefault true;
+		};
+		defaults.CustomUserPreferences.NSGlobalDomain = {
+			# Tighten up the menubar icon spacing
+			NSStatusItemSpacing = 1;
+			NSStatusItemSelectionPadding = 1;
+
+			# Autoswitch light/dark mode
+			AppleInterfaceStyleSwitchesAutomatically = 1;
+
+			# Disable autocorrect
+			NSAutomaticCapitalizationEnabled = 0;
+			NSAutomaticDashSubstitutionEnabled = 0;
+			NSAutomaticInlinePredictionEnabled = 0;
+			NSAutomaticPeriodSubstitutionEnabled = 0;
+			NSAutomaticQuoteSubstitutionEnabled = 0;
+			NSAutomaticSpellingCorrectionEnabled = 0;
+			WebAutomaticSpellingCorrectionEnabled = 0;
+			# NSSpellCheckerContainerTransitionComplete = 1;
+			# NSSpellCheckerDictionaryContainerTransitionComplete = 1;
+		};
 	};
 
-	security.pam.enableSudoTouchIdAuth = mkDefault true;
+	security.pam.services.sudo_local.touchIdAuth = mkDefault true;
 }
