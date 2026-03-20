@@ -1,5 +1,5 @@
 { pkgs, ... } : {
-	environment.systemPackages = (with pkgs.stable; [
+	environment.systemPackages = (with pkgs; [
 		python3Packages.cfn-lint
 		aws-sam-cli
 		awscli2
