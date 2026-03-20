@@ -37,14 +37,7 @@ in
 		};
 
 		users = mkOption {
-			type = listOf (
-				submodule {
-					options = {
-						key = mkOption {type = str;};
-						home = mkOption {type = path;};
-					};
-				}
-			);
+			type = listOf str;
 		};
 
 		persistence = mkOption {
@@ -118,9 +111,8 @@ in
 				inherit (cfg.persistence) files directories;
 				hideMounts = true;
 				users = listToAttrs (map (user: {
-					name = user.key;
+					name = user;
 					value = {
-						inherit (user) home;
 						inherit (cfg.persistence.user) files directories;
 					};
 				}) cfg.users);

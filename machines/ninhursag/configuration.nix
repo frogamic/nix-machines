@@ -48,10 +48,7 @@
 			btrfsSubvolume = "persist";
 			mountPoint = "/mnt/persist";
 		};
-		users = [ {
-			key = "me";
-			home = "/home/dominic";
-		} ];
+		users = [ "me" ];
 		persistence.directories = [
 			"/root/hashed-passwords/"
 		];
