@@ -9,7 +9,6 @@
 		systemPackages =
 		with pkgs; [
 			xdg-utils
-			tidal-hifi
 			discord
 			mpv
 			mupdf
@@ -47,7 +46,6 @@
 				".cache/librewolf"
 				".config/discord"
 				".config/Thunar"
-				".config/tidal-hifi"
 				".config/libreoffice"
 			];
 		};
