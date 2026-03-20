@@ -17,17 +17,14 @@
 			hunspell
 			hunspellDicts.en-au-large
 			obsidian
-		] ++ (
-			with xfce; [
-				xfconf
-				exo
-				thunar
-				thunar-volman
-				thunar-archive-plugin
-				tumbler
-				ristretto
-			]
-		);
+			xfconf
+			xfce4-exo
+			thunar
+			thunar-volman
+			thunar-archive-plugin
+			tumbler
+			ristretto
+		];
 	};
 
 	programs.firefox = {

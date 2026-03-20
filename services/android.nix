@@ -1,11 +1,11 @@
 { config, pkgs, ... }: {
-	programs.adb.enable = true;
 	users.users.me.extraGroups = [ "adbusers" ];
 
 	environment.systemPackages = with pkgs; [
 		droidcam
 		adbfs-rootless
 		android-file-transfer
+		android-tools
 		scrcpy
 
 		(mylib.mkAdbApp {
