@@ -94,7 +94,9 @@ in {
 			"/var/cache/fwupd"
 		];
 		user = {
-			files = [];
+			files = [
+				".config/nix/nix.conf"
+			];
 			directories = [
 				"Desktop"
 				"Documents"
