@@ -51,9 +51,8 @@
 						n.flake = nixpkgs;
 					};
 				};
-				system.configurationRevision = self.rev or self.dirtyRev or (builtins.trace
-					"WARNING: system.configurationRevision could not be set!"
-					null
+				system.configurationRevision = toString (
+					self.shortRev or self.dirtyShortRev or self.lastModified or "unknown"
 				);
 			};
 		};
