@@ -31,5 +31,11 @@
 
 		morph
 		deploy-rs
+
+		terraform
+		tenv
+		terraform-ls
+		tofu-ls
+		terraform-docs
 	]);
 }
