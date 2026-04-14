@@ -58,11 +58,11 @@
 		};
 
 		overlays.default = final: prev: {
-			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
-			master = inputs.nixpkgs-master.legacyPackages."${prev.system}";
-			frogamic = inputs.nixpkgs-frogamic.legacyPackages."${prev.system}";
+			stable = inputs.nixpkgs-stable.legacyPackages."${prev.stdenv.hostPlatform.system}";
+			master = inputs.nixpkgs-master.legacyPackages."${prev.stdenv.hostPlatform.system}";
+			frogamic = inputs.nixpkgs-frogamic.legacyPackages."${prev.stdenv.hostPlatform.system}";
 			mylib = import ./mylib prev;
-			mypkgs = self.packages."${prev.system}";
+			mypkgs = self.packages."${prev.stdenv.hostPlatform.system}";
 		};
 
 		lib = import ./lib;
