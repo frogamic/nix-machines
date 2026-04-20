@@ -2,9 +2,13 @@
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-		nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-		nixpkgs-frogamic.url = "github:frogamic/nixpkgs/main";
+		# nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+		# nixpkgs-frogamic.url = "github:frogamic/nixpkgs/main";
 		flake-utils.url = "github:numtide/flake-utils";
+		my-lib = {
+			url = "gitlab:frogamic/nix-lib";
+			inputs.nixpkgs.follows = "";
+		};
 		darwin = {
 			url = "github:lnl7/nix-darwin/master";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +21,13 @@
 			url = "github:nix-community/disko/v1.13.0";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		impermanence.url = "github:nix-community/impermanence";
+		impermanence = {
+			url = "github:nix-community/impermanence";
+			inputs = {
+				nixpkgs.follows = "";
+				home-manager.follows = "";
+			};
+		};
 		nix-index-database = {
 			url = "github:nix-community/nix-index-database";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +55,7 @@
 				nix = {
 					nixPath = [ "nixpkgs=${nixpkgs}" ];
 					registry = {
-						master.flake = inputs.nixpkgs-master;
+						# master.flake = inputs.nixpkgs-master;
 						stable.flake = inputs.nixpkgs-stable;
 						nixpkgs.flake = nixpkgs;
 						n.flake = nixpkgs;
@@ -59,19 +69,18 @@
 
 		overlays.default = final: prev: {
 			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
-			master = inputs.nixpkgs-master.legacyPackages."${prev.system}";
-			frogamic = inputs.nixpkgs-frogamic.legacyPackages."${prev.system}";
+			# master = inputs.nixpkgs-master.legacyPackages."${prev.system}";
+			# frogamic = inputs.nixpkgs-frogamic.legacyPackages."${prev.system}";
 			mylib = import ./mylib prev;
 			mypkgs = self.packages."${prev.system}";
 		};
 
-		lib = import ./lib;
+		lib = inputs.my-lib.lib;
 
-		nixosConfigurations = nixpkgs.lib.genAttrs
-			(self.lib.getMachines machineFolder "linux")
-			(name:
+		nixosConfigurations = self.lib.mkMachines "linux" machineFolder
+			(path: name:
 				let
-					config = (import (machineFolder + "/${name}"));
+					config = (import path);
 				in
 				nixpkgs.lib.nixosSystem (config // {
 					modules = config.modules ++ [
@@ -86,11 +95,10 @@
 				})
 			);
 
-		darwinConfigurations = nixpkgs.lib.genAttrs
-			(self.lib.getMachines machineFolder "darwin")
-			(name:
+		darwinConfigurations = self.lib.getMachines "darwin" machineFolder
+			(path: name:
 				let
-					config = (import (machineFolder + "/${name}"));
+					config = (import path);
 				in
 				inputs.darwin.lib.darwinSystem (config // {
 					inputs = {
