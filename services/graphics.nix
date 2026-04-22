@@ -7,6 +7,11 @@
 		exiftool
 		drawio
 	]);
+
+	xdg.mime.defaultApplications = {
+		"image/x-xcf" = "gimp.desktop";
+	};
+
 	impermanence.persistence.user = {
 		files = [
 			".config/kritadisplayrc"
