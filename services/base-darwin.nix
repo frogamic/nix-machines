@@ -6,7 +6,7 @@ in
 {
 	environment = {
 		systemPath = lib.mkAfter [
-			config.homebrew.brewPrefix
+			"${config.homebrew.prefix}/bin"
 		];
 		systemPackages = with pkgs; [
 			yq-go
