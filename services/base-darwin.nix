@@ -21,6 +21,8 @@ in
 			ffmpeg
 			ntfs3g
 			dos2unix
+			coreutils
+			openssh
 
 			gnupg
 			pinentry_mac
