@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-	inherit (builtins) listToAttrs;
+	inherit (builtins) listToAttrs readFile;
 	inherit (lib) mkEnableOption mkIf mkOption types;
 
 	cfg = config.impermanence;
@@ -77,35 +77,43 @@ in
 			};
 		};
 
-		boot.initrd.postDeviceCommands = lib.mkAfter ''
-			btrfstmp="/impermanence"
-			mkdir "$btrfstmp"
-			mount "${cfg.rootFileSystem.device}" "$btrfstmp"
-			if [[ -e "$btrfstmp/${cfg.rootFileSystem.btrfsSubvolume}" ]]; then
-				mkdir -p "$btrfstmp/old_roots"
-				timestamp=$(date --date="@$(stat -c %Y "$btrfstmp/${cfg.rootFileSystem.btrfsSubvolume}")" --utc "+%Y-%m-%dT%H:%M:%SZ")
-				mv "$btrfstmp/${cfg.rootFileSystem.btrfsSubvolume}" "$btrfstmp/old_roots/$timestamp"
-			fi
-
-			delete_subvolume_recursively() {
-				IFS=$'\n'
-				for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-					delete_subvolume_recursively "$btrfstmp/$i"
-				done
-				btrfs subvolume delete "$1"
-			}
-
-			for i in $(find $btrfstmp/old_roots/ -maxdepth 1 -mtime +30); do
-				delete_subvolume_recursively "$i"
-			done
-
-			btrfs subvolume create "$btrfstmp/${cfg.rootFileSystem.btrfsSubvolume}"
-			umount "$btrfstmp"
-		'';
+		boot.initrd.systemd = {
+			services.impermanence-root = {
+				description = "Create and archive root subvolume";
+				unitConfig.DefaultDependencies = false;
+				serviceConfig = {
+					Type = "oneshot";
+					StandardOutput = "journal+console";
+					StandardError = "journal+console";
+				};
+				requiredBy = [ "initrd.target" ];
+				before = [ "sysroot.mount" ];
+				requires = [ "initrd-root-device.target" ];
+				after = [
+					"initrd-root-device.target"
+					"local-fs-pre.target"
+				];
+				environment = {
+					BTRFSTMP = "/impermanence";
+					OLDROOTS = "old_roots";
+					ROOTDEVICE = cfg.rootFileSystem.device;
+					ROOTSUBVOLUME = cfg.rootFileSystem.btrfsSubvolume;
+				};
+				script = readFile ./rolling-root.sh;
+			};
+			extraBin = {
+				"mkdir" = "${pkgs.coreutils}/bin/mkdir";
+				"date" = "${pkgs.coreutils}/bin/date";
+				"stat" = "${pkgs.coreutils}/bin/stat";
+				"mv" = "${pkgs.coreutils}/bin/mv";
+				"find" = "${pkgs.findutils}/bin/find";
+				"btrfs" = "${pkgs.btrfs-progs}/bin/btrfs";
+			};
+		};
 
 		environment = {
 			systemPackages = [
-				(pkgs.writeScriptBin "impermanence-diff" (builtins.readFile ../bin/impermanence-diff))
+				(pkgs.writeScriptBin "impermanence-diff" (readFile ../../bin/impermanence-diff))
 			];
 			persistence."${cfg.persistentFilesystem.mountPoint}" = {
 				inherit (cfg.persistence) files directories;
