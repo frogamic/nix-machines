@@ -33,7 +33,20 @@
 	in {
 		nixosModules = {
 			default = {
-				imports = with self.nixosModules; [ withImports noImports ];
+				imports = with self.nixosModules; [
+					withImports
+					withInputs
+					noImports
+				];
+			};
+			withInputs = {
+				imports = with inputs; [
+					lanzaboote.nixosModules.lanzaboote
+					disko.nixosModules.disko
+					impermanence.nixosModules.impermanence
+					nix-index-database.nixosModules.nix-index
+					dotfiles.nixosModules.default
+				];
 			};
 			withImports = {
 				imports = import ./modules;
@@ -75,11 +88,6 @@
 				in
 				nixpkgs.lib.nixosSystem (config // {
 					modules = config.modules ++ [
-						inputs.lanzaboote.nixosModules.lanzaboote
-						inputs.disko.nixosModules.disko
-						inputs.impermanence.nixosModules.impermanence
-						inputs.nix-index-database.nixosModules.nix-index
-						inputs.dotfiles.nixosModules.default
 						self.nixosModules.default
 						{ networking.hostName = self.lib.mkDefault name; }
 					];
