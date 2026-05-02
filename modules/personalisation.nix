@@ -18,6 +18,7 @@ in
 	};
 
 	console = {
+		earlySetup = myDefault config.boot.initrd.systemd.enable;
 		font = myDefault "Lat2-Terminus16";
 		useXkbConfig = myDefault true;
 	};
