@@ -44,8 +44,6 @@
 			glib
 			kdePackages.breeze-gtk
 			kdePackages.breeze-icons
-			#libsForQt5.breeze-qt5
-			libsForQt5.breeze-icons
 			quintom-cursor-theme
 			pavucontrol
 			pamixer
