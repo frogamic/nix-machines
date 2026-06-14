@@ -9,7 +9,7 @@
 		systemPackages =
 		with pkgs; [
 			xdg-utils
-			discord
+			discord-canary
 			mpv
 			mupdf
 			stable.chromium

@@ -54,13 +54,26 @@
 		]);
 	};
 
+	xdg.portal = {
+		enable = true;
+		config.common.default = "wlr";
+		wlr.enable = true;
+		wlr.settings.screencast = {
+			chooser_type = "simple";
+			chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+		};
+	};
 	services.gnome.gnome-keyring.enable = true;
 	programs.seahorse.enable = true;
 
 	environment = let
 		mkConfig = pkgs.mylib.mkConfig ../config config.networking.hostName;
 	in rec {
-		variables.XCURSOR_THEME = "Quintom_Ink";
+		variables = {
+			XCURSOR_THEME = "Quintom_Ink";
+			NIXOS_OZONE_WL = 1;
+			ELECTRON_OZONE_PLATFORM_HINT = "auto";
+		};
 		loginShellInit = ''
 			[[ "$(tty)" != '/dev/tty1' ]] || pidof sway > /dev/null || exec sway
 		'';
