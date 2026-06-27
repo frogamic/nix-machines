@@ -48,6 +48,7 @@ in {
 		zip
 		unzip
 		unar
+		p7zip
 		stow
 		lsof
 		bind
