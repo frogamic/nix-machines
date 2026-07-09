@@ -1,6 +1,11 @@
 { pkgs, lib, config, ... }:
 let
 	inherit (lib) mkDefault mkAfter;
+	upgradeScript = ''
+		${config.nix.package.out}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +5
+		${config.nix.package.out}/bin/nix-collect-garbage --quiet
+		${config.system.build.darwin-rebuild}/bin/darwin-rebuild switch --flake .
+	'';
 in
 
 {
@@ -28,6 +33,8 @@ in
 			pinentry_mac
 
 			obsidian
+
+			(pkgs.writeShellScriptBin "darwin-upgrade" upgradeScript)
 		];
 	};
 
