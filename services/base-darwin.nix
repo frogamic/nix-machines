@@ -27,7 +27,10 @@ in
 			ntfs3g
 			dos2unix
 			coreutils
+			rsync
 			openssh
+			p7zip
+			gettext
 
 			gnupg
 			pinentry_mac
