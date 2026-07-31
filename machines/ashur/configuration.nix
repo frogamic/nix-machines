@@ -20,6 +20,7 @@
 	homebrew.casks = [
 		"visual-studio-code"
 		"kiro-cli"
+		"kiro"
 	];
 
 	nix.settings.max-jobs = 12;
