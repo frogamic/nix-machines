@@ -7,8 +7,6 @@
 	];
 
 	environment.systemPackages = (with pkgs; [
-		vim
-		gitFull
 		git-lfs
 		git-crypt
 		python3

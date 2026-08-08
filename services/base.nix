@@ -5,21 +5,21 @@ in {
 	imports = [
 		../users/me.nix
 
-		./hardware/nitrokey.nix
-		./hardware/flipper.nix
+		# ./hardware/nitrokey.nix
+		# ./hardware/flipper.nix
 
 		./login.nix
 		./nixFlakes.nix
-		./updates.nix
+		# ./updates.nix
 		./emulatedSystems.nix
 		./ssh.nix
 		./fonts.nix
 		./sway.nix
 		./desktop-apps.nix
-		./develop.nix
-		./android.nix
+		# ./develop.nix
+		# ./android.nix
 		./steam.nix
-		./graphics.nix
+		# ./graphics.nix
 		# ./3dprinting.nix
 	];
 
@@ -43,6 +43,8 @@ in {
 	'';
 
 	environment.systemPackages = with pkgs; [
+		vim
+		gitFull
 		openssl
 		curl
 		zip
