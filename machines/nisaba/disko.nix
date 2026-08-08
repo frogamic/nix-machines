@@ -23,7 +23,7 @@ let
 			};
 		};
 	};
-	btrfsWithSubvols = {name, subvolumes} : {
+	btrfsWithSubvols = {name, subvolumes, lvs} : {
 		type = "lvm_vg";
 		lvs = {
 			"${name}" = {
@@ -38,7 +38,7 @@ let
 					];
 				};
 			};
-		};
+		} // lvs;
 	};
 in
 {
@@ -82,6 +82,7 @@ in
 					root.mountpoint = "/";
 					nix.mountpoint = "/nix";
 				};
+				lvs = {};
 			};
 			lvm_persist = btrfsWithSubvols {
 				name = "persist";
@@ -90,12 +91,22 @@ in
 					cache.mountpoint = "/mnt/cache";
 					var_log.mountpoint = "/var/log";
 				};
+				lvs = {
+					swap = {
+						size = "16G";
+						content = {
+							type = "swap";
+							#discardPolicy = "both";
+						};
+					};
+				};
 			};
 			lvm_steam = btrfsWithSubvols {
 				name = "steam";
 				subvolumes = {
 					var_lib_steam.mountpoint = "/var/lib/steam";
 				};
+				lvs = {};
 			};
 		};
 	};
