@@ -65,13 +65,13 @@ in
 				};
 			};
 			persist = lvmOnLuks {
-				device = "wwn-0x5002538e49637928";
+				device = "/dev/disk/by-id/wwn-0x5002538e49637928";
 				name = "persist";
 				partitions = {};
 			};
 			steam = lvmOnLuks {
-				device = "wwn-0x5002538e49637a4f";
-				name = "evo2";
+				device = "/dev/disk/by-id/wwn-0x5002538e49637a4f";
+				name = "steam";
 				partitions = {};
 			};
 		};
