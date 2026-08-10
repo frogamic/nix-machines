@@ -3,8 +3,6 @@
 		./disko.nix
 
 		../../services/hardware/efi.nix
-		../../services/hardware/amdcpu.nix
-		../../services/hardware/amdgpu.nix
 		../../services/hardware/ssd.nix
 		../../services/hardware/bluetooth.nix
 		../../services/hardware/sound.nix
@@ -12,6 +10,13 @@
 
 		../../services/base.nix
 	];
+
+	mine = {
+		hardware = {
+			amdgpu.enable = true;
+			amdcpu.enable = true;
+		};
+	};
 
 	boot = {
 		initrd.availableKernelModules = [
