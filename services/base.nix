@@ -81,7 +81,7 @@ in {
 	};
 
 	nix.settings.auto-optimise-store = true;
-	system.stateVersion = mkDefault "23.05"; # Did you read the comment?
+	system.stateVersion = mkDefault "26.05"; # Did you read the comment?
 
 	impermanence.persistence = {
 		files = [

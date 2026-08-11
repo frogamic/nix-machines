@@ -48,15 +48,12 @@
 		};
 		users = [ "me" ];
 		persistence.directories = [
-			"/root/hashed-passwords/"
+			"/var/lib/passwords/"
 		];
 	};
 
 	users = {
 		mutableUsers = false;
-		users.me.hashedPasswordFile = "/root/hashed-passwords/me";
+		users.me.hashedPasswordFile = "/var/lib/passwords/me";
 	};
-
-	nix.settings.max-jobs = 16;
-	system.stateVersion = "26.05";
 }

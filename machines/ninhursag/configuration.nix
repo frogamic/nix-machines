@@ -55,15 +55,14 @@
 		};
 		users = [ "me" ];
 		persistence.directories = [
-			"/root/hashed-passwords/"
+			"/var/lib/passwords/"
 		];
 	};
 
 	users = {
 		mutableUsers = false;
-		users.me.hashedPasswordFile = "/root/hashed-passwords/dominic";
+		users.me.hashedPasswordFile = "/var/lib/passwords/me";
 	};
-
 
 	networking = {
 		wireless.enable = false;
@@ -89,5 +88,5 @@
 		emulateWheel = true;
 	};
 
-	nix.settings.max-jobs = 16;
+	system.stateVersion = "23.05";
 }
