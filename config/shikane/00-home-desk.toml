@@ -1,5 +1,49 @@
 [[profile]]
-name = "Home Desk Only"
+name = "Home Desk (centre only)"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "preferred"
+	adaptive_sync = true
+	position = "0,0"
+
+[[profile]]
+name = "Home Desk (left, centre)"
+	[[profile.output]]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=504H12CR656S" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	transform = "90"
+	position = "0,0"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "preferred"
+	adaptive_sync = true
+	position = "1200,190"
+
+[[profile]]
+name = "Home Desk (centre, right)"
+	[[profile.output]]
+	search = [ "v=LG Electronics", "m=27GL850", "s=910NTTQ7B705" ]
+	enable = true
+	scale = 1
+	mode = "preferred"
+	adaptive_sync = true
+	position = "0,190"
+	[[profile.output]]
+	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=9W5YH35M1KFL" ]
+	enable = true
+	scale = 1
+	mode = "best"
+	position = "2560,0"
+	transform = "270"
+
+[[profile]]
+name = "Home Desk (left, centre, right)"
 	[[profile.output]]
 	search = [ "v=Dell Inc.", "m=DELL U2412M", "s=504H12CR656S" ]
 	enable = true
