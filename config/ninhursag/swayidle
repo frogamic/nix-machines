@@ -1,0 +1,7 @@
+timeout 300 'swaylock-fancy --pixelate --daemonize --text "Fingerprint to unlock"'
+timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+timeout 600 'sleep-if-battery' resume 'swaymsg "output * dpms on"'
+before-sleep 'swaylock-fancy --pixelate --daemonize --text "Fingerprint to unlock"'
+after-resume 'swaymsg "output * dpms on"'
+lock 'swaylock-fancy --pixelate --daemonize --text "Fingerprint to unlock"'
+unlock 'swaymsg "output * dpms on"'
