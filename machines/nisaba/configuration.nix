@@ -84,7 +84,7 @@
 		steam = {
 			enable = true;
 			autoStart = true;
-			desktopSession = "sway";
+			desktopSession = "gamescope-wayland";
 			user = "steam";
 		};
 		steamos = {
