@@ -32,7 +32,6 @@
 			"thinkpad_acpi"
 		];
 		kernelParams = [ "acpi_backlight=native" ];
-		kernelPackages = pkgs.linuxPackages_latest;
 
 		loader = {
 			timeout = 2;

@@ -27,7 +27,11 @@ in {
 		useDHCP = true;
 		useNetworkd = true;
 	};
-	boot.supportedFilesystems = [ "ntfs" ];
+
+	boot = {
+		supportedFilesystems = [ "ntfs" ];
+		kernelPackages = mkDefault pkgs.linuxPackages_latest;
+	};
 
 	programs = {
 		gnupg.agent.enable = true;
