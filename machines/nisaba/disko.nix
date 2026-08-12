@@ -1,5 +1,5 @@
 let
-  lvmOnLuks = { device, name, partitions ? {} }: {
+	lvmOnLuks = { device, name, partitions ? {} }: {
 		inherit device;
 		type = "disk";
 		content = {
@@ -98,7 +98,7 @@ in
 			lvm_steam = btrfsWithSubvols {
 				name = "steam";
 				subvolumes = {
-					var_lib_steam.mountpoint = "/var/lib/steam";
+					steam_home.mountpoint = "/home/steam";
 				};
 			};
 		};

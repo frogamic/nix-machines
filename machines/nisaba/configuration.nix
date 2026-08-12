@@ -67,14 +67,24 @@
 
 	users = {
 		mutableUsers = false;
-		users.me.hashedPasswordFile = "/var/lib/passwords/me";
+		users = {
+			me.hashedPasswordFile = "/var/lib/passwords/me";
+			steam = {
+				isNormalUser = true;
+				shell = pkgs.zsh;
+				openssh.authorizedKeys = config.users.users.me.openssh.authorizedKeys;
+			};
+		};
 	};
+
+	environment.loginShellInit = "";
 
 	jovian = {
 		hardware.has.amd.gpu = true;
 		steam = {
 			enable = true;
 			autoStart = true;
+			desktopSession = "sway";
 			user = "steam";
 		};
 		steamos = {

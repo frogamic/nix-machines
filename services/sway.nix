@@ -1,5 +1,9 @@
 { config, pkgs, lib, ... }:
 
+let
+	myDefault = (import ../lib).mkDefault;
+in
+
 {
 	imports = [
 		./waybar.nix
@@ -74,7 +78,7 @@
 			NIXOS_OZONE_WL = 1;
 			ELECTRON_OZONE_PLATFORM_HINT = "auto";
 		};
-		loginShellInit = ''
+		loginShellInit = myDefault ''
 			[[ "$(tty)" != '/dev/tty1' ]] || pidof sway > /dev/null || exec sway
 		'';
 		etc."sway/config".source = (mkConfig "sway" variables);
