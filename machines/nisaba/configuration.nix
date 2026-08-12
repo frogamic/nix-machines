@@ -70,6 +70,22 @@
 		users.me.hashedPasswordFile = "/var/lib/passwords/me";
 	};
 
+	jovian = {
+		hardware.has.amd.gpu = true;
+		steam = {
+			enable = true;
+			autoStart = true;
+			user = "steam";
+		};
+		steamos = {
+			useSteamOSConfig = false;
+			enableBluetoothConfig = true;
+			enableEarlyOOM = true; # Probably disable or at least tweak this later for homelabbing
+			enableHdmiCecIntegration = true;
+			enableSysctlConfig = true;
+		};
+	};
+
 	fileSystems."/mnt/data" = {
 		device = "/dev/mapper/DataVolGrp-data";
 		fsType = "ext4";
