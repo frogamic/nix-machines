@@ -87,6 +87,11 @@ in {
 	nix.settings.auto-optimise-store = true;
 	system.stateVersion = mkDefault "26.05"; # Did you read the comment?
 
+	users.users.root.openssh.authorizedKeys.keys = [
+		"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rVaDV6tjSjVTrigsVnanK7rPf4FHl4qMpHSeO2j9b dominic@enlil"
+		"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5rpMMLWs8oQXYtg9wXuvsb70O0vtPX+KEK1KiJAZVO dominic@ninhursag"
+	];
+
 	impermanence.persistence = {
 		files = [
 			"/etc/machine-id"
