@@ -10,7 +10,6 @@ in {
 
 		./login.nix
 		./nixFlakes.nix
-		./updates.nix
 		./emulatedSystems.nix
 		./ssh.nix
 		./fonts.nix

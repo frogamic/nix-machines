@@ -16,7 +16,10 @@
 			amdgpu.enable = true;
 			amdcpu.enable = true;
 		};
+		autoUpgrade.enable = true;
 	};
+
+	system.autoUpgrade.operation = "boot";
 
 	boot = {
 		initrd.availableKernelModules = [
