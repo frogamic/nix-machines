@@ -16,7 +16,10 @@
 			amdgpu.enable = true;
 			amdcpu.enable = true;
 		};
-		autoUpgrade.enable = true;
+		autoUpgrade = {
+			enable = true;
+			flake = "github:frogamic/nix-machines?ref=feature/aiServer";
+		};
 		jovian.enable = true;
 		gaming.enable = true;
 		aiServer.enable = true;
