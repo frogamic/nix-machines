@@ -70,7 +70,6 @@ in {
 		usbutils
 		ffmpeg
 		nix-index
-		lm_sensors
 		exfat
 	];
 
