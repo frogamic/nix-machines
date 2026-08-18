@@ -21,6 +21,16 @@
 
 	system.autoUpgrade.operation = "boot";
 
+	programs.lm_sensors = {
+		enable = true;
+		package = pkgs.mypkgs.lm_sensors;
+		kernelModules = [
+			"nct6775"
+			"drivetemp"
+		];
+		config = builtins.readFile ./sensors3.conf;
+	};
+
 	boot = {
 		initrd.availableKernelModules = [
 			"nvme"
