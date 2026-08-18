@@ -28,6 +28,7 @@
 		];
 	};
 	programs.lm_sensors = {
+		package = pkgs.mypkgs.lm_sensors;
 		enable = true;
 		kernelModules = [
 			"jc42"
