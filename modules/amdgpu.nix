@@ -35,6 +35,19 @@ in
 			amdgpu_top
 		];
 
+		programs.lm_sensors.config = ''
+chip "amdgpu-pci-*"
+	label temp1 "GPU Edge"
+	label temp2 "GPU Hotspot"
+	label temp3 "GPU Memory"
+	label fan1 "GPU Fan"
+	label in0 "GPU Core Voltage"
+	label power1 "GPU Power (PPT)"
+	label freq1 "GPU Core Clock"
+	label freq2 "GPU Memory Clock"
+	label pwm1 "GPU Fan %"
+'';
+
 		services = {
 
 			lact.enable = cfg.enableGuiTools;
