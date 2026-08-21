@@ -83,7 +83,6 @@
 	environment.loginShellInit = "";
 
 	jovian = {
-		hardware.has.amd.gpu = true;
 		steam = {
 			enable = true;
 			autoStart = true;
