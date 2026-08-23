@@ -20,6 +20,7 @@
 			amdcpu.enable = true;
 		};
 		autoUpgrade.enable = true;
+		gaming.enable = true;
 	};
 
 	boot = {

@@ -17,6 +17,7 @@
 			amdcpu.enable = true;
 		};
 		autoUpgrade.enable = true;
+		gaming.enable = true;
 	};
 
 	system.autoUpgrade.operation = "boot";

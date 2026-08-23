@@ -17,7 +17,6 @@ in {
 		./desktop-apps.nix
 		./develop.nix
 		./android.nix
-		./steam.nix
 		./graphics.nix
 		# ./3dprinting.nix
 	];
