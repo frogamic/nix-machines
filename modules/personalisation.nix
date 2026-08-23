@@ -12,9 +12,9 @@ in
 	i18n.defaultLocale = myDefault "en_AU.UTF-8";
 
 	services.xserver.xkb = {
-		layout = myDefault "us";
-		variant = myDefault "dvorak";
-		options = myDefault "caps:swapescape";
+		layout = myDefault "us,us";
+		variant = myDefault "dvorak,";
+		options = myDefault "caps:swapescape,grp:rctrl_rshift_toggle";
 	};
 
 	console = {
