@@ -1,11 +1,13 @@
+let
+	inherit ((import ../../lib).disko) lvmOnLuks btrfsWithSubvols;
+in
 {
 	disko.devices = {
-		disk.primary = {
-			type = "disk";
-			device = "/dev/disk/by-id/nvme-eui.002538b90150619b";
-			content = {
-				type = "gpt";
-				partitions = {
+		disk = {
+			nixos = lvmOnLuks {
+				device = "/dev/disk/by-id/nvme-eui.002538b90150619b";
+				name = "nixos";
+				extraPartitions = {
 					ESP = {
 						size = "1G";
 						type = "EF00";
@@ -20,51 +22,35 @@
 							];
 						};
 					};
-					luks_root = {
-						size = "100%";
-						content = {
-							type = "luks";
-							name = "luks_root";
-							settings = {
-								allowDiscards = true;
-								bypassWorkqueues = true;
-							};
-							content = {
-								type = "lvm_pv";
-								vg = "lvm_pool";
-							};
-						};
+				};
+			};
+			data = lvmOnLuks {
+				device = "/dev/disk/by-id/nvme-eui.002538b63140b95f";
+				name = "data";
+			};
+		};
+		lvm_vg = {
+			lvm_nixos = btrfsWithSubvols {
+				name = "nixos";
+				subvolumes = {
+					root.mountpoint = "/";
+					nix.mountpoint = "/nix";
+					persist.mountpoint = "/mnt/persist";
+					var_log.mountpoint = "/var/log";
+				};
+				extraLvs = {
+					swap = {
+						size = "16G";
+						content.type = "swap";
 					};
 				};
 			};
-		};
-		lvm_vg.lvm_pool = {
-			type = "lvm_vg";
-			lvs = {
-				nixos = {
-					size = "100%FREE";
-					content = {
-						type = "btrfs";
-						extraArgs = [ "-f" ];
-						mountOptions = [
-							"compress=zstd"
-							"noatime"
-						];
-						subvolumes = {
-							root.mountpoint = "/";
-							nix.mountpoint = "/nix";
-							persist.mountpoint = "/mnt/persist";
-							var_log.mountpoint = "/var/log";
-							var_lib_steam.mountpoint = "/var/lib/steam";
-						};
-					};
-				};
-				swap = {
-					size = "16G";
-					content = {
-						type = "swap";
-						#discardPolicy = "both";
-					};
+			lvm_data = btrfsWithSubvols {
+				name = "data";
+				subvolumes = {
+					data.mountpoint = "/mnt/data";
+					cache.mountpoint = "/mnt/cache";
+					var_lib_steam.mountpoint = "/var/lib/steam";
 				};
 			};
 		};
