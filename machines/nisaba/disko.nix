@@ -1,45 +1,5 @@
 let
-  lvmOnLuks = { device, name, partitions ? {} }: {
-		inherit device;
-		type = "disk";
-		content = {
-			type = "gpt";
-			partitions = partitions // {
-				"luks_${name}" = {
-					size = "100%";
-					content = {
-						type = "luks";
-						name = "luks_${name}";
-						settings = {
-							allowDiscards = true;
-							bypassWorkqueues = true;
-						};
-						content = {
-							type = "lvm_pv";
-							vg = "lvm_${name}";
-						};
-					};
-				};
-			};
-		};
-	};
-	btrfsWithSubvols = {name, subvolumes, lvs ? {}} : {
-		type = "lvm_vg";
-		lvs = {
-			"${name}" = {
-				size = "100%FREE";
-				content = {
-					inherit subvolumes;
-					type = "btrfs";
-					extraArgs = [ "-f" ];
-					mountOptions = [
-						"compress=zstd"
-						"noatime"
-					];
-				};
-			};
-		} // lvs;
-	};
+	inherit ((import ../../lib).disko) lvmOnLuks btrfsWithSubvols;
 in
 {
 	disko.devices = {
