@@ -10,7 +10,6 @@ in {
 
 		./login.nix
 		./emulatedSystems.nix
-		./ssh.nix
 		./fonts.nix
 		./sway.nix
 		./desktop-apps.nix
