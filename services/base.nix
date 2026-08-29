@@ -9,7 +9,6 @@ in {
 		./hardware/flipper.nix
 
 		./login.nix
-		./nixFlakes.nix
 		./emulatedSystems.nix
 		./ssh.nix
 		./fonts.nix
