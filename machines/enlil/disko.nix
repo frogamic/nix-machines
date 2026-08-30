@@ -50,7 +50,7 @@ in
 				subvolumes = {
 					data.mountpoint = "/mnt/data";
 					cache.mountpoint = "/mnt/cache";
-					var_lib_steam.mountpoint = "/var/lib/steam";
+					games.mountpoint = "/mnt/games";
 				};
 			};
 		};
