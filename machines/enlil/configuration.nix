@@ -13,7 +13,10 @@
 
 	mine = {
 		hardware = {
-			amdgpu.enable = true;
+			amdgpu = {
+				enable = true;
+				enableOverdrive  = false;
+			};
 			amdcpu.enable = true;
 		};
 		autoUpgrade.enable = true;
