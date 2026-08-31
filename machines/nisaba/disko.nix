@@ -64,13 +64,9 @@ in
 					};
 				};
 			};
-			persist = lvmOnLuks {
-				device = "wwn-0x5002538e49637928";
-				name = "persist";
-			};
-			steam = lvmOnLuks {
-				device = "wwn-0x5002538e49637a4f";
-				name = "steam";
+			data = lvmOnLuks {
+				device = "/dev/disk/by-id/nvme-eui.0025384431401332";
+				name = "data";
 			};
 		};
 		lvm_vg = {
@@ -78,14 +74,6 @@ in
 				name = "nixos";
 				subvolumes = {
 					root.mountpoint = "/";
-					nix.mountpoint = "/nix";
-				};
-			};
-			lvm_persist = btrfsWithSubvols {
-				name = "persist";
-				subvolumes = {
-					persist.mountpoint = "/mnt/persist";
-					cache.mountpoint = "/mnt/cache";
 					var_log.mountpoint = "/var/log";
 				};
 				lvs = {
@@ -95,10 +83,15 @@ in
 					};
 				};
 			};
-			lvm_steam = btrfsWithSubvols {
-				name = "steam";
+			lvm_data = btrfsWithSubvols {
+				name = "data";
 				subvolumes = {
-					steam_home.mountpoint = "/home/steam";
+					nix.mountpoint = "/nix";
+					models.mountpoint = "/var/lib/models";
+					persist.mountpoint = "/mnt/persist";
+					cache.mountpoint = "/mnt/cache";
+					data.mountpoint = "/mnt/data";
+					games.mountpoint = "/mnt/games";
 				};
 			};
 		};
