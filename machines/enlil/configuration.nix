@@ -17,7 +17,10 @@
 				enable = true;
 				enableOverdrive  = false;
 			};
-			amdcpu.enable = true;
+			amdcpu = {
+				enable = true;
+				voltageOffset = -30;
+			};
 		};
 		autoUpgrade.enable = true;
 		gaming.enable = true;
