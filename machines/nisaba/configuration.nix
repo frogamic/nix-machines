@@ -21,6 +21,7 @@
 			flake = "github:frogamic/nix-machines?ref=feature/jovian";
 		};
 		jovian.enable = true;
+		localAiServer.enable = true;
 	};
 
 	system.autoUpgrade.operation = "boot";
@@ -75,4 +76,11 @@
 	};
 
 	environment.loginShellInit = "";
+
+	systemd.sleep.settings.Sleep = {
+		AllowHibernation = "no";
+		AllowHybridSleep = "no";
+		AllowSuspend = "no";
+		AllowSuspendThenHibernate = "no";
+	};
 }
