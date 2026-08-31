@@ -1,14 +1,20 @@
 { config, lib, ... }:
 
 let
-	inherit (lib) mkIf mkEnableOption;
+	inherit (lib) mkIf mkEnableOption mkOption optionals types;
 
 	cfg = config.mine.hardware.amdcpu;
 in
 
 {
-	options.mine.hardware.amdcpu = {
+	options.mine.hardware.amdcpu = with types; {
 		enable = mkEnableOption "AMD CPU defaults";
+		voltageOffset = mkOption {
+			default = 0;
+			example = -30;
+			description = "Set a cpu core voltage offset (e.g. undervolt) in millivolts";
+			type = int;
+		};
 	};
 
 	config = mkIf cfg.enable {
@@ -19,9 +25,11 @@ in
 
 		boot = {
 			blacklistedKernelModules = [ "k10temp" ];
-			extraModulePackages = with config.boot.kernelPackages; [
+			extraModulePackages = with config.boot.kernelPackages; ([
 				zenpower
-			];
+			] ++ (optionals (cfg.voltageOffset != 0) [
+				ryzen-smu
+			]));
 		};
 
 		programs.lm_sensors = {
@@ -39,6 +47,12 @@ chip "zenpower-pci-*"
 	label curr2 "CPU SoC Amps"
 '';
 		};
+
+		# systemd.services.ryzen-smu-voltage-offset = {
+		# 	serviceConfig = {
+		# 		Type = "oneshot";
+		# 		ExecStart = 
+		# };
 
 	};
 }
