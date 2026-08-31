@@ -20,6 +20,7 @@
 			enable = true;
 			flake = "github:frogamic/nix-machines?ref=feature/jovian";
 		};
+		jovian.enable = true;
 	};
 
 	system.autoUpgrade.operation = "boot";
@@ -70,36 +71,8 @@
 
 	users = {
 		mutableUsers = false;
-		users = {
-			me.hashedPasswordFile = "/var/lib/passwords/me";
-			steam = {
-				isNormalUser = true;
-				shell = pkgs.zsh;
-				openssh.authorizedKeys = config.users.users.me.openssh.authorizedKeys;
-			};
-		};
+		users.me.hashedPasswordFile = "/var/lib/passwords/me";
 	};
 
 	environment.loginShellInit = "";
-
-	jovian = {
-		steam = {
-			enable = true;
-			autoStart = true;
-			desktopSession = "gamescope-wayland";
-			user = "steam";
-		};
-		steamos = {
-			useSteamOSConfig = false;
-			enableBluetoothConfig = true;
-			enableEarlyOOM = true; # Probably disable or at least tweak this later for homelabbing
-			enableHdmiCecIntegration = true;
-			enableSysctlConfig = true;
-		};
-	};
-
-	fileSystems."/mnt/data" = {
-		device = "/dev/mapper/DataVolGrp-data";
-		fsType = "ext4";
-	};
 }
