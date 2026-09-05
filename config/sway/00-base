@@ -2,10 +2,6 @@
 # user environments (e.g. required for screen sharing and Pinentry prompts):
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
-exec "XDG_CONFIG_HOME=/etc/xdg shikane"
-exec "XDG_CONFIG_HOME=/etc/xdg mako"
-exec "XDG_CONFIG_HOME=/etc/xdg swayidle -w"
-
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -15,26 +11,8 @@ set $right l
 
 set $term alacritty
 
-input * natural_scroll enabled
-
-input "type:touchpad" {
-	tap enabled
-	drag_lock enabled
-}
-
-input "type:pointer" {
-	pointer_accel -0.4
-	accel_profile flat
-}
-
-input "1133:4136:Logitech_M570" {
-	accel_profile adaptive
-}
-
 default_border pixel 1
 smart_borders on
-focus_follows_mouse no
-mouse_warping none
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -42,6 +20,9 @@ mouse_warping none
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
 floating_modifier $mod normal
+
+# All fullscreen applications will prevent idle
+for_window [app_id="^.*"] inhibit_idle fullscreen
 
 ### Key bindings
 bindsym {

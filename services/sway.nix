@@ -30,7 +30,7 @@
 			wob
 			acpi
 			swayidle
-			swaylock-fancy
+			swaylock
 			swaybg
 			xwayland
 			mako

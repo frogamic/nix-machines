@@ -1,0 +1,3 @@
+exec "XDG_CONFIG_HOME=/etc/xdg shikane"
+exec "XDG_CONFIG_HOME=/etc/xdg mako"
+exec "XDG_CONFIG_HOME=/etc/xdg swayidle -w"

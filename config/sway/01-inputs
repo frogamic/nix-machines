@@ -1,0 +1,17 @@
+input "type:touchpad" {
+	tap enabled
+	drag_lock enabled
+}
+
+input "type:pointer" {
+	pointer_accel -0.4
+	accel_profile flat
+}
+
+input "1133:4136:Logitech_M570" {
+	accel_profile adaptive
+}
+
+input * natural_scroll enabled
+focus_follows_mouse no
+mouse_warping none
