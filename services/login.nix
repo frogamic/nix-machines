@@ -1,10 +1,16 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+
+let
+	myDefault = (import ../lib).mkDefault;
+in
+
+{
 	services.getty = {
 		extraArgs = [
 			"--nohostname"
 			"-n"
 		];
-		loginOptions = config.users.users.me.name;
+		loginOptions = myDefault config.users.users.me.name;
 	};
 
 	environment.etc.issue = lib.mkForce {

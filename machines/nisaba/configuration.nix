@@ -17,6 +17,7 @@
 			amdcpu.enable = true;
 		};
 		autoUpgrade.enable = true;
+		jovian.enable = true;
 		gaming.enable = true;
 	};
 
@@ -70,6 +71,8 @@
 		mutableUsers = false;
 		users.me.hashedPasswordFile = "/var/lib/passwords/me";
 	};
+
+	environment.loginShellInit = "";
 
 	fileSystems."/mnt/data" = {
 		device = "/dev/mapper/DataVolGrp-data";

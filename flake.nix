@@ -22,6 +22,13 @@
 			url = "github:nix-community/nix-index-database";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		jovian = {
+			url = "github:Jovian-Experiments/Jovian-NixOS";
+			inputs = {
+				nixpkgs.follows = "nixpkgs";
+				nix-github-actions.follows = "";
+			};
+		};
 		dotfiles = {
 			url = "github:frogamic/dotfiles";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +53,7 @@
 					impermanence.nixosModules.impermanence
 					nix-index-database.nixosModules.nix-index
 					dotfiles.nixosModules.default
+					jovian.nixosModules.default
 				];
 			};
 			withImports = {
