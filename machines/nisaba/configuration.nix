@@ -74,8 +74,4 @@
 
 	environment.loginShellInit = "";
 
-	fileSystems."/mnt/data" = {
-		device = "/dev/mapper/DataVolGrp-data";
-		fsType = "ext4";
-	};
 }
