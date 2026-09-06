@@ -37,7 +37,6 @@ in
 		impermanence.persistence.user.directories = [
 			".local/share/vulkan"
 			".cache/mesa_shader_cache"
-			".cache/radv_builtin_shaders"
 		] ++ (optionals cfg.steam.enable [
 			".steam"
 			".local/share/Steam"
