@@ -19,6 +19,7 @@
 		autoUpgrade.enable = true;
 		jovian.enable = true;
 		gaming.enable = true;
+		aiServer.enable = true;
 	};
 
 	users.users.steam = {
@@ -84,4 +85,10 @@
 
 	environment.loginShellInit = "";
 
+	systemd.sleep.settings.Sleep = {
+		AllowHibernation = "no";
+		AllowHybridSleep = "no";
+		AllowSuspend = "no";
+		AllowSuspendThenHibernate = "no";
+	};
 }
