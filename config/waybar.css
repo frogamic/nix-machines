@@ -1,7 +1,7 @@
 * {
 	border: none;
 	border-radius: 0;
-	font-family: "DejaVu Sans", "Font Awesome 6 Free", Helvetica, Arial, sans-serif;
+	font-family: "DejaVu Sans", "Font Awesome 7 Free", Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	min-height: 0;
 	color: #ffffff;
@@ -155,8 +155,7 @@ label:focus {
 }
 
 #idle_inhibitor.activated {
-	background-color: #ecf0f1;
-	color: #2d3436;
+	color: #f5ba53;
 }
 
 #language {

@@ -1,7 +1,7 @@
 { config, pkgs, ... }: with pkgs; {
 
 	fonts.packages = [
-		font-awesome
+		font-awesome_7
 	];
 
 	programs.sway.extraPackages = [
