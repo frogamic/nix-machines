@@ -31,7 +31,10 @@
 		openssh.authorizedKeys = config.users.users.me.openssh.authorizedKeys;
 	};
 
-	jovian.steam.user = "steam";
+	jovian.steam = {
+		autoStart = true;
+		user = "steam";
+	};
 
 	services.desktopManager.plasma6.enable = true;
 
@@ -88,10 +91,13 @@
 
 	environment.loginShellInit = "";
 
-	systemd.sleep.settings.Sleep = {
-		AllowHibernation = "no";
-		AllowHybridSleep = "no";
-		AllowSuspend = "no";
-		AllowSuspendThenHibernate = "no";
+	systemd = {
+		defaultUnit = lib.mkForce "multi-user.target";
+		sleep.settings.Sleep = {
+			AllowHibernation = "no";
+			AllowHybridSleep = "no";
+			AllowSuspend = "no";
+			AllowSuspendThenHibernate = "no";
+		};
 	};
 }
