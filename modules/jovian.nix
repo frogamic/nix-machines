@@ -11,9 +11,9 @@
 	config = mkIf cfg.enable {
 		jovian = {
 			steam = {
-				enable = true;
-				autoStart = false;
-				desktopSession = "plasma";
+				enable = lib.mkDefault true;
+				autoStart = lib.mkDefault false;
+				desktopSession = lib.mkDefault "plasma";
 				user = lib.mkDefault config.users.users.me.name;
 			};
 			steamos = {
