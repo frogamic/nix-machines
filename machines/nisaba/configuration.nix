@@ -78,10 +78,13 @@
 
 	environment.loginShellInit = "";
 
-	systemd.sleep.settings.Sleep = {
-		AllowHibernation = "no";
-		AllowHybridSleep = "no";
-		AllowSuspend = "no";
-		AllowSuspendThenHibernate = "no";
+	systemd = {
+		defaultUnit = lib.mkForce "multi-user.target";
+		sleep.settings.Sleep = {
+			AllowHibernation = "no";
+			AllowHybridSleep = "no";
+			AllowSuspend = "no";
+			AllowSuspendThenHibernate = "no";
+		};
 	};
 }
