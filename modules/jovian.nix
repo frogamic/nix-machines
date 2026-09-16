@@ -9,14 +9,12 @@
 	};
 
 	config = mkIf cfg.enable {
-		services.desktopManager.plasma6.enable = true;
-
 		jovian = {
 			steam = {
 				enable = true;
-				autoStart = true;
+				autoStart = false;
 				desktopSession = "plasma";
-				user = "steam";
+				user = lib.mkDefault config.users.users.me.name;
 			};
 			steamos = {
 				useSteamOSConfig = false;
@@ -25,12 +23,6 @@
 				enableHdmiCecIntegration = true;
 				enableSysctlConfig = true;
 			};
-		};
-
-		users.users.steam = {
-			isNormalUser = true;
-			shell = pkgs.zsh;
-			openssh.authorizedKeys = config.users.users.me.openssh.authorizedKeys;
 		};
 	};
 }

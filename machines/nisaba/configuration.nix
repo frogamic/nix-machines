@@ -21,6 +21,16 @@
 		gaming.enable = true;
 	};
 
+	users.users.steam = {
+		isNormalUser = true;
+		shell = pkgs.zsh;
+		openssh.authorizedKeys = config.users.users.me.openssh.authorizedKeys;
+	};
+
+	jovian.steam.user = "steam";
+
+	services.desktopManager.plasma6.enable = true;
+
 	system.autoUpgrade.operation = "boot";
 
 	programs.lm_sensors = {

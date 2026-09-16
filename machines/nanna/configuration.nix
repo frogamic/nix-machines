@@ -18,9 +18,17 @@
 			amdcpu.enable = true;
 		};
 		autoUpgrade.enable = true;
-		# jovian.enable = true;
+		jovian.enable = true;
 		gaming.enable = true;
 	};
+
+	services = {
+		desktopManager.plasma6.enable = true;
+		displayManager.plasma-login-manager.enable = true;
+		tlp.enable = lib.mkForce false;
+	};
+
+	environment.loginShellInit = "";
 
 	boot = {
 		initrd.availableKernelModules = [
@@ -62,16 +70,7 @@
 		users.me.passwordFile = "/var/lib/passwords/me";
 	};
 
-	# networking = {
-	# 	wireless.enable = false;
-	# 	supplicant.wlp3s0 = {
-	# 		userControlled.enable = true;
-	# 		configFile = {
-	# 			path = "/etc/wpa_supplicant.conf";
-	# 			writable = true;
-	# 		};
-	# 	};
-	# };
+	networking.networkmanager.enable = true;
 
 	impermanence.persistence.files = [
 		"/etc/wpa_supplicant.conf"
