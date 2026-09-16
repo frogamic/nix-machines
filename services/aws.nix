@@ -4,8 +4,8 @@
 		stable.aws-sam-cli
 		awscli2
 		ssm-session-manager-plugin
-	]) ++ (with pkgs.frogamic; [
-		stack_master
+	# ]) ++ (with pkgs.frogamic; [
+	# 	stack_master
 	]);
 	impermanence.persistence.user.directories = [
 		".aws"
