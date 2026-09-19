@@ -26,7 +26,6 @@
 	system.autoUpgrade.operation = "boot";
 
 	boot = {
-		kernelPackages = pkgs.linuxPackages;
 		extraModulePackages = [
 			config.boot.kernelPackages.nct6687d
 		];
