@@ -36,6 +36,7 @@ in
 			swayidle
 			swaylock
 			swaybg
+			swaykbdd
 			xwayland
 			mako
 			shikane
