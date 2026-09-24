@@ -80,6 +80,9 @@ bindsym {
 		# Make the current focus fullscreen
 		$mod+f fullscreen
 
+		# Hide waybar for fake fullscreen
+		$mod+Alt+f exec killall -SIGUSR1 .waybar-wrapped
+
 		# Toggle the current focus between tiling and floating mode
 		$mod+Shift+f floating toggle
 
