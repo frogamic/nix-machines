@@ -8,8 +8,8 @@ let
 	ryzen-smu-cli-src = pkgs.fetchFromGitHub {
 		owner = "frogamic";
 		repo = "ryzen-smu-cli";
-		rev = "0.0.3";
-		hash = "sha256-2HtN15aGfdV3B+AdCQ19Fg0WsV3zkCYxyclMkq1aKac=";
+		rev = "0.0.4";
+		hash = "sha256-wOecovXSFdzE4XmUQB7glT773LbuoCH73dOXmC8bQMQ=";
 	};
 	ryzen-smu-cli = pkgs.callPackage "${ryzen-smu-cli-src}/package.nix" { linuxPackages = config.boot.kernelPackages; };
 
