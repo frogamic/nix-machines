@@ -29,7 +29,16 @@
 
 	jovian.steam.user = "steam";
 
-	services.desktopManager.plasma6.enable = true;
+	services = {
+		desktopManager.plasma6.enable = true;
+		iperf3 = {
+			enable = true;
+			openFirewall = true;
+		};
+		udev.extraRules = ''
+			SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x2725", ATTR{power/control}="auto"
+		'';
+	};
 
 	system.autoUpgrade.operation = "boot";
 
@@ -44,6 +53,10 @@
 	};
 
 	boot = {
+		blacklistedKernelModules = [
+			"iwlwifi"
+			"iwlmvm"
+		];
 		initrd.availableKernelModules = [
 			"nvme"
 			"ehci_pci"
