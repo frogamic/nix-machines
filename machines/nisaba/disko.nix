@@ -1,15 +1,20 @@
 let
-	inherit ((import ../../lib).disko) lvmOnLuks btrfsWithSubvols;
+	inherit ((import ../../lib).disko) btrfsOnLuks;
+	hostName = "nisaba";
 in
 {
 	disko.devices = {
 		disk = {
-			nixos = lvmOnLuks {
+			"${hostName}-nixos" = btrfsOnLuks {
 				device = "/dev/disk/by-id/nvme-eui.0025388691b07e28";
 				name = "nixos";
+				subvolumes = {
+					root.mountpoint = "/";
+					var_log.mountpoint = "/var/log";
+				};
 				extraPartitions = {
 					ESP = {
-						size = "512M";
+						size = "1G";
 						type = "EF00";
 						content = {
 							type = "filesystem";
@@ -24,26 +29,8 @@ in
 					};
 				};
 			};
-			data = lvmOnLuks {
+			"${hostName}-data" = btrfsOnLuks {
 				device = "/dev/disk/by-id/nvme-eui.0025384431401332";
-				name = "data";
-			};
-		};
-		lvm_vg = {
-			lvm_nixos = btrfsWithSubvols {
-				name = "nixos";
-				subvolumes = {
-					root.mountpoint = "/";
-					var_log.mountpoint = "/var/log";
-				};
-				extraLvs = {
-					swap = {
-						size = "16G";
-						content.type = "swap";
-					};
-				};
-			};
-			lvm_data = btrfsWithSubvols {
 				name = "data";
 				subvolumes = {
 					nix.mountpoint = "/nix";
