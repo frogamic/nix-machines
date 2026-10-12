@@ -68,6 +68,11 @@ in {
 		ffmpeg
 		nix-index
 		exfat
+		usbtree
+		tcpdump
+		nfs-utils
+		sysstat
+		nvme-cli
 	];
 
 	mine.hardware.udev-hidraw-rules = [
