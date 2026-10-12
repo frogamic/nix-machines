@@ -11,7 +11,6 @@ let
 		type = "luks";
 		settings = {
 			allowDiscards = true;
-			bypassWorkqueues = true;
 		};
 	};
 in

@@ -34,6 +34,7 @@ in
 		};
 
 		boot = {
+			initrd.kernelModules = [ "aesni_intel" ];
 			kernelModules = [
 				"zenpower"
 			] ++ optional doVOffset "ryzen-smu";
