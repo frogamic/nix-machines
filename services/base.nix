@@ -75,11 +75,14 @@ in {
 		nvme-cli
 	];
 
-	mine.hardware.udev-hidraw-rules = [
-		{ vendor = "2dc8"; } # 8bitdo
-		{ vendor = "3837"; } # mchose
-		{ vendor = "3434"; } # keychron
-	];
+	mine = {
+		development.hardware.enable = true;
+		hardware.udev-hidraw-rules = [
+			{ vendor = "2dc8"; } # 8bitdo
+			{ vendor = "3837"; } # mchose
+			{ vendor = "3434"; } # keychron
+		];
+	};
 
 	services = {
 		fwupd.enable = true;
