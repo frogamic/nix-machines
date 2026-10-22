@@ -9,6 +9,10 @@ let
 in
 
 {
+	imports = [
+		../modules/customCa.nix
+	];
+
 	environment = {
 		systemPath = lib.mkAfter [
 			"${config.homebrew.prefix}/bin"

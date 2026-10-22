@@ -3,6 +3,12 @@
 {
 	imports = [ ../../services/base-darwin.nix ];
 
+	mine.forceCustomCa = true;
+
+	security.pki.certificateFiles = [
+		./cloudflare-gateway-ca.pem
+	];
+
 	environment.systemPackages = with pkgs; [
 		kubectl
 		kubectx
