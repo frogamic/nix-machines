@@ -2,7 +2,6 @@
 
 	imports = [
 		./aws.nix
-		./podman.nix
 	];
 
 	environment.systemPackages = (with pkgs; [

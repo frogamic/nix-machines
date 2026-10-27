@@ -76,6 +76,7 @@ in {
 	];
 
 	mine = {
+		containers.enable = true;
 		development.hardware.enable = true;
 		hardware.udev-hidraw-rules = [
 			{ vendor = "2dc8"; } # 8bitdo
