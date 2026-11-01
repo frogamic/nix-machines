@@ -3,7 +3,6 @@
 
 	environment.systemPackages = with pkgs; [
 		droidcam
-		adbfs-rootless
 		android-file-transfer
 		android-tools
 		scrcpy
